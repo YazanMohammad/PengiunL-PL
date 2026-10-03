@@ -491,9 +491,9 @@ shipping/docs -> task 5. Review Focus cases have explicit owning tests. TestServ
 and recording transport are distinct evidence from the conditional native smoke.
 No undefined cross-task interface or unrelated roadmap implementation is required.
 
-The user has already selected **subagent-driven development**. This plan is now
-awaiting review; implementation begins only after the user confirms the written
-plan. Preserve that execution choice rather than asking them to select it again.
+The user approved this written plan and implementation on 2026-10-03 and selected
+**subagent-driven development**. Execution uses a fresh implementer and independent
+reviewer for each task. Preserve that execution choice.
 
 Implementation references: [Kestrel Configure](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.configure?view=aspnetcore-10.0),
 [ListenLocalhost](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.listenlocalhost?view=aspnetcore-10.0),

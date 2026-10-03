@@ -1,7 +1,8 @@
 # Local API caller boundary design
 
 Status: conversational approach and written spec approved on 2026-10-03.
-Implementation plan awaiting review; runtime implementation has not started.
+Implementation plan approved on 2026-10-03; execution started under strict TDD
+and independent task review. Verification evidence will track delivered behavior.
 
 ## Intent and classification
 
