@@ -1,0 +1,19 @@
+# Local dependency and build outputs
+**/node_modules/
+**/bin/
+**/obj/
+**/dist/
+/publish/
+**/TestResults/
+**/coverage/
+
+# Isolated workspaces and agent working records
+/.worktrees/
+/.superpowers/
+
+# Local editor state and runtime diagnostics
+/.vs/
+*.user
+*.suo
+crash.log
+*.log
