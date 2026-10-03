@@ -1,7 +1,7 @@
 # Local API caller boundary design
 
-Status: conversational approach approved on 2026-10-03. Written spec awaiting
-user review; no implementation plan or runtime changes authorized by this stage.
+Status: conversational approach and written spec approved on 2026-10-03.
+Implementation plan awaiting review; runtime implementation has not started.
 
 ## Intent and classification
 
