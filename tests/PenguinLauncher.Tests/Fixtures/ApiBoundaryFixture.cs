@@ -63,6 +63,9 @@ public sealed class ApiBoundaryFixture : IAsyncDisposable
             context.Response.ContentType = "text/javascript";
             await context.Response.WriteAsync("/* synthetic static asset */");
         });
+        // API fallback must also match file-like paths such as /api/unknown.json.
+        // Retain the ordinary nonfile SPA fallback for non-API navigation.
+        app.MapFallback("/api/{**path}", LocalApiBoundary.WriteApiNotFoundAsync);
         app.MapFallback(async context =>
         {
             if (LocalApiBoundary.IsApiPath(context.Request.Path))

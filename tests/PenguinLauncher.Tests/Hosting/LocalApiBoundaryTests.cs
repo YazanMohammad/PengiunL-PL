@@ -265,6 +265,29 @@ public class LocalApiBoundaryTests
         Assert.Equal(0, fixture.HandlerCalls);
     }
 
+    // A nonfile-only fallback silently drops the JSON error contract for dotted API paths.
+    [Fact]
+    public async Task AuthenticatedDottedUnknownApi_ReturnsJson404()
+    {
+        await using var fixture = await ApiBoundaryFixture.CreateAsync(Policy());
+        using var request = Request("GET", "/api/unknown.json");
+        using var response = await fixture.Client.SendAsync(request);
+        await AssertErrorAsync(response, HttpStatusCode.NotFound, "API endpoint not found.");
+        Assert.Equal(0, fixture.HandlerCalls);
+    }
+
+    // Broadening the SPA fallback would wrongly turn missing ordinary assets into HTML.
+    [Fact]
+    public async Task MissingNonApiStaticAsset_RemainsFramework404()
+    {
+        await using var fixture = await ApiBoundaryFixture.CreateAsync(Policy());
+        using var response = await fixture.Client.GetAsync("/assets/missing.js");
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        Assert.NotEqual("text/html", response.Content.Headers.ContentType?.MediaType);
+        Assert.Null(response.Headers.CacheControl);
+        Assert.Equal(0, fixture.HandlerCalls);
+    }
+
     [Fact]
     public async Task StaticAsset_RemainsAnonymousWithExistingCachePolicy()
     {

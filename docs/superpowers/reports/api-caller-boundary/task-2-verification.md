@@ -69,3 +69,64 @@ No introduced correctness concerns found during self-review. No unresolved conte
 - Existing formatter and npm audit failures remain and are reported above; this is not an all-checks-pass claim.
 - TestServer evidence covers middleware-visible headers, not native wire parsing or a webview lifecycle smoke test. Those are not Task 2 deliverables.
 - This task provides the shared implementation and fixture composition; production Main does not yet call it.
+
+## Independent review fix round 1
+
+Fix base: `860257f2b78730d71777a0105e4303accbacbd6a`.
+
+Review found that parameterless MapFallback uses the nonfile constraint and skips authenticated `/api/unknown.json`, yielding an empty framework 404. The new regression reproduced the missing JSON content type before the fix. Systematic debugging traced the request to fallback route eligibility, rather than authentication or the shared error writer.
+
+Added an API-only `MapFallback("/api/{**path}", LocalApiBoundary.WriteApiNotFoundAsync)` without the nonfile constraint in ApiBoundaryFixture, retaining ordinary SPA fallback and explicit static endpoint behavior. A preservation case verifies that `/assets/missing.js` retains its framework 404 with no HTML or API cache policy. The dotted API case verifies exact JSON 404, no-store and zero handler calls. Production middleware, Main, endpoint guards, dependency files and UI were unchanged.
+
+RED at Root: `dotnet test PenguinLauncher.sln --filter 'FullyQualifiedName~AuthenticatedDottedUnknownApi_ReturnsJson404|FullyQualifiedName~MissingNonApiStaticAsset_RemainsFramework404' --verbosity minimal`.
+Native exit 1: 1 failed and 1 passed before the fixture fix. Complete output:
+
+```text
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  PenguinLauncher -> C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\bin\Debug\net10.0\win-x64\PenguinLauncher.dll
+  PenguinLauncher.Tests -> C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\bin\Debug\net10.0\PenguinLauncher.Tests.dll
+Test run for C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\bin\Debug\net10.0\PenguinLauncher.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.26]     PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.AuthenticatedDottedUnknownApi_ReturnsJson404 [FAIL]
+  Failed PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.AuthenticatedDottedUnknownApi_ReturnsJson404 [14 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+Expected: "application/json"
+Actual:   null
+  Stack Trace:
+     at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.AssertErrorAsync(HttpResponseMessage response, HttpStatusCode status, String error) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 439
+   at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.AuthenticatedDottedUnknownApi_ReturnsJson404() in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 275
+   at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.AuthenticatedDottedUnknownApi_ReturnsJson404() in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 276
+--- End of stack trace from previous location ---
+
+Failed!  - Failed:     1, Passed:     1, Skipped:     0, Total:     2, Duration: 113 ms - PenguinLauncher.Tests.dll (net10.0)
+NATIVE_EXIT_CODE=1
+```
+
+GREEN at Root: `dotnet test PenguinLauncher.sln --filter 'FullyQualifiedName~LocalApiBoundaryTests|FullyQualifiedName~AuthenticatedRequestGuardTests|FullyQualifiedName~RequestGuardTests' --verbosity minimal`.
+Native exit 0: 206 passed (108 boundary + 43 authenticated guard + 55 existing guard-only cases). Complete output:
+
+```text
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  PenguinLauncher -> C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\bin\Debug\net10.0\win-x64\PenguinLauncher.dll
+  PenguinLauncher.Tests -> C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\bin\Debug\net10.0\PenguinLauncher.Tests.dll
+Test run for C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\bin\Debug\net10.0\PenguinLauncher.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   206, Skipped:     0, Total:   206, Duration: 728 ms - PenguinLauncher.Tests.dll (net10.0)
+NATIVE_EXIT_CODE=0
+```
+
+Scoped formatter verification at Root: `dotnet format PenguinLauncher.sln --verify-no-changes --include tests/PenguinLauncher.Tests/Fixtures/ApiBoundaryFixture.cs tests/PenguinLauncher.Tests/Hosting/LocalApiBoundaryTests.cs --no-restore --verbosity minimal`, native 0.
+
+```text
+NATIVE_EXIT_CODE=0
+```
+
+Full red/green outputs also live in `docs/superpowers/reports/api-caller-boundary/task-2-fix-1-red.md` and `task-2-fix-1-green.md`. Per controller scope, the fixture-only fix received focused verification rather than another full matrix; no evidence indicated broader implementation risk. The original matrix is historical evidence for the initial implementation, not a new matrix claim for this fix.
+
+Self-review of the fix checked API prefix scoping, route precedence beneath existing handlers, preserved no-store and the ordinary nonfile SPA/static routes; the focused composition suites passed. Independent re-review remains the controller's gate.
+
+Task 5 carry-forward requirement: Main/shared host composition must register an API fallback without the nonfile constraint, for example `MapFallback("/api/{**path}", LocalApiBoundary.WriteApiNotFoundAsync)`, together with its API-root behavior. Dotted unknown API paths must receive the exact JSON 404 before ordinary SPA fallback. Keep normal static/SPA routing behavior. This requirement is reported to the controller; no Program edits or unrelated route-parity expansion were made here.
