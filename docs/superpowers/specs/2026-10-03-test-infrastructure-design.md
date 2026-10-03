@@ -2,7 +2,7 @@
 
 Status: written design and implementation plan approved by the user on
 2026-10-03; implementation tasks delivered and independently reviewed.
-Whole-branch review and final verification remain pending.
+Whole-branch review and final verification are recorded in the execution report.
 
 ## Intent and constraints
 

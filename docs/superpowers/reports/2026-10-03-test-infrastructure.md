@@ -3,9 +3,10 @@
 Date: 2026-10-03. Branch: `improvement/production-hardening`.
 Source baseline: `3c1f2c3`. Approved plan: `b56a7d5`.
 Worktree: `C:/Users/Yzn/Desktop/PengiunL-PL/.worktrees/production-hardening`.
-Status: all three implementation tasks independently reviewed; whole-branch
-review and final serial verification remain pending. This is not whole-roadmap
-completion or a security claim.
+Status: test-infrastructure project implemented, independently task-reviewed,
+whole-branch reviewed and freshly verified. This is not whole-roadmap completion
+or a security claim. Formatting and npm advisory checks remain nonzero as
+explicitly recorded below.
 
 ## Scope and commits
 
@@ -122,7 +123,10 @@ Do not expose test API/browser/mocker servers before that remediation.
   checked advisory server prerequisites, unchanged production config/imports and
   typecheck boundaries. Deferred minors: latent Vitest/mocker advisory and
   whatwg-encoding deprecation, both routed to tooling remediation.
-- Whole-branch regression review: pending.
+- Whole-branch regression review: `/root/review_test_whole_branch`,
+  `3c1f2c3..1a5270b`; no Critical/Important findings, no runtime regression
+  identified. Independently verified the empty production diff and all unchanged
+  lock entries. Both dependency minors remain nonblocking for configured tests.
 
 ## Fresh controller verification
 
@@ -133,4 +137,32 @@ check, not the final serial matrix. A complete fresh matrix follows final review
 Scoped baseline runtime/config/assets diff returned exit 0 (empty); tracked
 worktree was clean before this report was authored.
 
-Final acceptance and later roadmap work remain pending at this report stage.
+Final serial matrix after whole-branch review: backend 64/64, frontend 19/19,
+typecheck and both builds exited 0; Release build had zero warnings/errors.
+Dependency tree check exited 0; NuGet vulnerability check reported none.
+Formatter native exit 2: original 233 WHITESPACE, no test-file diagnostics.
+npm audit native exit 1: nine package entries (six high, three moderate), including
+the two new entries already documented. Initial diff-check exit 1 from known
+build-generated HTML carriage returns became exit 0 after scoped normalization;
+runtime/config/assets diff against source baseline is empty. No runtime behavior
+was changed to obtain these results.
+
+Exact final command wrappers and output are preserved in
+`test-infrastructure/final-verification.md`; historical implementer snapshots,
+including per-test mutation targets and red/green diagnostics, are in
+`test-infrastructure/task-1.md`, `task-2.md`, and `task-3.md`. Their pending-review
+wording is historical; the verdicts in this top-level report are current.
+
+## Acceptance checklist
+
+1. Backend and frontend nonzero discovery: verified, 64 and 19 cases.
+2. Deliberate failing assertions: both runners returned exit 1, then restored green.
+3. Supported behavior characterization/no runtime changes: source/diff reviewed.
+4. Credential/process isolation: reviewed actual call paths, fixture registrations,
+   rejection and cleanup; persistence sentinel replacement requirement retained.
+5. Focused/full tests, typecheck/builds: exact runs recorded, final serial rerun fresh.
+6. Independent task/whole-branch review: all gates reviewed, no blocking findings;
+   two minor dependency items retained for tooling remediation.
+
+No integration, merge, push, or release occurred. The working branch remains
+isolated for subsequent roadmap projects; all later roadmap items remain pending.

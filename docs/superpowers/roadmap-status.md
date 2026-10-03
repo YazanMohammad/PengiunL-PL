@@ -12,7 +12,7 @@ improvements remain pending their own design and plan reviews.
 
 | Project | Brainstorming classification | Audit coverage | Status |
 | --- | --- | --- | --- |
-| 1. Test infrastructure | Architectural: new test projects and verification interfaces | H7; prerequisite for behavior changes | Three implementation tasks reviewed; whole-branch review/final verification pending |
+| 1. Test infrastructure | Architectural: new test projects and verification interfaces | H7; prerequisite for behavior changes | Implemented/reviewed; final 64 backend + 19 frontend tests and builds verified; report records residual tooling checks |
 | 2. Local API caller boundary | Architectural: per-run client authentication and host/UI contract | C1; M3 coordinated error contract | Pending its own spec and plan |
 | 3. Account identifiers and backup containment | Architectural: persisted storage identity and reversible migration | C2 | Pending its own spec and plan |
 | 4. Transactional persistence | Architectural: storage interface and commit/recovery semantics | H2 | Pending its own spec and plan |
