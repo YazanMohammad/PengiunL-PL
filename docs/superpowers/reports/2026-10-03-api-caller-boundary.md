@@ -71,7 +71,16 @@ remains separate. The controller fresh covering run also passed 206/206.
 - [Task 2 verification](api-caller-boundary/task-2-verification.md)
 - [Task 2 independent review and fix](api-caller-boundary/task-2-review.md)
 
-Production wiring and native/client integration remain pending tasks 3-5. No C1
+Task 3 session/client capability is accepted (`9d99d8f`), with independent
+spec-compliance and quality approval and no introduced important findings.
+The recorded full matrix has 327 backend/79 frontend tests; a controller fresh
+focused run passed 71/71. Usage interruption preserved completed matrix/TDD
+evidence; the original implementer resumed without repeating red steps.
+
+- [Task 3 verification](api-caller-boundary/task-3-verification.md)
+- [Task 3 independent review](api-caller-boundary/task-3-review.md)
+
+Production wiring and gate/native integration remain pending tasks 4-5. No C1
 closure is claimed from policy-only code. No task is accepted until its
 independent reviewer returns both spec-compliance and quality verdicts.
 The plan-scoped recovery ledger records task bases, agents, reviews and rulings.

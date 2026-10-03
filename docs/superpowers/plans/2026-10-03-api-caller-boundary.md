@@ -242,24 +242,24 @@ request helper as `export async function request<T>(url: string,
 options?: RequestInit): Promise<T>` for focused header-merge tests; public `api`
 method signatures remain unchanged.
 
-- [ ] Write session tests with compiling shells: valid fragment connects before
+- [x] Write session tests with compiling shells: valid fragment connects before
   subscribers/data effects, removes the fragment with replaceState preserving
   pathname/query, stores exact key, and overrides old storage. Empty/duplicate/
   padded/malformed token fragments disconnect despite a valid stored credential.
   Absent fragment restores only a canonical stored token; unrelated navigation
   fragments do not establish credentials. Repeat initialize is idempotent.
-- [ ] Run `npm test -- tests/api/session.test.ts` in the UI; record red behavior.
-- [ ] Add blocked storage getter/getItem/setItem/removeItem tests: valid fragment
+- [x] Run `npm test -- tests/api/session.test.ts` in the UI; record red behavior.
+- [x] Add blocked storage getter/getItem/setItem/removeItem tests: valid fragment
   still works in memory when storage fails, invalid fragment never falls back,
   invalidation clears memory even if removal fails, and replaceState failure
   leaves disconnected state. Assert localStorage/cookie unchanged, snapshots and
   caught errors contain no token. `subscribe` cleanup prevents later callbacks.
-- [ ] Run the session filter red again with storage/history failures and precedence
+- [x] Run the session filter red again with storage/history failures and precedence
   cases before implementing them.
-- [ ] Implement createApiSession with canonical 32-byte token validation and
+- [x] Implement createApiSession with canonical 32-byte token validation and
   spec precedence. Keep storage access lazy and guarded. Scrub any credential
   fragment before mounting; never expose the token through state/UI/error copy.
-- [ ] Write request regressions **before editing request behavior**: disconnected
+- [x] Write request regressions **before editing request behavior**: disconnected
   `api.getAccounts()` rejects `"Authentication required."` with zero fetch calls;
   connected calls carry Bearer auth, JSON headers and `redirect: 'error'`; caller
   Headers/object/tuple options cannot overwrite auth. Parameterize every existing
@@ -276,19 +276,19 @@ method signatures remain unchanged.
   });
   ```
 
-- [ ] Write deferred-Response tests: 401 invalidates that generation, clears the
+- [x] Write deferred-Response tests: 401 invalidates that generation, clears the
   owned key, notifies subscribers and never retries; 403 preserves it. Complete
   another request after that 401 and assert rejection rather than data return.
   Reconnect with token B while token A's request is pending: both a late A success
   and a late A 401 must reject without clearing B. Check generation again after
   asynchronous body decoding. A fetch redirect error must not trigger retries.
-- [ ] Run `npm test -- tests/api/client.test.ts` red with the deferred response
+- [x] Run `npm test -- tests/api/client.test.ts` red with the deferred response
   cases before editing the request function.
-- [ ] Implement request auth/header merge and capture the generation per call.
+- [x] Implement request auth/header merge and capture the generation per call.
   Invalidate only the generation that received 401; reject stale results before
   returning decoded data. Keep existing success/error decoding otherwise intact.
   Update old exact-call tests only for intentionally added headers/redirects.
-- [ ] Run `npm test -- tests/api/session.test.ts tests/api/client.test.ts` green,
+- [x] Run `npm test -- tests/api/session.test.ts tests/api/client.test.ts` green,
   then the task gate. Commit `feat: authenticate client requests with session capability`.
   Fresh independent reviewer examines secret exposure, generation races, all
   exported methods and test isolation; fix/re-review before task 4.
