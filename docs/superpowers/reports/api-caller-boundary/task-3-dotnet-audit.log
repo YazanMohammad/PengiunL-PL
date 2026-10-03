@@ -1,0 +1,11 @@
+Command: dotnet list PenguinLauncher.sln package --vulnerable --include-transitive
+Cwd: repository root
+Native exit code: 0
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+The given project `PenguinLauncher` has no vulnerable packages given the current sources.
+The given project `PenguinLauncher.Tests` has no vulnerable packages given the current sources.

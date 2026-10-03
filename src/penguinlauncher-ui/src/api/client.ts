@@ -1,12 +1,30 @@
 import type { Game, Account, LaunchRequest, LaunchResult, PreflightResponse, SystemInfo } from '../types';
+import { apiSession } from './session';
 
 const BASE_URL = '/api';
 
-async function request<T>(url: string, options?: RequestInit): Promise<T> {
+export async function request<T>(url: string, options?: RequestInit): Promise<T> {
+  const credential = apiSession.getCredential();
+  const generation = apiSession.getSnapshot().generation;
+  if (credential === null) throw new Error('Authentication required.');
+  const assertCurrentSession = () => {
+    const current = apiSession.getSnapshot();
+    if (!current.connected || current.generation !== generation) throw new Error('Authentication required.');
+  };
+  const headers = new Headers(options?.headers);
+  if (!headers.has('Content-Type')) headers.set('Content-Type', 'application/json');
+  headers.set('Authorization', `Bearer ${credential}`);
   const response = await fetch(`${BASE_URL}${url}`, {
-    headers: { 'Content-Type': 'application/json' },
     ...options,
+    headers,
+    redirect: 'error',
   });
+
+  if (response.status === 401) {
+    apiSession.invalidate(generation);
+    throw new Error('Authentication required.');
+  }
+  assertCurrentSession();
 
   if (!response.ok) {
     let errorMsg = '';
@@ -16,6 +34,7 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
     } catch {
       errorMsg = await response.text().catch(() => '');
     }
+    assertCurrentSession();
 
     if (!errorMsg || errorMsg.trim() === '') {
       errorMsg = `Server error (${response.status}: ${response.statusText || 'Operation failed'})`;
@@ -25,6 +44,7 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
 
   // Safe parsing for empty response bodies (e.g. 200/204 No Content)
   const text = await response.text();
+  assertCurrentSession();
   if (!text || text.trim() === '') {
     return {} as T;
   }

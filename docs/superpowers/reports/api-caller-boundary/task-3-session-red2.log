@@ -1,0 +1,352 @@
+Command: npm test -- tests/api/session.test.ts
+Cwd: src/penguinlauncher-ui
+Native exit code: 1
+Before production session implementation (compiling no-op shell).
+
+> penguinlauncher-ui@1.0.0 test
+> vitest run tests/api/session.test.ts
+
+
+ RUN  v3.2.6 C:/Users/Yzn/Desktop/PengiunL-PL/.worktrees/production-hardening/src/penguinlauncher-ui
+
+ ❯ tests/api/session.test.ts (30 tests | 27 failed) 20ms
+   ✓ API session bootstrap > does not read fragment or storage until initialize 2ms
+   × API session bootstrap > scrubs the fragment and persists the fresh credential before notifying subscribers 4ms
+     → expected null to be 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+   × API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session= 1ms
+     → expected 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' to be null
+   × API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&penguin-session=BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBA 0ms
+     → expected 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' to be null
+   × API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA= 0ms
+     → expected 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' to be null
+   × API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=malformed 0ms
+     → expected 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' to be null
+   × API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB 0ms
+     → expected 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' to be null
+   × API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=%41AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0ms
+     → expected 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' to be null
+   × API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=%ZZ 0ms
+     → expected 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' to be null
+   × API session bootstrap > restores canonical storage without using unrelated hash  0ms
+     → expected null to be 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' // Object.is equality
+   × API session bootstrap > restores canonical storage without using unrelated hash #games 0ms
+     → expected null to be 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' // Object.is equality
+   ✓ API session bootstrap > unrelated navigation fragments alone cannot connect 0ms
+   × API session bootstrap > removes noncanonical stored credential  0ms
+     → expected '' to be null
+   × API session bootstrap > removes noncanonical stored credential not-a-token 0ms
+     → expected 'not-a-token' to be null
+   × API session bootstrap > removes noncanonical stored credential AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA= 0ms
+     → expected 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' to be null
+   × API session bootstrap > removes noncanonical stored credential AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB 0ms
+     → expected 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' to be null
+   × API session bootstrap > initialize is idempotent and snapshots remain stable between transitions 1ms
+     → expected { connected: false, generation: +0 } not to be { connected: false, generation: +0 } // Object.is equality
+   × session failures and transitions > keeps valid bootstrap in memory when storage getter fails 1ms
+     → expected null to be 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+   × session failures and transitions > keeps valid bootstrap in memory when storage getItem fails 0ms
+     → expected null to be 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+   × session failures and transitions > keeps valid bootstrap in memory when storage setItem fails 0ms
+     → expected null to be 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+   × session failures and transitions > keeps valid bootstrap in memory when storage removeItem fails 0ms
+     → expected null to be 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+   × session failures and transitions > never restores old storage after invalid fragment when getter fails 0ms
+     → expected "spy" to be called once, but got 0 times
+   × session failures and transitions > never restores old storage after invalid fragment when getItem fails 0ms
+     → expected "spy" to be called once, but got 0 times
+   × session failures and transitions > never restores old storage after invalid fragment when removeItem fails 0ms
+     → expected "spy" to be called once, but got 0 times
+   ✓ session failures and transitions > storage read failure without a fragment remains disconnected 0ms
+   × session failures and transitions > scrubbing failure stays disconnected and clears old storage without exposing its error 0ms
+     → expected 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' to be null
+   × session failures and transitions > connect validates canonical values and invalid input clears a prior credential 1ms
+     → expected false to be true // Object.is equality
+   × session failures and transitions > invalidation clears memory and notifies even when storage removal throws 1ms
+     → expected { connected: false, generation: +0 } to deeply equal { connected: false, generation: 2 }
+   × session failures and transitions > stale invalidation cannot clear a reconnected session and unsubscribe prevents callbacks 0ms
+     → expected null to be 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' // Object.is equality
+   × session failures and transitions > leaves unrelated storage and cookies untouched and snapshots contain no secrets 3ms
+     → expected { connected: false, generation: +0 } to deeply equal { connected: true, generation: 1 }
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 27 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api/session.test.ts > API session bootstrap > scrubs the fragment and persists the fresh credential before notifying subscribers
+AssertionError: expected null to be 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+
+- Expected:
+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
++ Received:
+null
+
+ ❯ tests/api/session.test.ts:37:37
+     35|     }));
+     36|     session.initialize();
+     37|     expect(session.getCredential()).toBe(TOKEN_A);
+       |                                     ^
+     38|     expect(env.history.replaceState).toHaveBeenCalledExactlyOnceWith(n…
+     39|     expect(observed).toEqual([{ snapshot: { connected: true, generatio…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/27]⎯
+
+ FAIL  tests/api/session.test.ts > API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=
+ FAIL  tests/api/session.test.ts > API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&penguin-session=BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBA
+ FAIL  tests/api/session.test.ts > API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+ FAIL  tests/api/session.test.ts > API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=malformed
+ FAIL  tests/api/session.test.ts > API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB
+ FAIL  tests/api/session.test.ts > API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=%41AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ FAIL  tests/api/session.test.ts > API session bootstrap > fails closed and scrubs invalid credential fragment #penguin-session=%ZZ
+AssertionError: expected 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' to be null
+
+- Expected:
+null
+
++ Received:
+"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBA"
+
+ ❯ tests/api/session.test.ts:57:41
+     55|     expect(session.getCredential()).toBeNull();
+     56|     expect(session.getSnapshot().connected).toBe(false);
+     57|     expect(sessionStorage.getItem(KEY)).toBeNull();
+       |                                         ^
+     58|     expect(env.history.replaceState).toHaveBeenCalledExactlyOnceWith(n…
+     59|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/27]⎯
+
+ FAIL  tests/api/session.test.ts > API session bootstrap > restores canonical storage without using unrelated hash
+ FAIL  tests/api/session.test.ts > API session bootstrap > restores canonical storage without using unrelated hash #games
+AssertionError: expected null to be 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' // Object.is equality
+
+- Expected:
+"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBA"
+
++ Received:
+null
+
+ ❯ tests/api/session.test.ts:66:37
+     64|     const session = createApiSession(env);
+     65|     session.initialize();
+     66|     expect(session.getCredential()).toBe(TOKEN_B);
+       |                                     ^
+     67|     expect(env.history.replaceState).not.toHaveBeenCalled();
+     68|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/27]⎯
+
+ FAIL  tests/api/session.test.ts > API session bootstrap > removes noncanonical stored credential
+AssertionError: expected '' to be null
+
+- Expected:
+null
+
++ Received:
+""
+
+ ❯ tests/api/session.test.ts:82:41
+     80|     session.initialize();
+     81|     expect(session.getCredential()).toBeNull();
+     82|     expect(sessionStorage.getItem(KEY)).toBeNull();
+       |                                         ^
+     83|   });
+     84|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/27]⎯
+
+ FAIL  tests/api/session.test.ts > API session bootstrap > removes noncanonical stored credential not-a-token
+AssertionError: expected 'not-a-token' to be null
+
+- Expected:
+null
+
++ Received:
+"not-a-token"
+
+ ❯ tests/api/session.test.ts:82:41
+     80|     session.initialize();
+     81|     expect(session.getCredential()).toBeNull();
+     82|     expect(sessionStorage.getItem(KEY)).toBeNull();
+       |                                         ^
+     83|   });
+     84|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/27]⎯
+
+ FAIL  tests/api/session.test.ts > API session bootstrap > removes noncanonical stored credential AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+ FAIL  tests/api/session.test.ts > API session bootstrap > removes noncanonical stored credential AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB
+AssertionError: expected 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' to be null
+
+- Expected:
+null
+
++ Received:
+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+
+ ❯ tests/api/session.test.ts:82:41
+     80|     session.initialize();
+     81|     expect(session.getCredential()).toBeNull();
+     82|     expect(sessionStorage.getItem(KEY)).toBeNull();
+       |                                         ^
+     83|   });
+     84|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/27]⎯
+
+ FAIL  tests/api/session.test.ts > API session bootstrap > initialize is idempotent and snapshots remain stable between transitions
+AssertionError: expected { connected: false, generation: +0 } not to be { connected: false, generation: +0 } // Object.is equality
+
+Compared values have no visual difference.
+
+ ❯ tests/api/session.test.ts:94:27
+     92|     const connected = session.getSnapshot();
+     93|     session.initialize();
+     94|     expect(connected).not.toBe(disconnected);
+       |                           ^
+     95|     expect(session.getSnapshot()).toBe(connected);
+     96|     expect(listener).toHaveBeenCalledTimes(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/27]⎯
+
+ FAIL  tests/api/session.test.ts > session failures and transitions > keeps valid bootstrap in memory when storage getter fails
+ FAIL  tests/api/session.test.ts > session failures and transitions > keeps valid bootstrap in memory when storage getItem fails
+ FAIL  tests/api/session.test.ts > session failures and transitions > keeps valid bootstrap in memory when storage setItem fails
+ FAIL  tests/api/session.test.ts > session failures and transitions > keeps valid bootstrap in memory when storage removeItem fails
+AssertionError: expected null to be 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+
+- Expected:
+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
++ Received:
+null
+
+ ❯ tests/api/session.test.ts:108:37
+    106|     const session = createApiSession(env);
+    107|     expect(() => session.initialize()).not.toThrow();
+    108|     expect(session.getCredential()).toBe(TOKEN_A);
+       |                                     ^
+    109|     expect(JSON.stringify(session.getSnapshot())).not.toContain(TOKEN_…
+    110|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/27]⎯
+
+ FAIL  tests/api/session.test.ts > session failures and transitions > never restores old storage after invalid fragment when getter fails
+ FAIL  tests/api/session.test.ts > session failures and transitions > never restores old storage after invalid fragment when getItem fails
+ FAIL  tests/api/session.test.ts > session failures and transitions > never restores old storage after invalid fragment when removeItem fails
+AssertionError: expected "spy" to be called once, but got 0 times
+ ❯ tests/api/session.test.ts:121:38
+    119|     expect(session.getSnapshot().connected).toBe(false);
+    120|     expect(session.getCredential()).toBeNull();
+    121|     expect(env.history.replaceState).toHaveBeenCalledOnce();
+       |                                      ^
+    122|   });
+    123|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/27]⎯
+
+ FAIL  tests/api/session.test.ts > session failures and transitions > scrubbing failure stays disconnected and clears old storage without exposing its error
+AssertionError: expected 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' to be null
+
+- Expected:
+null
+
++ Received:
+"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBA"
+
+ ❯ tests/api/session.test.ts:139:41
+    137|     expect(session.getCredential()).toBeNull();
+    138|     expect(session.getSnapshot().connected).toBe(false);
+    139|     expect(sessionStorage.getItem(KEY)).toBeNull();
+       |                                         ^
+    140|     expect(session.connect(TOKEN_B)).toBe(false);
+    141|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/27]⎯
+
+ FAIL  tests/api/session.test.ts > session failures and transitions > connect validates canonical values and invalid input clears a prior credential
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/api/session.test.ts:145:38
+    143|   it('connect validates canonical values and invalid input clears a pr…
+    144|     const session = createApiSession(environment());
+    145|     expect(session.connect(TOKEN_A)).toBe(true);
+       |                                      ^
+    146|     const connected = session.getSnapshot();
+    147|     expect(connected).toEqual({ connected: true, generation: 1 });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/27]⎯
+
+ FAIL  tests/api/session.test.ts > session failures and transitions > invalidation clears memory and notifies even when storage removal throws
+AssertionError: expected { connected: false, generation: +0 } to deeply equal { connected: false, generation: 2 }
+
+- Expected
++ Received
+
+  {
+    "connected": false,
+-   "generation": 2,
++   "generation": 0,
+  }
+
+ ❯ tests/api/session.test.ts:164:35
+    162|     expect(() => session.invalidate(connected.generation)).not.toThrow…
+    163|     expect(session.getCredential()).toBeNull();
+    164|     expect(session.getSnapshot()).toEqual({ connected: false, generati…
+       |                                   ^
+    165|     expect(listener).toHaveBeenCalledOnce();
+    166|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/27]⎯
+
+ FAIL  tests/api/session.test.ts > session failures and transitions > stale invalidation cannot clear a reconnected session and unsubscribe prevents callbacks
+AssertionError: expected null to be 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB…' // Object.is equality
+
+- Expected:
+"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBA"
+
++ Received:
+null
+
+ ❯ tests/api/session.test.ts:177:37
+    175|     const current = session.getSnapshot();
+    176|     session.invalidate(old.generation);
+    177|     expect(session.getCredential()).toBe(TOKEN_B);
+       |                                     ^
+    178|     expect(session.getSnapshot()).toBe(current);
+    179|     expect(sessionStorage.getItem(KEY)).toBe(TOKEN_B);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/27]⎯
+
+ FAIL  tests/api/session.test.ts > session failures and transitions > leaves unrelated storage and cookies untouched and snapshots contain no secrets
+AssertionError: expected { connected: false, generation: +0 } to deeply equal { connected: true, generation: 1 }
+
+- Expected
++ Received
+
+  {
+-   "connected": true,
+-   "generation": 1,
++   "connected": false,
++   "generation": 0,
+  }
+
+ ❯ tests/api/session.test.ts:193:35
+    191|     session.initialize();
+    192|     expect(Object.isFrozen(session.getSnapshot())).toBe(true);
+    193|     expect(session.getSnapshot()).toEqual({ connected: true, generatio…
+       |                                   ^
+    194|     expect(JSON.stringify(session.getSnapshot())).not.toContain(TOKEN_…
+    195|     session.invalidate(session.getSnapshot().generation);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/27]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  27 failed | 3 passed (30)
+   Start at  21:52:49
+   Duration  725ms (transform 30ms, setup 135ms, collect 19ms, tests 20ms, environment 362ms, prepare 64ms)

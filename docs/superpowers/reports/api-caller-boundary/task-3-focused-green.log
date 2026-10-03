@@ -1,0 +1,17 @@
+Native exit code: 0
+Cwd: src/penguinlauncher-ui
+Command: npm test -- tests/api/session.test.ts tests/api/client.test.ts
+
+> penguinlauncher-ui@1.0.0 test
+> vitest run tests/api/session.test.ts tests/api/client.test.ts
+
+
+ RUN  v3.2.6 C:/Users/Yzn/Desktop/PengiunL-PL/.worktrees/production-hardening/src/penguinlauncher-ui
+
+ ✓ tests/api/session.test.ts (30 tests) 21ms
+ ✓ tests/api/client.test.ts (35 tests) 28ms
+
+ Test Files  2 passed (2)
+      Tests  65 passed (65)
+   Start at  21:56:07
+   Duration  809ms (transform 48ms, setup 315ms, collect 39ms, tests 49ms, environment 770ms, prepare 139ms)

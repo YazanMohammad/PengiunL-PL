@@ -1,0 +1,9 @@
+Final verification after generated HTML and evidence whitespace normalization.
+Command: git diff --check
+Cwd: repository root
+Native exit code: 0
+Output: (empty)
+Command: git diff --cached --check
+Cwd: repository root
+Native exit code: 0
+Output: (empty)

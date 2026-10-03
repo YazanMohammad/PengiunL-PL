@@ -1,0 +1,539 @@
+Command: npm test -- tests/api/client.test.ts
+Cwd: src/penguinlauncher-ui
+Native exit code: 1
+Before request behavior edits; request helper export only, existing unauthenticated implementation intact.
+
+> penguinlauncher-ui@1.0.0 test
+> vitest run tests/api/client.test.ts
+
+
+ RUN  v3.2.6 C:/Users/Yzn/Desktop/PengiunL-PL/.worktrees/production-hardening/src/penguinlauncher-ui
+
+ ❯ tests/api/client.test.ts (35 tests | 28 failed) 36ms
+   × API client > requests games with rescan=undefined 12ms
+     → expected "spy" to be called once with arguments: [ '/api/games?rescan=false', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/games?rescan=false",
+    {
+-     "headers": Headers {},
+-     "redirect": "error",
++     "headers": {
++       "Content-Type": "application/json",
++     },
+    },
+  ]
+
+
+Number of calls: 1
+
+   × API client > requests games with rescan=true 1ms
+     → expected "spy" to be called once with arguments: [ '/api/games?rescan=true', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/games?rescan=true",
+    {
+-     "headers": Headers {},
+-     "redirect": "error",
++     "headers": {
++       "Content-Type": "application/json",
++     },
+    },
+  ]
+
+
+Number of calls: 1
+
+   × API client > decodes the account list from JSON 1ms
+     → expected "spy" to be called once with arguments: [ '/api/accounts', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/accounts",
+    {
+-     "headers": Headers {},
+-     "redirect": "error",
++     "headers": {
++       "Content-Type": "application/json",
++     },
+    },
+  ]
+
+
+Number of calls: 1
+
+   × API client > posts the game and account identifiers when mapping 1ms
+     → expected "spy" to be called once with arguments: [ '/api/accounts/map', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/accounts/map",
+    {
+      "body": "{\"gameId\":\"game-a\",\"accountId\":\"account-b\"}",
+-     "headers": Headers {},
++     "headers": {
++       "Content-Type": "application/json",
++     },
+      "method": "POST",
+-     "redirect": "error",
+    },
+  ]
+
+
+Number of calls: 1
+
+   × API client > posts the selected game and account when launching 2ms
+     → expected "spy" to be called once with arguments: [ '/api/launch', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/launch",
+    {
+      "body": "{\"gameId\":\"game-a\",\"accountId\":\"account-b\"}",
+-     "headers": Headers {},
++     "headers": {
++       "Content-Type": "application/json",
++     },
+      "method": "POST",
+-     "redirect": "error",
+    },
+  ]
+
+
+Number of calls: 1
+
+   × API client > deletes the account at its relative URL 1ms
+     → expected "spy" to be called once with arguments: [ '/api/accounts/account-b', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/accounts/account-b",
+    {
+-     "headers": Headers {},
++     "headers": {
++       "Content-Type": "application/json",
++     },
+      "method": "DELETE",
+-     "redirect": "error",
+    },
+  ]
+
+
+Number of calls: 1
+
+   ✓ API client > rejects a 400 response containing 'Synthetic detail failure' 1ms
+   ✓ API client > rejects a 400 response containing 'Synthetic error failure' 0ms
+   ✓ API client > rejects a 400 response containing 'Synthetic message failure' 1ms
+   ✓ API client > decodes an empty successful 200 response as an empty object 0ms
+   ✓ API client > decodes an empty successful 204 response as an empty object 0ms
+   × authenticated API request contract > DisconnectedRequest_DoesNotFetch 1ms
+     → expected [Function] to throw error including 'Authentication required.' but got 'Unexpected fetch request: /api/accoun…'
+   × authenticated API request contract > 'getSystemInfo' preserves its URL, method, body and decoding while adding auth 1ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'getGames' preserves its URL, method, body and decoding while adding auth 1ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'scanGames' preserves its URL, method, body and decoding while adding auth 1ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'getAccounts' preserves its URL, method, body and decoding while adding auth 1ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'getAccountsByPlatform' preserves its URL, method, body and decoding while adding auth 1ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'mapGameToAccount' preserves its URL, method, body and decoding while adding auth 0ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'swapAccount' preserves its URL, method, body and decoding while adding auth 1ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'addAccount' preserves its URL, method, body and decoding while adding auth 0ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'removeAccount' preserves its URL, method, body and decoding while adding auth 0ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'captureActiveSession' preserves its URL, method, body and decoding while adding auth 0ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'logoutPlatform' preserves its URL, method, body and decoding while adding auth 0ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'renameAccount' preserves its URL, method, body and decoding while adding auth 0ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'preflight' preserves its URL, method, body and decoding while adding auth 1ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > 'launch' preserves its URL, method, body and decoding while adding auth 1ms
+     → expected undefined to be 'error' // Object.is equality
+   × authenticated API request contract > merges 'object' headers while forcing current auth and redirect protection 1ms
+     → expected 'Bearer attacker' to be 'Bearer AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+   × authenticated API request contract > merges 'Headers' headers while forcing current auth and redirect protection 1ms
+     → expected 'Bearer attacker' to be 'Bearer AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+   × authenticated API request contract > merges 'tuples' headers while forcing current auth and redirect protection 0ms
+     → expected 'Bearer attacker' to be 'Bearer AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+   × authenticated API request contract > redirect fetch failure rejects without retrying a mutation 0ms
+     → expected undefined to be 'error' // Object.is equality
+   × request session generations > 401 clears the session and owned key, notifies once, never retries, and rejects concurrent success 1ms
+     → expected 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' to be null
+   ✓ request session generations > 403 reports policy failure while preserving credential and generation 1ms
+   × request session generations > late token A response 200 cannot return data or invalidate token B 1ms
+     → promise resolved "[]" instead of rejecting
+   ✓ request session generations > late token A response 401 cannot return data or invalidate token B 0ms
+   × request session generations > rechecks generation after asynchronous successful body decoding 1ms
+     → promise resolved "[]" instead of rejecting
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 28 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api/client.test.ts > API client > requests games with rescan=undefined
+AssertionError: expected "spy" to be called once with arguments: [ '/api/games?rescan=false', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/games?rescan=false",
+    {
+-     "headers": Headers {},
+-     "redirect": "error",
++     "headers": {
++       "Content-Type": "application/json",
++     },
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/api/client.test.ts:25:22
+     23|
+     24|     expect(await api.getGames(rescan)).toEqual([]);
+     25|     expect(fetchSpy).toHaveBeenCalledExactlyOnceWith(url, {
+       |                      ^
+     26|       headers: authHeaders(), redirect: 'error',
+     27|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/28]⎯
+
+ FAIL  tests/api/client.test.ts > API client > requests games with rescan=true
+AssertionError: expected "spy" to be called once with arguments: [ '/api/games?rescan=true', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/games?rescan=true",
+    {
+-     "headers": Headers {},
+-     "redirect": "error",
++     "headers": {
++       "Content-Type": "application/json",
++     },
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/api/client.test.ts:25:22
+     23|
+     24|     expect(await api.getGames(rescan)).toEqual([]);
+     25|     expect(fetchSpy).toHaveBeenCalledExactlyOnceWith(url, {
+       |                      ^
+     26|       headers: authHeaders(), redirect: 'error',
+     27|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/28]⎯
+
+ FAIL  tests/api/client.test.ts > API client > decodes the account list from JSON
+AssertionError: expected "spy" to be called once with arguments: [ '/api/accounts', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/accounts",
+    {
+-     "headers": Headers {},
+-     "redirect": "error",
++     "headers": {
++       "Content-Type": "application/json",
++     },
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/api/client.test.ts:42:22
+     40|       lastLogin: null,
+     41|     }]);
+     42|     expect(fetchSpy).toHaveBeenCalledExactlyOnceWith('/api/accounts', {
+       |                      ^
+     43|       headers: authHeaders(), redirect: 'error',
+     44|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/28]⎯
+
+ FAIL  tests/api/client.test.ts > API client > posts the game and account identifiers when mapping
+AssertionError: expected "spy" to be called once with arguments: [ '/api/accounts/map', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/accounts/map",
+    {
+      "body": "{\"gameId\":\"game-a\",\"accountId\":\"account-b\"}",
+-     "headers": Headers {},
++     "headers": {
++       "Content-Type": "application/json",
++     },
+      "method": "POST",
+-     "redirect": "error",
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/api/client.test.ts:52:22
+     50|     await api.mapGameToAccount('game-a', 'account-b');
+     51|
+     52|     expect(fetchSpy).toHaveBeenCalledExactlyOnceWith('/api/accounts/ma…
+       |                      ^
+     53|       method: 'POST',
+     54|       headers: authHeaders(), redirect: 'error',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/28]⎯
+
+ FAIL  tests/api/client.test.ts > API client > posts the selected game and account when launching
+AssertionError: expected "spy" to be called once with arguments: [ '/api/launch', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/launch",
+    {
+      "body": "{\"gameId\":\"game-a\",\"accountId\":\"account-b\"}",
+-     "headers": Headers {},
++     "headers": {
++       "Content-Type": "application/json",
++     },
+      "method": "POST",
+-     "redirect": "error",
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/api/client.test.ts:67:22
+     65|       accountSwapped: true,
+     66|     });
+     67|     expect(fetchSpy).toHaveBeenCalledExactlyOnceWith('/api/launch', {
+       |                      ^
+     68|       method: 'POST',
+     69|       headers: authHeaders(), redirect: 'error',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/28]⎯
+
+ FAIL  tests/api/client.test.ts > API client > deletes the account at its relative URL
+AssertionError: expected "spy" to be called once with arguments: [ '/api/accounts/account-b', …(1) ]
+
+Received:
+
+  1st spy call:
+
+  [
+    "/api/accounts/account-b",
+    {
+-     "headers": Headers {},
++     "headers": {
++       "Content-Type": "application/json",
++     },
+      "method": "DELETE",
+-     "redirect": "error",
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/api/client.test.ts:81:22
+     79|       message: 'Synthetic account removed',
+     80|     });
+     81|     expect(fetchSpy).toHaveBeenCalledExactlyOnceWith('/api/accounts/ac…
+       |                      ^
+     82|       method: 'DELETE',
+     83|       headers: authHeaders(), redirect: 'error',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/28]⎯
+
+ FAIL  tests/api/client.test.ts > authenticated API request contract > DisconnectedRequest_DoesNotFetch
+AssertionError: expected [Function] to throw error including 'Authentication required.' but got 'Unexpected fetch request: /api/accoun…'
+
+Expected: "Authentication required."
+Received: "Unexpected fetch request: /api/accounts"
+
+ ❯ tests/api/client.test.ts:108:5
+    106|     apiSession.invalidate(apiSession.getSnapshot().generation);
+    107|     const fetchSpy = vi.spyOn(globalThis, 'fetch');
+    108|     await expect(api.getAccounts()).rejects.toThrow('Authentication re…
+       |     ^
+    109|     expect(fetchSpy).not.toHaveBeenCalled();
+    110|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/28]⎯
+
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'getSystemInfo' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'getGames' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'scanGames' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'getAccounts' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'getAccountsByPlatform' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'mapGameToAccount' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'swapAccount' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'addAccount' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'removeAccount' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'captureActiveSession' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'logoutPlatform' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'renameAccount' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'preflight' preserves its URL, method, body and decoding while adding auth
+ FAIL  tests/api/client.test.ts > authenticated API request contract > 'launch' preserves its URL, method, body and decoding while adding auth
+AssertionError: expected undefined to be 'error' // Object.is equality
+
+- Expected:
+"error"
+
++ Received:
+undefined
+
+ ❯ tests/api/client.test.ts:137:31
+    135|     expect(options?.method).toBe(method);
+    136|     expect(options?.body).toBe(body);
+    137|     expect(options?.redirect).toBe('error');
+       |                               ^
+    138|     const headers = new Headers(options?.headers);
+    139|     expect(headers.get('authorization')).toBe(`Bearer ${TOKEN_A}`);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/28]⎯
+
+ FAIL  tests/api/client.test.ts > authenticated API request contract > merges 'object' headers while forcing current auth and redirect protection
+ FAIL  tests/api/client.test.ts > authenticated API request contract > merges 'Headers' headers while forcing current auth and redirect protection
+ FAIL  tests/api/client.test.ts > authenticated API request contract > merges 'tuples' headers while forcing current auth and redirect protection
+AssertionError: expected 'Bearer attacker' to be 'Bearer AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' // Object.is equality
+
+Expected: "Bearer AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+Received: "Bearer attacker"
+
+ ❯ tests/api/client.test.ts:151:39
+    149|     await request('/accounts', { headers, redirect: 'follow' });
+    150|     const sent = new Headers(fetchSpy.mock.calls[0][1]?.headers);
+    151|     expect(sent.get('authorization')).toBe(`Bearer ${TOKEN_A}`);
+       |                                       ^
+    152|     expect(sent.get('x-custom')).toBe('kept');
+    153|     expect(sent.get('content-type')).toBe('application/custom');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/28]⎯
+
+ FAIL  tests/api/client.test.ts > authenticated API request contract > redirect fetch failure rejects without retrying a mutation
+AssertionError: expected undefined to be 'error' // Object.is equality
+
+- Expected:
+"error"
+
++ Received:
+undefined
+
+ ❯ tests/api/client.test.ts:161:49
+    159|     await expect(api.swapAccount('account-a')).rejects.toThrow('Redire…
+    160|     expect(fetchSpy).toHaveBeenCalledTimes(1);
+    161|     expect(fetchSpy.mock.calls[0][1]?.redirect).toBe('error');
+       |                                                 ^
+    162|     expect(apiSession.getCredential()).toBe(TOKEN_A);
+    163|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/28]⎯
+
+ FAIL  tests/api/client.test.ts > request session generations > 401 clears the session and owned key, notifies once, never retries, and rejects concurrent success
+AssertionError: expected 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…' to be null
+
+- Expected:
+null
+
++ Received:
+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
+ ❯ tests/api/client.test.ts:184:40
+    182|     denied.resolve(new Response('{"error":"Authentication required."}'…
+    183|     await failureAssertion;
+    184|     expect(apiSession.getCredential()).toBeNull();
+       |                                        ^
+    185|     expect(sessionStorage.getItem('penguin.api.session')).toBeNull();
+    186|     expect(listener).toHaveBeenCalledOnce();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/28]⎯
+
+ FAIL  tests/api/client.test.ts > request session generations > late token A response 200 cannot return data or invalidate token B
+AssertionError: promise resolved "[]" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+[]
+
+ ❯ tests/api/client.test.ts:210:36
+    208|     apiSession.connect(TOKEN_B);
+    209|     const current = apiSession.getSnapshot();
+    210|     const assertion = expect(result).rejects.toThrow('Authentication r…
+       |                                    ^
+    211|     pending.resolve(new Response(status === 200 ? '[]' : '{"error":"Au…
+    212|     await assertion;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/28]⎯
+
+ FAIL  tests/api/client.test.ts > request session generations > rechecks generation after asynchronous successful body decoding
+AssertionError: promise resolved "[]" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+[]
+
+ ❯ tests/api/client.test.ts:228:36
+    226|     await started.promise;
+    227|     apiSession.connect(TOKEN_B);
+    228|     const assertion = expect(result).rejects.toThrow('Authentication r…
+       |                                    ^
+    229|     body.resolve('[]');
+    230|     await assertion;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/28]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  28 failed | 7 passed (35)
+   Start at  21:55:25
+   Duration  1.06s (transform 34ms, setup 146ms, collect 18ms, tests 36ms, environment 373ms, prepare 67ms)

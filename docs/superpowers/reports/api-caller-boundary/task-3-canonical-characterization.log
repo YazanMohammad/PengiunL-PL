@@ -1,0 +1,17 @@
+Self-review questioned regex end-anchor behavior. Whitespace/encoded-key checks passed against existing implementation; hypothesis disproven, no production fix made. These are supplemental characterization tests, not RED evidence.
+Command: npm test -- tests/api/session.test.ts
+Cwd: src/penguinlauncher-ui
+Native exit code: 0
+
+> penguinlauncher-ui@1.0.0 test
+> vitest run tests/api/session.test.ts
+
+
+ RUN  v3.2.6 C:/Users/Yzn/Desktop/PengiunL-PL/.worktrees/production-hardening/src/penguinlauncher-ui
+
+ ✓ tests/api/session.test.ts (36 tests) 21ms
+
+ Test Files  1 passed (1)
+      Tests  36 passed (36)
+   Start at  21:56:48
+   Duration  964ms (transform 30ms, setup 137ms, collect 11ms, tests 21ms, environment 348ms, prepare 63ms)

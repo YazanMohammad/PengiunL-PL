@@ -1,0 +1,6 @@
+Command: npm run typecheck
+Cwd: src/penguinlauncher-ui
+Native exit code: 0
+
+> penguinlauncher-ui@1.0.0 typecheck
+> tsc --noEmit && tsc --project tsconfig.test.json --noEmit
