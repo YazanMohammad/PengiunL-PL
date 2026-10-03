@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using PenguinLauncher.Endpoints;
+using PenguinLauncher.Hosting;
 using PenguinLauncher.Services.AccountSwapper;
 using PenguinLauncher.Services.GameScanner;
 using PenguinLauncher.Services.LaunchManager;
@@ -32,7 +33,7 @@ public sealed class GuardApiFixture : IAsyncDisposable
     public RejectingAccountSwapper Swapper { get; }
     public JsonStorageService GuardStorage { get; }
 
-    public static async Task<GuardApiFixture> CreateAsync()
+    public static async Task<GuardApiFixture> CreateAsync(ApiSessionPolicy? boundaryPolicy = null)
     {
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions
         {
@@ -60,6 +61,8 @@ public sealed class GuardApiFixture : IAsyncDisposable
         builder.Services.AddSingleton(launcher);
 
         var app = builder.Build();
+        if (boundaryPolicy is not null)
+            app.UseLocalApiBoundary(boundaryPolicy);
         // Admit only the guard routes. Body validation belongs to the actual
         // handlers; this middleware can only reject requests with 404.
         app.Use((HttpContext context, RequestDelegate next) =>
@@ -76,13 +79,18 @@ public sealed class GuardApiFixture : IAsyncDisposable
         });
         app.MapAccountEndpoints();
         app.MapLaunchEndpoints();
+        HttpClient? client = null;
         try
         {
             await app.StartAsync();
-            return new GuardApiFixture(app, app.GetTestClient(), swapper, storage);
+            client = app.GetTestClient();
+            if (boundaryPolicy is not null)
+                client.BaseAddress = new Uri("http://localhost:5100");
+            return new GuardApiFixture(app, client, swapper, storage);
         }
         catch
         {
+            client?.Dispose();
             await app.DisposeAsync();
             throw;
         }

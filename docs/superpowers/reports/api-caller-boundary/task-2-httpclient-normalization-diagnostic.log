@@ -1,0 +1,66 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  PenguinLauncher -> C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\bin\Debug\net10.0\win-x64\PenguinLauncher.dll
+  PenguinLauncher.Tests -> C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\bin\Debug\net10.0\PenguinLauncher.Tests.dll
+Test run for C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\bin\Debug\net10.0\PenguinLauncher.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.28]     PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(authorization: "Bearer  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"···) [FAIL]
+[xUnit.net 00:00:00.28]     PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(authorization: "Bearer AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"···) [FAIL]
+[xUnit.net 00:00:00.29]     PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(authorization: "Bearer\tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"···) [FAIL]
+  Failed PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(authorization: "Bearer  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"···) [13 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+                  ↓ (pos 7)
+Expected: "Bearer  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"···
+Actual:   "Bearer AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"···
+                  ↑ (pos 7)
+  Stack Trace:
+     at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(String authorization) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 76
+   at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(String authorization) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 79
+--- End of stack trace from previous location ---
+  Failed PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(authorization: "Bearer AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"···) [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+                                                      ↓ (pos 50)
+Expected: ···"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA "
+Actual:   ···"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  Stack Trace:
+     at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(String authorization) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 76
+   at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(String authorization) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 79
+--- End of stack trace from previous location ---
+  Failed PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(authorization: "Bearer\tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"···) [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+                 ↓ (pos 6)
+Expected: "Bearer\tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"···
+Actual:   "Bearer AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"···
+                 ↑ (pos 6)
+  Stack Trace:
+     at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(String authorization) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 76
+   at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidCredentials_Return401WithoutHandler(String authorization) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 79
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:00.33]     PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.ForeignAuthority_RejectsBeforeHandlersAndStatic(authority: "") [FAIL]
+  Failed PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.ForeignAuthority_RejectsBeforeHandlersAndStatic(authority: "") [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+Expected: ""
+Actual:   "localhost:5100"
+           ↑ (pos 0)
+  Stack Trace:
+     at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.ForeignAuthority_RejectsBeforeHandlersAndStatic(String authority) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 128
+   at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.ForeignAuthority_RejectsBeforeHandlersAndStatic(String authority) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 133
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:00.36]     PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidOrigin_Returns403DespiteValidToken(origin: "") [FAIL]
+  Failed PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidOrigin_Returns403DespiteValidToken(origin: "") [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: Forbidden
+Actual:   OK
+  Stack Trace:
+     at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.AssertErrorAsync(HttpResponseMessage response, HttpStatusCode status, String error) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 414
+   at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidOrigin_Returns403DespiteValidToken(String origin) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 186
+   at PenguinLauncher.Tests.Hosting.LocalApiBoundaryTests.InvalidOrigin_Returns403DespiteValidToken(String origin) in C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\Hosting\LocalApiBoundaryTests.cs:line 188
+--- End of stack trace from previous location ---
+
+Failed!  - Failed:     5, Passed:    24, Skipped:     0, Total:    29, Duration: 214 ms - PenguinLauncher.Tests.dll (net10.0)
+NATIVE_EXIT_CODE=1
