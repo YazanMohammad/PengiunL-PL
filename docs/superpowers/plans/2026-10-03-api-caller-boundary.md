@@ -87,7 +87,7 @@ Use `Convert.ToBase64String(new byte[32]).TrimEnd('=').Replace('+','-').Replace(
 only to construct the **synthetic test token** (43 `A` characters); real generation
 uses `RandomNumberGenerator.GetBytes(32)`.
 
-- [ ] Write mode and credential tests, with minimal compilable shells. Assertions:
+- [x] Write mode and credential tests, with minimal compilable shells. Assertions:
   `Resolve(["--server-only","--scan-only"]) == ScanOnly`; empty args == Desktop;
   server-only flag == ServerOnly; two desktop policies yield different bootstrap
   fragments; each token decodes to 32 bytes; bootstrap PathAndQuery == `/`, query
@@ -101,29 +101,29 @@ uses `RandomNumberGenerator.GetBytes(32)`.
       LaunchModes.Resolve(["--server-only", "--scan-only"]));
   ```
 
-- [ ] Run `dotnet test PenguinLauncher.sln --filter FullyQualifiedName~ApiSessionPolicyTests --verbosity normal`; record intended red failures before implementation.
-- [ ] Add credential parsing cases: missing token configuration, empty/padded/
+- [x] Run `dotnet test PenguinLauncher.sln --filter FullyQualifiedName~ApiSessionPolicyTests --verbosity normal`; record intended red failures before implementation.
+- [x] Add credential parsing cases: missing token configuration, empty/padded/
   whitespace/noncanonical-last-character tokens, wrong length, wrong scheme,
   comma-combined values, duplicate StringValues, two spaces and trailing spaces
   reject; lowercase `bearer` with exact token accepts. Invalid configuration
   throws `ArgumentException` with message `"Invalid API session configuration."`,
   never input values.
-- [ ] Add authority/origin cases: the three exact port-5100 authorities accept,
+- [x] Add authority/origin cases: the three exact port-5100 authorities accept,
   hostname case accepts; foreign/missing-port/trailing-dot/lookalike authorities
   reject; same canonical HTTP origin accepts; null literal, HTTPS, differing port,
   suffix and multiple origin strings reject. Development origin accepts only
   server-only + Development, canonical loopback origin, explicit port not 5100;
   path/query/fragment/userinfo/trailing-slash/wildcard/non-loopback inputs reject.
-- [ ] Run the same focused filter again with parsing/authority/origin tables;
+- [x] Run the same focused filter again with parsing/authority/origin tables;
   record intended red results for these added cases before implementing them.
-- [ ] Implement only these policy interfaces: private immutable decoded bytes,
+- [x] Implement only these policy interfaces: private immutable decoded bytes,
   canonical re-encoding validation, `CryptographicOperations.FixedTimeEquals`,
   exact parsed authority/origin matching, and fresh desktop randomness. A missing
   dev-origin option grants no cross-origin access. Config errors remain generic.
-- [ ] Run the focused filter green, then the task gate below; require baseline
+- [x] Run the focused filter green, then the task gate below; require baseline
   tests preserved and no token in diagnostics. Commit only policy/mode/tests as
   `feat: define immutable local API session policy`.
-- [ ] Fresh independent review checks canonical parsing, no mutable secret
+- [x] Fresh independent review checks canonical parsing, no mutable secret
   exposure, headless exceptions, and configuration semantics; fix/re-review
   important findings before task 2.
 
@@ -296,7 +296,10 @@ method signatures remain unchanged.
 ## Task 4: React Connection Gate and Development Entry
 
 **Files:** create UI `src/components/ApiSessionGate.tsx`,
-`tests/components/ApiSessionGate.test.tsx`; modify `src/main.tsx`.
+`tests/components/ApiSessionGate.test.tsx`, and `src/vite-env.d.ts` with only
+`/// <reference types="vite/client" />`; modify `src/main.tsx`.
+The type-only prerequisite was confirmed from the current tsconfig and installed
+Vite declarations during execution preflight; its ruling is recorded in the ledger.
 
 **Consumes:** task 3 session. **Produces:**
 
