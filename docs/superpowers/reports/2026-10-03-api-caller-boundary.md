@@ -62,7 +62,16 @@ typechecks and both builds; baseline formatter/advisory debt remains separate.
 - [Task 1 verification](api-caller-boundary/task-1-verification.md)
 - [Task 1 independent review](api-caller-boundary/task-1-review.md)
 
-HTTP enforcement and native/client integration remain pending tasks 2-5. No C1
+Task 2 shared HTTP enforcement is accepted after independent review and a
+regression-first fallback fix (`860257f`, `1b2aa69`). Initial full verification
+records 325 backend/19 frontend tests and passing typechecks/builds. The fix
+received 206 focused passing tests and clean scoped re-review; baseline debt
+remains separate. The controller fresh covering run also passed 206/206.
+
+- [Task 2 verification](api-caller-boundary/task-2-verification.md)
+- [Task 2 independent review and fix](api-caller-boundary/task-2-review.md)
+
+Production wiring and native/client integration remain pending tasks 3-5. No C1
 closure is claimed from policy-only code. No task is accepted until its
 independent reviewer returns both spec-compliance and quality verdicts.
 The plan-scoped recovery ledger records task bases, agents, reviews and rulings.

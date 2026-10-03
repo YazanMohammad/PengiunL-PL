@@ -154,7 +154,7 @@ on both startup failure and normal teardown. No production services here.
 `GuardApiFixture.CreateAsync(ApiSessionPolicy? boundaryPolicy = null)` optionally
 adds the **same** boundary before its existing reject-only route admission.
 
-- [ ] Write `AnonymousApiRequests_NeverReachHandlers`: parameterize every
+- [x] Write `AnonymousApiRequests_NeverReachHandlers`: parameterize every
   currently mapped games/accounts/launch/system/health route, including DELETE,
   `/api`, unknown routes, HEAD/PUT/PATCH/OPTIONS, and malformed JSON. Assert 401,
   JSON `error == "Authentication required."`, Bearer challenge, no-store, and
@@ -173,36 +173,36 @@ adds the **same** boundary before its existing reject-only route admission.
   }
   ```
 
-- [ ] Run `dotnet test PenguinLauncher.sln --filter FullyQualifiedName~LocalApiBoundaryTests --verbosity normal`; preserve red output showing missing protection.
-- [ ] Write invalid-credential, authority, origin, and metadata tests with exact
+- [x] Run `dotnet test PenguinLauncher.sln --filter FullyQualifiedName~LocalApiBoundaryTests --verbosity normal`; preserve red output showing missing protection.
+- [x] Write invalid-credential, authority, origin, and metadata tests with exact
   401/403 status, generic JSON errors and zero handler calls. Include `/API/health`
   (protected), `/apiary` (non-API), mixed-case descendants, slash variants,
   lookalike hosts, forwarded-header spoofing, Origin null/duplicates, and
   `Sec-Fetch-Site: cross-site` with/without configured development Origin.
-- [ ] Write valid authenticated synthetic request/no-Origin tests; unknown API
+- [x] Write valid authenticated synthetic request/no-Origin tests; unknown API
   gets JSON 404 `"API endpoint not found."`, SPA routes remain HTML, and static
   files do not require a token but still reject foreign authorities. All API
   responses, including success/error/404, have no-store; static caching is not
   changed. Supply authentic token + bad Origin and verify 403, not access.
-- [ ] Write preflight tables: explicit development Origin + GET/POST/DELETE/HEAD
+- [x] Write preflight tables: explicit development Origin + GET/POST/DELETE/HEAD
   and Authorization/Content-Type header set (case-insensitive, empty allowed)
   yields 204/no handler/no token; foreign origin, unsupported method/header or
   malformed declaration yields 403. Ordinary OPTIONS without a declaration needs
   a token. Production supplies no cross-origin permission. Assert exact allow
   origin, appropriate allow methods/headers, Vary Origin, no `*`/cookie permission,
   and readable 401/403 for otherwise valid development-origin requests.
-- [ ] Run the full boundary filter red again after adding the hostile inputs,
+- [x] Run the full boundary filter red again after adding the hostile inputs,
   authenticated success/fallback cases, and preflight tables.
-- [ ] Implement the middleware in spec order, before endpoint/model binding or
+- [x] Implement the middleware in spec order, before endpoint/model binding or
   static handling. Use segment-aware ordinal-ignore-case API detection, explicit
   preflight validation and narrow CORS response headers, not blanket framework
   CORS that silently accepts disallowed preflights. Set API no-store using
   response-start handling so handlers cannot accidentally overwrite it.
-- [ ] Add authenticated real endpoint guard tests using the sentinel fixture:
+- [x] Add authenticated real endpoint guard tests using the sentinel fixture:
   invalid map/swap/add/capture/rename/launch bodies keep their existing 400
   messages and `Swapper.OperationCalls == 0`; missing auth on those same requests
   yields 401 first. Never test successful mutation with the sentinel storage.
-- [ ] Run focused boundary/authenticated-guard filters green, then the task gate.
+- [x] Run focused boundary/authenticated-guard filters green, then the task gate.
   Commit `feat: enforce authenticated local API requests` (not wired into Main
   until task 5). Independent reviewer checks bypasses, CORS ordering, fixture
   safety, and actual shared composition; fix/re-review before task 3.
