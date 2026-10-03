@@ -1,5 +1,6 @@
 using Photino.NET;
 using PenguinLauncher.Endpoints;
+using PenguinLauncher.Hosting;
 using PenguinLauncher.Models;
 using PenguinLauncher.Services.AccountSwapper;
 using PenguinLauncher.Services.GameScanner;
@@ -21,6 +22,7 @@ public class Program
     {
         try
         {
+            var mode = LaunchModes.Resolve(args);
             var baseDir = AppContext.BaseDirectory;
             var currentDir = Directory.GetCurrentDirectory();
 
@@ -74,25 +76,35 @@ public class Program
         // Register launch manager
         builder.Services.AddSingleton<LaunchManagerService>();
 
-        // CORS for development (Vite dev server)
-        builder.Services.AddCors(options =>
-        {
-            options.AddDefaultPolicy(policy =>
+            LocalApiHost.ConfigureLoopback(builder);
+
+            var app = builder.Build();
+
+            // Offline diagnostics take precedence and do not validate HTTP credentials.
+            if (mode == LaunchMode.ScanOnly)
             {
-                policy.AllowAnyOrigin()
-                      .AllowAnyMethod()
-                      .AllowAnyHeader();
-            });
-        });
+                var scanner = app.Services.GetRequiredService<GameScannerService>();
+                var games = scanner.ScanAllAsync().GetAwaiter().GetResult();
+                Console.WriteLine($"[ScanOnly] Total games found: {games.Count}");
+                foreach (var g in games)
+                {
+                    if (g.Platform != Platform.Steam)
+                    {
+                        Console.WriteLine($"[ScanOnly] {g.Platform}: {g.Name} (ID: {g.Id}, Installed: {g.IsInstalled}, Accounts: [{string.Join(", ", g.AssociatedAccountIds)}])");
+                    }
+                }
+                return;
+            }
 
-        // Configure Kestrel to listen on a fixed port
-        builder.WebHost.UseUrls("http://localhost:5100");
+            var isDevelopment = builder.Environment.IsDevelopment();
+            var policy = LocalApiHost.CreateSessionPolicy(mode, isDevelopment,
+                Environment.GetEnvironmentVariable("PENGUIN_SESSION_TOKEN"),
+                Environment.GetEnvironmentVariable("PENGUIN_DEV_ORIGIN"))!;
+            app.UseLocalApiBoundary(policy);
 
-        var app = builder.Build();
-
-        // ──────────────────────────────────────────────
-        // 2. Middleware pipeline
-        // ──────────────────────────────────────────────
+            // ──────────────────────────────────────────────
+            // 2. Middleware pipeline
+            // ──────────────────────────────────────────────
         app.UseExceptionHandler(exceptionHandlerApp =>
         {
             exceptionHandlerApp.Run(async context =>
@@ -105,8 +117,6 @@ public class Program
                 await context.Response.WriteAsJsonAsync(new { error = message });
             });
         });
-
-        app.UseCors();
 
         // Serve React static files from wwwroot/
         if (Directory.Exists(wwwrootDir))
@@ -142,71 +152,65 @@ public class Program
             timestamp = DateTime.UtcNow
         }));
 
-        // SPA fallback: serve index.html for all non-API routes
-        app.MapFallback(async context =>
-        {
-            var indexPath = Path.Combine(wwwrootDir, "index.html");
-            if (File.Exists(indexPath))
+            // SPA fallback: serve index.html for all non-API routes
+            app.MapFallback("/api/{**path}", LocalApiBoundary.WriteApiNotFoundAsync);
+            app.MapFallback(async context =>
             {
-                context.Response.ContentType = "text/html; charset=utf-8";
-                await context.Response.SendFileAsync(indexPath);
-            }
-            else
-            {
-                context.Response.StatusCode = 404;
-                await context.Response.WriteAsync("Penguin Launcher: index.html not found.");
-            }
-        });
-
-        // Headless scan-only mode for CLI diagnostics and verification
-        if (args.Contains("--scan-only"))
-        {
-            var scanner = app.Services.GetRequiredService<GameScannerService>();
-            var games = scanner.ScanAllAsync().GetAwaiter().GetResult();
-            Console.WriteLine($"[ScanOnly] Total games found: {games.Count}");
-            foreach (var g in games)
-            {
-                if (g.Platform != Platform.Steam)
+                if (LocalApiBoundary.IsApiPath(context.Request.Path))
                 {
-                    Console.WriteLine($"[ScanOnly] {g.Platform}: {g.Name} (ID: {g.Id}, Installed: {g.IsInstalled}, Accounts: [{string.Join(", ", g.AssociatedAccountIds)}])");
+                    await LocalApiBoundary.WriteApiNotFoundAsync(context);
+                    return;
                 }
+                var indexPath = Path.Combine(wwwrootDir, "index.html");
+                if (File.Exists(indexPath))
+                {
+                    context.Response.ContentType = "text/html; charset=utf-8";
+                    await context.Response.SendFileAsync(indexPath);
+                }
+                else
+                {
+                    context.Response.StatusCode = 404;
+                    await context.Response.WriteAsync("Penguin Launcher: index.html not found.");
+                }
+            });
+
+            // Headless server-only mode for integration testing and API diagnostics
+            if (mode == LaunchMode.ServerOnly)
+            {
+                LocalApiHost.RunServerAsync(app, () =>
+                    Console.WriteLine("[ServerOnly] Server listening on http://localhost:5100"))
+                    .GetAwaiter().GetResult();
+                return;
             }
-            return;
-        }
-
-        // Headless server-only mode for integration testing and API diagnostics
-        if (args.Contains("--server-only"))
-        {
-            Console.WriteLine("[ServerOnly] Server listening on http://localhost:5100");
-            app.Run();
-            return;
-        }
 
 
-        // ──────────────────────────────────────────────
-        // 4. Start the web server in background
-        // ──────────────────────────────────────────────
-        app.RunAsync();
+            // ──────────────────────────────────────────────
+            // 4. Await server startup before native bootstrap
+            // ──────────────────────────────────────────────
+            // ──────────────────────────────────────────────
+            // 5. Launch Photino.NET native window
+            // ──────────────────────────────────────────────
+            LocalApiHost.StartDesktop(app, policy, isDevelopment, (bootstrapUri, enableDevTools) =>
+            {
+                var window = new PhotinoWindow()
+                    .SetTitle("Penguin Launcher")
+                    .SetUseOsDefaultSize(false)
+                    .SetSize(1400, 900)
+                    .Center()
+                    .SetResizable(true)
+                    .SetDevToolsEnabled(enableDevTools)
+                    .SetLogVerbosity(0)
+                    .Load(bootstrapUri.AbsoluteUri);
 
-        // ──────────────────────────────────────────────
-        // 5. Launch Photino.NET native window
-        // ──────────────────────────────────────────────
-        var window = new PhotinoWindow()
-            .SetTitle("Penguin Launcher")
-            .SetUseOsDefaultSize(false)
-            .SetSize(1400, 900)
-            .Center()
-            .SetResizable(true)
-            .SetDevToolsEnabled(true)
-            .SetLogVerbosity(0)
-            .Load("http://localhost:5100");
-
-        window.WaitForClose();
+                window.WaitForClose();
+            });
         }
         catch (Exception ex)
         {
+            var diagnostic = LocalApiHost.FormatStartupFailure(ex);
+            Console.Error.WriteLine(diagnostic);
             var logPath = Path.Combine(AppContext.BaseDirectory, "crash.log");
-            File.WriteAllText(logPath, ex.ToString());
+            File.WriteAllText(logPath, diagnostic);
         }
     }
 }
