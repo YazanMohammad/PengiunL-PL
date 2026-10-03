@@ -1,6 +1,7 @@
 # Test infrastructure design
 
-Status: proposed design for user review; implementation has not started.
+Status: written design approved by the user on 2026-10-03; implementation plan
+awaits its separate review. Implementation has not started.
 
 ## Intent and constraints
 
@@ -124,7 +125,7 @@ project. Unexpected failures enter systematic debugging.
 
 ## Review gate and next stage
 
-This document is a proposed architectural design, not an approved implementation
-plan. After user approval of the written spec, use `superpowers:writing-plans`
-to produce the task-level plan. The user has selected subagent-driven development
+This written design is approved; it is not an approved implementation plan.
+Use `superpowers:writing-plans` to produce the task-level plan and obtain its
+review before implementation. The user has selected subagent-driven development
 for significant work; preserve that execution method at the plan review gate.
