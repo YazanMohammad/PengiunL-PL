@@ -80,7 +80,15 @@ evidence; the original implementer resumed without repeating red steps.
 - [Task 3 verification](api-caller-boundary/task-3-verification.md)
 - [Task 3 independent review](api-caller-boundary/task-3-review.md)
 
-Production wiring and gate/native integration remain pending tasks 4-5. No C1
+Task 4 gate/Main integration is accepted (`698ee42`) after fresh independent
+spec/quality approval with no important findings. Full recorded verification
+has 327 backend/90 UI tests; the controller fresh gate run passed 11/11.
+Production bundle disables manual entry and initializes before rendering.
+
+- [Task 4 verification](api-caller-boundary/task-4-verification.md)
+- [Task 4 independent review](api-caller-boundary/task-4-review.md)
+
+Production host wiring/native integration remains pending task 5. No C1
 closure is claimed from policy-only code. No task is accepted until its
 independent reviewer returns both spec-compliance and quality verdicts.
 The plan-scoped recovery ledger records task bases, agents, reviews and rulings.

@@ -316,7 +316,7 @@ Default session is apiSession; default allowDevelopmentEntry is false. Main
 initializes apiSession synchronously, then renders the existing StrictMode/App
 inside the gate with `allowDevelopmentEntry={import.meta.env.DEV}`.
 
-- [ ] Write `DisconnectedProduction_DoesNotMountDataEffects`: child effect calls
+- [x] Write `DisconnectedProduction_DoesNotMountDataEffects`: child effect calls
   a fetch spy if mounted; disconnected gate shows relaunch instruction, no token
   input, zero effect/fetch calls. A minimal gate shell initially renders children;
   record intended failure with `npm test -- tests/components/ApiSessionGate.test.tsx`.
@@ -333,21 +333,21 @@ inside the gate with `allowDevelopmentEntry={import.meta.env.DEV}`.
   });
   ```
 
-- [ ] Add connected-child mounting, invalidation/unmount, StrictMode subscription
+- [x] Add connected-child mounting, invalidation/unmount, StrictMode subscription
   cleanup, valid development token entry, invalid input zero-fetch, and production
   no-entry tests. Use isolated sessions/synthetic tokens. Assert input type password,
   entered credential absent from surrounding text/error messages, and input cleared
   after submission. No login network endpoint or anonymous continuation exists.
-- [ ] Add a real App integration case with one-shot synthetic game/account/system
+- [x] Add a real App integration case with one-shot synthetic game/account/system
   Responses: no initial requests without bootstrap; initialized session sends only
   authenticated requests after mounting. A 401 moves back to disconnected UI and
   a later success cannot restore the old app. Do not mock the shared API module.
-- [ ] Run all gate cases red before implementation; use the singleton session for
+- [x] Run all gate cases red before implementation; use the singleton session for
   the real-App case so the gate and actual client observe the same transitions.
-- [ ] Implement gate subscription with `useSyncExternalStore`, minimal connection
+- [x] Implement gate subscription with `useSyncExternalStore`, minimal connection
   copy and development-only entry, then integrate Main initialization before render.
   Do not rewrite useGames, GameLibrary, or unrelated components.
-- [ ] Run gate and full UI tests green, then the task gate. Commit
+- [x] Run gate and full UI tests green, then the task gate. Commit
   `feat: gate launcher UI on authenticated session`; fresh independent reviewer
   checks real effects, production entry isolation, and no secret UI leakage;
   fix/re-review before task 5.
