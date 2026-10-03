@@ -6,12 +6,13 @@ Implementation branch: `improvement/production-hardening`.
 Worktree: `.worktrees/production-hardening`.
 
 The roadmap is approved in scope. Individual architectural specs and task plans
-remain subject to the requested Superpowers design review stages. No runtime
-improvements have been implemented yet.
+remain subject to the requested Superpowers design review stages. Test
+infrastructure is implemented without runtime source changes; later runtime
+improvements remain pending their own design and plan reviews.
 
 | Project | Brainstorming classification | Audit coverage | Status |
 | --- | --- | --- | --- |
-| 1. Test infrastructure | Architectural: new test projects and verification interfaces | H7; prerequisite for behavior changes | Written design approved; implementation plan ready for review |
+| 1. Test infrastructure | Architectural: new test projects and verification interfaces | H7; prerequisite for behavior changes | Three implementation tasks reviewed; whole-branch review/final verification pending |
 | 2. Local API caller boundary | Architectural: per-run client authentication and host/UI contract | C1; M3 coordinated error contract | Pending its own spec and plan |
 | 3. Account identifiers and backup containment | Architectural: persisted storage identity and reversible migration | C2 | Pending its own spec and plan |
 | 4. Transactional persistence | Architectural: storage interface and commit/recovery semantics | H2 | Pending its own spec and plan |
@@ -22,7 +23,7 @@ improvements have been implemented yet.
 | 7. Host lifecycle | Architectural: readiness, port selection, shutdown and credential coordination | M2 | Pending its own spec and plan |
 | 8a. Ownership semantics | Architectural: verified/inferred/unknown data and UI contract | M4 | Pending its own spec and plan |
 | 8b. Metadata refresh propagation | Architectural: lifecycle-owned background updates and persistent publication | M5 | Pending its own spec and plan |
-| 9a. Frontend tooling advisory remediation | Bounded dependency/configuration migration if interfaces remain intact; upgrade if complexity grows | M6 | Pending compatibility investigation and short design |
+| 9a. Frontend tooling advisory remediation | Bounded dependency/configuration migration if interfaces remain intact; upgrade if complexity grows | M6 plus new Vitest/mocker GHSA-82fw-gwwq-j7x9 and encoding deprecation | Pending compatibility investigation/design; required before test API/browser/public mocker serving |
 | 9b. Unified reproducible release pipeline | Architectural: pinned tools, clean build, CI and package verification | M7 | Pending its own spec and plan |
 | 10a. Formatting | Bounded mechanical change, separate commit | L1 formatter failures | Deferred until behavior projects are reviewed |
 | 10b. Responsibility-based module extraction | Classify each extraction against actual changed interfaces; do not split on size alone | L1 maintainability hotspots | Deferred, evidence-driven |
