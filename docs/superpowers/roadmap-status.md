@@ -13,7 +13,8 @@ improvements remain pending their own design and plan reviews.
 | Project | Brainstorming classification | Audit coverage | Status |
 | --- | --- | --- | --- |
 | 1. Test infrastructure | Architectural: new test projects and verification interfaces | H7; prerequisite for behavior changes | Implemented/reviewed; final 64 backend + 19 frontend tests and builds verified; report records residual tooling checks |
-| 2. Local API caller boundary | Architectural: per-run client authentication and host/UI contract | C1; M3 coordinated error contract | Brainstorming caller-boundary approach for review; written spec and plan pending |
+| 2a. Local API caller boundary | Architectural: per-run client authentication and host/UI contract | C1; minimal M2 bootstrap prerequisites | Approach approved; written [spec](specs/2026-10-03-api-caller-boundary-design.md) awaiting review; plan pending |
+| 2b. API exception-response redaction | Bounded if shared error contract fits existing handlers; upgrade if interfaces change | M3; coordinated with 2a boundary errors | Next focused design after 2a; existing exception leakage remains unresolved |
 | 3. Account identifiers and backup containment | Architectural: persisted storage identity and reversible migration | C2 | Pending its own spec and plan |
 | 4. Transactional persistence | Architectural: storage interface and commit/recovery semantics | H2 | Pending its own spec and plan |
 | 5. Serialized and recoverable session operations | Architectural: per-platform coordinator, staged restore, protected backups | H1, H3, M1 | Pending its own spec and plan |
