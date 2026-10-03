@@ -1,0 +1,7 @@
+git : warning: in the working copy of 'src/PenguinLauncher/wwwroot/index.html', LF will be replaced by CRLF the next
+time Git touches it
+At line:2 char:218
++ ... Format, 'error\s+WHITESPACE:').Count)); git diff --check 2>&1 | Tee-O ...
++                                             ~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: in the... Git touches it:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError

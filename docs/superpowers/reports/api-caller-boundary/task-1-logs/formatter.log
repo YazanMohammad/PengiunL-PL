@@ -1,0 +1,705 @@
+dotnet : C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(46,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+At line:2 char:1
++ dotnet format PenguinLauncher.sln --verify-no-changes --no-restore -- ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Yzn\De...auncher.csproj]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(47,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(48,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(49,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(50,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(51,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(53,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(54,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(56,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(57,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(58,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(59,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(60,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(61,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(63,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(64,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(66,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(67,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(68,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(69,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(70,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(71,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(72,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(74,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(75,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(77,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(78,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(79,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(80,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(81,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(82,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(83,23): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(84,23): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(85,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(86,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(88,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(89,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(91,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(93,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(94,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(95,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(96,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(97,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(98,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(99,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(100,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(101,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(102,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(103,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(104,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(105,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(106,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(107,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(109,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(111,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(112,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(113,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(114,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(115,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(116,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(117,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(119,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(120,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(121,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(122,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(123,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(124,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(126,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(127,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(128,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(129,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(130,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(131,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(132,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(133,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(134,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(135,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(137,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(138,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(139,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(140,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(141,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(142,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(143,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(145,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(146,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(147,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(148,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(149,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(150,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(151,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(152,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(153,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(154,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(155,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(156,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(157,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(158,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(159,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(161,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(162,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(163,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(164,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(165,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(166,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(167,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(168,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(169,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(170,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(171,21): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(172,17): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(173,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(174,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(175,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(177,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(178,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(179,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(180,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(181,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(182,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(183,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(186,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(187,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(188,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(189,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(191,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(192,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(193,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(194,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(195,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(196,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(197,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(198,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(199,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(200,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(201,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(202,13): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Program.cs(204,9): error
+WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(88,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(89,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(90,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(91,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(92,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(94,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(95,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(96,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(97,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(99,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(101,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(102,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(103,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(105,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(106,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(107,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(109,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(110,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(111,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(112,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(113,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(114,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(115,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(116,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(117,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(118,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(119,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(120,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(121,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(122,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(124,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(125,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(126,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(127,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(128,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(129,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(130,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(131,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(132,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(133,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(135,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(136,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(137,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(138,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(139,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(140,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(141,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(142,21): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(143,21): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(144,21): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(146,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(147,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(148,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(149,21): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(150,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(152,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(154,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(155,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(156,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(157,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(159,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(160,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(162,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(163,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(164,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(165,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(166,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(167,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(168,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(169,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(170,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(171,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(173,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(174,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(175,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(176,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(177,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(178,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(179,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(181,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(182,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(183,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(184,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(185,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(186,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(187,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(188,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(189,17): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(190,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(191,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(193,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(194,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(195,13): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(196,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]
+C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\Services\LaunchManager\LaunchManag
+erService.cs(198,9): error WHITESPACE: Fix whitespace formatting. Insert '\s\s\s\s'.
+[C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\PenguinLauncher.csproj]

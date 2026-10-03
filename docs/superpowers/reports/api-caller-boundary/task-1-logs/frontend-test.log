@@ -1,0 +1,15 @@
+
+> penguinlauncher-ui@1.0.0 test
+> vitest run
+
+
+ RUN  v3.2.6 C:/Users/Yzn/Desktop/PengiunL-PL/.worktrees/production-hardening/src/penguinlauncher-ui
+
+ ✓ tests/isolation.test.tsx (3 tests) 20ms
+ ✓ tests/api/client.test.ts (11 tests) 10ms
+ ✓ tests/components/AccountSelectorModal.test.tsx (5 tests) 196ms
+
+ Test Files  3 passed (3)
+      Tests  19 passed (19)
+   Start at  21:10:52
+   Duration  1.90s (transform 139ms, setup 671ms, collect 356ms, tests 226ms, environment 1.80s, prepare 252ms)
