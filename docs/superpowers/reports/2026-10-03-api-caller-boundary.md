@@ -88,8 +88,19 @@ Production bundle disables manual entry and initializes before rendering.
 - [Task 4 verification](api-caller-boundary/task-4-verification.md)
 - [Task 4 independent review](api-caller-boundary/task-4-review.md)
 
-Production host wiring/native integration remains pending task 5. No C1
-closure is claimed from policy-only code. No task is accepted until its
+Task 5 managed host wiring is accepted (`91245ba`), with independent spec/quality
+approval and no Critical/Important findings. Recorded full verification has
+349 backend/90 UI tests; the controller fresh combined filter passed 340/340.
+Formatter debt is now 165 diagnostics after focused changed-block corrections;
+nine npm advisories remain. Native runtime smoke is explicitly unavailable.
+
+- [Task 5 verification](api-caller-boundary/task-5-verification.md)
+- [Task 5 independent review](api-caller-boundary/task-5-review.md)
+- [Native smoke gap](api-caller-boundary/task-5-native-smoke.md)
+
+All five implementation tasks are accepted; whole-branch regression review and
+fresh final matrix remain pending. No native runtime or complete-roadmap
+closure is claimed. No task is accepted until its
 independent reviewer returns both spec-compliance and quality verdicts.
 The plan-scoped recovery ledger records task bases, agents, reviews and rulings.
 Durable task evidence will be copied into this report's sibling directory before

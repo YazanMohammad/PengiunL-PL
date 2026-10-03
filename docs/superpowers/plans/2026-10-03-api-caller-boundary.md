@@ -382,14 +382,14 @@ announces after successful StartAsync, then waits for host shutdown.
 The desktop callback receives `(bootstrapUri, enableDevTools)`; the second value
 equals isDevelopment and is the sole input to Photino's SetDevToolsEnabled call.
 
-- [ ] Write readiness tests using safe TestServer/throwing server doubles: callback
+- [x] Write readiness tests using safe TestServer/throwing server doubles: callback
   observes ApplicationStarted; failed StartAsync invokes neither load nor ready
   callback; desktop callback thread equals caller thread. Headless readiness is
   announced once only after startup. Generic diagnostics from an exception whose
   message contains a synthetic bootstrap token/URI must contain neither value.
   Parameterize desktop Development/Production to assert the callback's developer
   tools flag is true/false respectively, without constructing a native window.
-- [ ] Write mode-composition tests: CreateSessionPolicy returns null for scan-only
+- [x] Write mode-composition tests: CreateSessionPolicy returns null for scan-only
   despite malformed environment values; other modes use task 1's policy rules.
   Add configured-origin forwarded/proxied-header integration cases to the safe
   fixture before changing Main; preserve authenticated real guard responses.
@@ -401,21 +401,21 @@ equals isDevelopment and is the sole input to Photino's SetDevToolsEnabled call.
           "invalid-token", "invalid-origin"));
   ```
 
-- [ ] Write `HostConfiguration_CannotAddNonLoopbackBindings`: replace all transport
+- [x] Write `HostConfiguration_CannotAddNonLoopbackBindings`: replace all transport
   factories with test-only IConnectionListenerFactory capturing requested endpoints
   without opening sockets. Supply hostile `--urls`, URL config corresponding to
   ASPNETCORE_URLS, and Kestrel Endpoints including `0.0.0.0:6200`; mutate endpoint
   configuration/reload after startup. Assert requested endpoints are loopback
   only, port 5100 only, and no additional endpoint appears. Dispose/cancel fake
   listeners and host; never bind or probe an existing port in automated tests.
-- [ ] Run `dotnet test PenguinLauncher.sln --filter FullyQualifiedName~LocalApiHostTests --verbosity normal`; record intended red assertions with minimal helper shells.
-- [ ] Implement ConfigureLoopback using final Kestrel option configuration: replace
+- [x] Run `dotnet test PenguinLauncher.sln --filter FullyQualifiedName~LocalApiHostTests --verbosity normal`; record intended red assertions with minimal helper shells.
+- [x] Implement ConfigureLoopback using final Kestrel option configuration: replace
   its configuration loader with an empty IConfiguration and reload disabled,
   then ListenLocalhost(5100). Remove Main's UseUrls. Use service PostConfigure
   ordering so default Kestrel configuration cannot reintroduce extra endpoints.
   The recording transport tests, not assumptions about configuration precedence,
   must establish the invariant. Implement readiness and generic diagnostics.
-- [ ] Wire Main: resolve mode first; retain offline scan before token validation;
+- [x] Wire Main: resolve mode first; retain offline scan before token validation;
   read headless token/dev origin directly from process environment (not command
   arguments/configurable credential files); use CreateSessionPolicy and construct
   policy before listener
@@ -425,26 +425,30 @@ equals isDevelopment and is the sole input to Photino's SetDevToolsEnabled call.
   Feed the callback's flag into SetDevToolsEnabled. Existing crash path may remain
   but write FormatStartupFailure, not raw exception.ToString or bootstrap URL;
   print that same generic startup diagnostic to standard error for CLI visibility.
-- [ ] Re-run the mode, proxied-header and authenticated guard regressions green;
+- [x] Re-run the mode, proxied-header and authenticated guard regressions green;
   inspect Main wiring for scan-only policy omission and shared boundary usage.
   A fixture cannot alone prove all entry-point code, so retain this direct review
   requirement rather than calling synthetic tests full native integration.
-- [ ] Document PowerShell process-local random-token setup (random .NET bytes,
+- [x] Document PowerShell process-local random-token setup (random .NET bytes,
   base64url) and server-only/Development environment variables without echoing the
   token or embedding it in command arguments. Explain manual password entry,
   exact Vite origin, authenticated health checks, no anonymous option, cleanup of
   task-specific environment variables, reload/restart, and same-user limitations.
-- [ ] Run focused host/boundary/guard tests green, then the task gate sequentially.
+- [x] Run focused host/boundary/guard tests green, then the task gate sequentially.
   Inspect source-to-generated bundle diff; confirm no synthetic/real token or
   development credential is embedded. Commit `feat: integrate authenticated native and headless hosts`.
   Independent reviewer checks entry-point coverage, STA/readiness, fixed-loopback
   enforcement, shipped UI, and docs; fix/re-review important findings.
-- [ ] Perform controlled native smoke with a synthetic-only API host and isolated
+- [x] Perform controlled native smoke with a synthetic-only API host and isolated
   profile: initial fragment bootstrap, reload, close/reopen with new credential,
   and occupied-port failure. Do not launch Main against real vendor services or
   kill an existing listener. Check Photino's actual isolation facilities first;
   if GUI/profile isolation cannot be guaranteed, record the smoke as unavailable
   and do not claim native runtime delivery verified. No substitute jsdom claim.
+
+  Outcome: unavailable under the safety condition, recorded in
+  `reports/api-caller-boundary/task-5-native-smoke.md`. The checkbox records the
+  permitted unavailable-report path, not a performed or passing native test.
 
 ## Mandatory Task Gate and Final Branch Review
 
