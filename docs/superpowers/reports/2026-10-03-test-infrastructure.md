@@ -166,3 +166,6 @@ wording is historical; the verdicts in this top-level report are current.
 
 No integration, merge, push, or release occurred. The working branch remains
 isolated for subsequent roadmap projects; all later roadmap items remain pending.
+Cleanup of this completed plan's ignored `.superpowers/sdd/` records was rejected
+by environment policy before execution. They remain intact; durable evidence is
+already committed. No alternative deletion was attempted.
