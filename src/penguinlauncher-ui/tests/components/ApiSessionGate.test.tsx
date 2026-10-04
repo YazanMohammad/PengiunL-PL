@@ -9,6 +9,14 @@ import { ApiSessionGate } from '../../src/components/ApiSessionGate';
 const TOKEN = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 const INVALID_TOKEN = 'invalid-synthetic-credential';
 
+it('DisconnectedState_IsAnnouncedAndDevelopmentFormUsesNeutralSurfaces', () => {
+  render(<ApiSessionGate session={isolatedSession()} allowDevelopmentEntry><div>Private data</div></ApiSessionGate>);
+  expect(screen.getByRole('status')).toHaveTextContent('Launcher disconnected');
+  expect(screen.getByRole('main')).toHaveClass('overflow-y-auto');
+  expect(screen.getByLabelText('Session token')).toHaveClass('bg-background', 'border-border');
+  expect(screen.getByRole('button', { name: 'Connect' })).toHaveClass('bg-primary');
+});
+
 function isolatedSession() {
   return createApiSession({
     location: { hash: '', pathname: '/', search: '' },

@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useId } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -8,7 +8,6 @@ import {
   DialogDescription,
 } from './ui/dialog';
 import { Button } from './ui/button';
-import { Badge } from './ui/badge';
 import { Input } from './ui/input';
 import {
   Users,
@@ -48,6 +47,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
   swappingAccountId,
   onViewAccountGames,
 }) => {
+  const formId = useId();
   const [activeTab, setActiveTab] = useState<Platform | 'All'>('All');
   const [statusMessage, setStatusMessage] = useState<{ text: string; isError?: boolean } | null>(null);
   const [busyAction, setBusyAction] = useState<string | null>(null);
@@ -189,58 +189,24 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
     }
   };
 
-  const getPlatformColor = (platform: Platform) => {
-    switch (platform) {
-      case 'Steam':
-        return {
-          bg: 'bg-sky-950/60',
-          border: 'border-sky-500/30',
-          text: 'text-sky-300',
-          badge: 'bg-sky-500/20 text-sky-300 border-sky-500/40',
-        };
-      case 'Epic':
-        return {
-          bg: 'bg-violet-950/60',
-          border: 'border-violet-500/30',
-          text: 'text-violet-300',
-          badge: 'bg-violet-500/20 text-violet-300 border-violet-500/40',
-        };
-      case 'EA':
-        return {
-          bg: 'bg-orange-950/60',
-          border: 'border-orange-500/30',
-          text: 'text-orange-300',
-          badge: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
-        };
-      case 'Riot':
-        return {
-          bg: 'bg-rose-950/60',
-          border: 'border-rose-500/30',
-          text: 'text-rose-300',
-          badge: 'bg-rose-500/20 text-rose-300 border-rose-500/40',
-        };
-      default:
-        return {
-          bg: 'bg-zinc-900',
-          border: 'border-white/10',
-          text: 'text-zinc-200',
-          badge: 'bg-white/10 text-white border-white/20',
-        };
-    }
-  };
+  const formError = statusMessage?.isError ? (
+    <p role="alert" className="rounded-md border border-destructive bg-background p-3 text-sm text-red-300">
+      {statusMessage.text}
+    </p>
+  ) : null;
 
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="w-[95vw] max-w-3xl max-h-[88vh] flex flex-col border-white/10 bg-zinc-950/95 backdrop-blur-2xl p-6 overflow-hidden">
+        <DialogContent className="w-[95vw] max-w-3xl max-h-[88dvh] flex flex-col border-border bg-card p-5 sm:p-6">
           <DialogHeader className="space-y-2 shrink-0">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-violet-600/20 text-violet-400 flex items-center justify-center border border-violet-500/30 shadow-md">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-md bg-secondary text-muted-foreground flex items-center justify-center border border-border shrink-0">
                   <Users className="w-4 h-4" />
                 </div>
                 <div>
-                  <DialogTitle className="text-lg font-bold text-white tracking-tight">
+                  <DialogTitle className="text-lg font-semibold text-foreground tracking-tight break-words">
                     Account Hot-Switcher & Manager
                   </DialogTitle>
                 </div>
@@ -251,7 +217,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
                   variant="outline"
                   size="sm"
                   onClick={onRefresh}
-                  className="h-8 gap-1.5 text-xs rounded-xl border-white/10 hover:bg-white/5"
+                  className="h-8 gap-1.5 text-xs rounded-lg border-border hover:bg-secondary"
                 >
                   <RefreshCw className="w-3 h-3" />
                   <span>Refresh</span>
@@ -267,16 +233,17 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
           {/* Status Alert Banner */}
           {statusMessage && (
             <div
-              className={`p-3 rounded-xl border text-xs flex items-center gap-2 animate-in fade-in duration-200 shrink-0 ${
+              role={statusMessage.isError ? 'alert' : 'status'}
+              className={`p-3 rounded-lg border text-xs flex items-center gap-2 animate-in fade-in duration-200 shrink-0 ${
                 statusMessage.isError
-                  ? 'bg-rose-950/50 border-rose-500/40 text-rose-200'
-                  : 'bg-emerald-950/50 border-emerald-500/40 text-emerald-200'
+                  ? 'bg-background border-destructive text-red-300'
+                  : 'bg-background border-border text-foreground'
               }`}
             >
               {statusMessage.isError ? (
                 <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
               ) : (
-                <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-primary" />
               )}
               <span>{statusMessage.text}</span>
             </div>
@@ -285,7 +252,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
           {/* Platform Tabs & Quick Actions */}
           <div className="space-y-3 pt-1 shrink-0">
             <div className="flex flex-wrap items-center justify-between gap-2.5">
-              <div className="flex flex-wrap items-center gap-1.5 bg-zinc-900/80 p-1 rounded-xl border border-white/10">
+              <div className="flex flex-wrap items-center gap-1.5 bg-background p-1 rounded-lg border border-border">
                 {(['All', 'Steam', 'Epic', 'EA', 'Riot'] as const).map((tab) => {
                   const isSelected = activeTab === tab;
                   const count =
@@ -296,18 +263,17 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
                   return (
                     <button
                       key={tab}
+                      aria-pressed={isSelected}
                       onClick={() => setActiveTab(tab)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 ${
                         isSelected
-                          ? 'bg-violet-600 text-white shadow-sm font-semibold'
-                          : 'text-muted-foreground hover:text-white hover:bg-white/5'
+                          ? 'bg-secondary text-foreground font-semibold'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
                       }`}
                     >
                       <span>{tab === 'All' ? 'All Platforms' : tab === 'EA' ? 'EA App' : tab}</span>
                       <span
-                        className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                          isSelected ? 'bg-black/30 text-white' : 'bg-white/10 text-muted-foreground'
-                        }`}
+                        className="text-xs text-muted-foreground"
                       >
                         {count}
                       </span>
@@ -325,20 +291,20 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
                     setCapturePlatform(activeTab !== 'All' ? activeTab : 'Steam');
                     setIsCaptureOpen(true);
                   }}
-                  className="h-8 text-xs font-semibold gap-1.5 rounded-xl border-white/10 hover:border-violet-500/40 hover:bg-violet-950/20"
+                  className="h-8 text-xs font-semibold gap-1.5 rounded-lg border-border hover:border-muted-foreground hover:bg-secondary"
                 >
-                  <Camera className="w-3.5 h-3.5 text-violet-400" />
+                  <Camera className="w-3.5 h-3.5 text-primary" />
                   <span>Capture Active</span>
                 </Button>
 
                 <Button
                   size="sm"
-                  variant="glow"
+                  variant="default"
                   onClick={() => {
                     setAddPlatform(activeTab !== 'All' ? activeTab : 'Steam');
                     setIsAddOpen(true);
                   }}
-                  className="h-8 text-xs font-semibold gap-1.5 rounded-xl"
+                  className="h-8 text-xs font-semibold gap-1.5 rounded-lg"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add Profile</span>
@@ -348,7 +314,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
 
             {/* Platform Quick Bar (Log out platform) */}
             {activeTab !== 'All' && (
-              <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-zinc-900/40 border border-white/5 text-xs">
+              <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 rounded-lg bg-background border border-border text-xs">
                 <span className="text-muted-foreground">
                   Need to connect a new {activeTab} account?
                 </span>
@@ -357,7 +323,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
                   size="sm"
                   onClick={() => handleLogoutPlatform(activeTab)}
                   disabled={busyAction === `logout_${activeTab}`}
-                  className="h-7 text-xs text-amber-300 hover:text-amber-200 hover:bg-amber-950/30 gap-1.5"
+                  className="h-auto min-h-7 text-xs text-amber-300 hover:text-amber-200 hover:bg-secondary gap-1.5 whitespace-normal text-left"
                 >
                   <LogOut className="w-3 h-3" />
                   <span>Clear {activeTab} Session to Log In</span>
@@ -367,13 +333,13 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
           </div>
 
           {/* Accounts List Container with Clean Fluid Scroll */}
-          <div className="flex-1 min-h-0 space-y-2.5 my-3 overflow-y-auto pr-1.5">
+          <div className="flex-1 min-h-0 space-y-2.5 my-3 overflow-y-auto pr-1.5 shrink-0 sm:shrink">
             {displayedAccounts.length === 0 ? (
-              <div className="p-8 text-center border border-dashed border-white/10 rounded-2xl bg-zinc-900/30">
-                <div className="w-10 h-10 rounded-xl bg-white/5 mx-auto flex items-center justify-center text-muted-foreground mb-2">
+              <div className="p-8 text-center border border-dashed border-border rounded-lg bg-background">
+                <div className="w-10 h-10 rounded-lg bg-secondary mx-auto flex items-center justify-center text-muted-foreground mb-2">
                   <Gamepad2 className="w-5 h-5" />
                 </div>
-                <p className="text-sm font-semibold text-white">No accounts found</p>
+                <p className="text-sm font-semibold text-foreground">No accounts found</p>
                 <p className="text-xs text-muted-foreground max-w-sm mx-auto mt-1">
                   {activeTab === 'All'
                     ? 'No accounts registered yet. Use "Capture Active" to automatically detect your current session, or click "Add Profile".'
@@ -383,7 +349,6 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
             ) : (
               displayedAccounts.map((account) => {
                 const isSwapping = swappingAccountId === account.id;
-                const colors = getPlatformColor(account.platform);
 
                 // Compute games for this specific account
                 const accountGames = games.filter(
@@ -397,38 +362,38 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
                 return (
                   <div
                     key={account.id}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-4 rounded-2xl border border-white/10 bg-zinc-900/50 hover:bg-zinc-900/80 hover:border-white/20 transition-all group"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-4 rounded-lg border border-border bg-background"
                   >
                     <div className="flex items-start gap-3.5 min-w-0 flex-1">
                       {/* Avatar */}
                       <div
-                        className={`w-11 h-11 rounded-xl ${colors.bg} ${colors.border} border ${colors.text} font-bold flex items-center justify-center text-sm shadow-md shrink-0 mt-0.5`}
+                        className="w-10 h-10 rounded-md bg-secondary border border-border text-muted-foreground font-semibold flex items-center justify-center text-sm shrink-0 mt-0.5"
                       >
                         {account.displayName.charAt(0).toUpperCase()}
                       </div>
 
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <p className="text-sm font-semibold text-white truncate max-w-[200px] sm:max-w-xs">
+                          <p className="text-sm font-semibold text-foreground truncate max-w-[200px] sm:max-w-xs">
                             {account.displayName}
                           </p>
-                          <Badge variant="outline" className={`text-[10px] px-1.5 py-0 h-4 border ${colors.badge}`}>
+                          <span className="text-xs text-muted-foreground">
                             {account.platform}
-                          </Badge>
+                          </span>
                           {account.isActive ? (
-                            <Badge variant="active" className="text-[10px] px-2 py-0.5 h-4 bg-emerald-500/20 text-emerald-300 border-emerald-500/40">
+                            <span className="inline-flex items-center text-xs text-primary">
                               <CheckCircle2 className="w-2.5 h-2.5 mr-1" />
                               Active Session
-                            </Badge>
+                            </span>
                           ) : (
-                            <Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4 border-white/10 text-muted-foreground">
+                            <span className="text-xs text-muted-foreground">
                               Ready
-                            </Badge>
+                            </span>
                           )}
 
                           {/* Games Count Badge */}
-                          <span className="text-[11px] font-medium text-zinc-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded-lg flex items-center gap-1.5">
-                            <Gamepad2 className="w-3 h-3 text-violet-400" />
+                          <span className="text-xs text-muted-foreground flex items-center gap-1.5">
+                            <Gamepad2 className="w-3 h-3 text-primary" />
                             <span>{accountGames.length} {accountGames.length === 1 ? 'game' : 'games'}</span>
                           </span>
                         </div>
@@ -439,19 +404,19 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
 
                         {/* Games Preview & Quick Browse */}
                         {accountGames.length > 0 && (
-                          <div className="flex flex-wrap items-center gap-1.5 mt-2.5 pt-2 border-t border-white/5">
+                          <div className="flex flex-wrap items-center gap-1.5 mt-2.5 pt-2 border-t border-border">
                             <span className="text-[10px] text-muted-foreground font-medium">Owned:</span>
                             {accountGames.slice(0, 3).map((g) => (
                               <span
                                 key={g.id}
-                                className="text-[10px] px-2 py-0.5 rounded-md bg-zinc-800/80 border border-white/5 text-zinc-300 truncate max-w-[140px]"
+                                className="text-[10px] px-2 py-0.5 rounded-md bg-background border border-border text-muted-foreground truncate max-w-[140px]"
                                 title={g.name}
                               >
                                 {g.name}
                               </span>
                             ))}
                             {accountGames.length > 3 && (
-                              <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-zinc-800/40 text-muted-foreground">
+                              <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-background text-muted-foreground">
                                 +{accountGames.length - 3} more
                               </span>
                             )}
@@ -459,7 +424,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
                               <button
                                 type="button"
                                 onClick={() => onViewAccountGames(account.id)}
-                                className="text-[10px] text-violet-400 hover:text-violet-300 font-semibold ml-auto flex items-center gap-1 hover:underline"
+                                className="text-[10px] text-primary hover:text-foreground font-semibold ml-auto flex items-center gap-1 hover:underline"
                               >
                                 View in Library →
                               </button>
@@ -479,8 +444,9 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
                           setRenameValue(account.displayName);
                           setIsRenameOpen(true);
                         }}
-                        className="h-8 w-8 p-0 rounded-lg text-muted-foreground hover:text-white"
+                        className="h-8 w-8 p-0 rounded-lg text-muted-foreground hover:text-foreground"
                         title="Rename alias"
+                        aria-label={`Rename ${account.displayName}`}
                       >
                         <Edit2 className="w-3.5 h-3.5" />
                       </Button>
@@ -495,6 +461,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
                         }}
                         className="h-8 w-8 p-0 rounded-lg text-muted-foreground hover:text-rose-400"
                         title="Remove profile"
+                        aria-label={`Remove ${account.displayName}`}
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </Button>
@@ -502,21 +469,21 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
                       {/* Switch Button */}
                       <Button
                         size="sm"
-                        variant={account.isActive ? 'outline' : 'glow'}
+                        variant={account.isActive ? 'outline' : 'default'}
                         disabled={account.isActive || isSwapping}
                         onClick={() => onSwapAccount(account)}
-                        className="h-8 text-xs font-semibold gap-1.5 rounded-xl ml-1"
+                        className="h-8 text-xs font-semibold gap-1.5 rounded-lg ml-1"
                       >
                         {isSwapping ? (
                           <>
-                            <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                            <span>Swapping...</span>
+                            <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                            <span role="status">Swapping...</span>
                           </>
                         ) : account.isActive ? (
-                          <span className="text-emerald-400 font-medium">● Current</span>
+                          <span className="text-primary font-medium">● Current</span>
                         ) : (
                           <>
-                            <Zap className="w-3.5 h-3.5 text-amber-300" />
+                            <Zap className="w-3.5 h-3.5" />
                             <span>Switch</span>
                           </>
                         )}
@@ -529,9 +496,9 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
           </div>
 
           {/* Footer Info */}
-          <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs text-muted-foreground shrink-0 mt-auto">
+          <div className="pt-3 border-t border-border flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground shrink-0 mt-auto">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-primary" />
               <span>Zero-Password Local Vault Active · Supports Steam, Epic, EA App, Riot</span>
             </span>
             <Button
@@ -550,10 +517,10 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
       {/* 1. Add Profile Dialog */}
       {/* ───────────────────────────────────────────────────────────── */}
       <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
-        <DialogContent className="w-[92vw] max-w-md border-white/10 bg-zinc-950/95 backdrop-blur-2xl p-6">
+        <DialogContent className="w-[92vw] max-w-md border-border bg-card p-5 sm:p-6">
           <DialogHeader>
-            <DialogTitle className="text-base font-bold text-white flex items-center gap-2">
-              <Plus className="w-4 h-4 text-violet-400" />
+            <DialogTitle className="text-base font-bold text-foreground flex items-center gap-2">
+              <Plus className="w-4 h-4 text-primary" />
               Add Account Profile
             </DialogTitle>
             <DialogDescription className="text-xs text-muted-foreground">
@@ -561,34 +528,38 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
             </DialogDescription>
           </DialogHeader>
 
+          {formError}
+
           <form onSubmit={handleAddSubmit} className="space-y-4 my-2">
-            <div>
-              <label className="text-xs font-medium text-muted-foreground block mb-1.5">
+            <fieldset>
+              <legend className="text-xs font-medium text-muted-foreground block mb-1.5">
                 Launcher Platform
-              </label>
-              <div className="grid grid-cols-4 gap-2">
+              </legend>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {(['Steam', 'Epic', 'EA', 'Riot'] as const).map((plat) => (
                   <button
                     key={plat}
                     type="button"
                     onClick={() => setAddPlatform(plat)}
-                    className={`py-2 px-3 text-xs font-medium rounded-xl border text-center transition-all ${
+                    aria-pressed={addPlatform === plat}
+                    className={`py-2 px-3 text-xs font-medium rounded-lg border text-center transition-colors ${
                       addPlatform === plat
-                        ? 'bg-violet-600 border-violet-500 text-white font-semibold shadow-md'
-                        : 'bg-zinc-900 border-white/10 text-muted-foreground hover:bg-zinc-800'
+                        ? 'bg-secondary border-border text-foreground font-semibold'
+                        : 'bg-background border-border text-muted-foreground hover:bg-secondary'
                     }`}
                   >
                     {plat === 'EA' ? 'EA App' : plat}
                   </button>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             <div>
-              <label className="text-xs font-medium text-muted-foreground block mb-1.5">
+              <label htmlFor={`${formId}-add-name`} className="text-xs font-medium text-muted-foreground block mb-1.5">
                 Profile Display Name / Alias <span className="text-rose-400">*</span>
               </label>
               <Input
+                id={`${formId}-add-name`}
                 placeholder="e.g. Main Account, Brother's Smurf"
                 value={addDisplayName}
                 onChange={(e) => setAddDisplayName(e.target.value)}
@@ -598,10 +569,11 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
             </div>
 
             <div>
-              <label className="text-xs font-medium text-muted-foreground block mb-1.5">
+              <label htmlFor={`${formId}-add-user`} className="text-xs font-medium text-muted-foreground block mb-1.5">
                 Platform User ID / Account Name (Optional)
               </label>
               <Input
+                id={`${formId}-add-user`}
                 placeholder="e.g. SteamID64, Nucleus ID, Epic User ID"
                 value={addUserId}
                 onChange={(e) => setAddUserId(e.target.value)}
@@ -620,7 +592,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
               </Button>
               <Button
                 type="submit"
-                variant="glow"
+                variant="default"
                 size="sm"
                 disabled={busyAction === 'add' || !addDisplayName.trim()}
                 className="h-8 text-xs font-semibold"
@@ -636,10 +608,10 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
       {/* 2. Capture Active Session Dialog */}
       {/* ───────────────────────────────────────────────────────────── */}
       <Dialog open={isCaptureOpen} onOpenChange={setIsCaptureOpen}>
-        <DialogContent className="w-[92vw] max-w-md border-white/10 bg-zinc-950/95 backdrop-blur-2xl p-6">
+        <DialogContent className="w-[92vw] max-w-md border-border bg-card p-5 sm:p-6">
           <DialogHeader>
-            <DialogTitle className="text-base font-bold text-white flex items-center gap-2">
-              <Camera className="w-4 h-4 text-violet-400" />
+            <DialogTitle className="text-base font-bold text-foreground flex items-center gap-2">
+              <Camera className="w-4 h-4 text-primary" />
               Capture Active Session
             </DialogTitle>
             <DialogDescription className="text-xs text-muted-foreground">
@@ -647,41 +619,45 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
             </DialogDescription>
           </DialogHeader>
 
+          {formError}
+
           <form onSubmit={handleCaptureSubmit} className="space-y-4 my-2">
-            <div>
-              <label className="text-xs font-medium text-muted-foreground block mb-1.5">
+            <fieldset>
+              <legend className="text-xs font-medium text-muted-foreground block mb-1.5">
                 Target Platform
-              </label>
-              <div className="grid grid-cols-4 gap-2">
+              </legend>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {(['Steam', 'Epic', 'EA', 'Riot'] as const).map((plat) => (
                   <button
                     key={plat}
                     type="button"
                     onClick={() => setCapturePlatform(plat)}
-                    className={`py-2 px-3 text-xs font-medium rounded-xl border text-center transition-all ${
+                    aria-pressed={capturePlatform === plat}
+                    className={`py-2 px-3 text-xs font-medium rounded-lg border text-center transition-colors ${
                       capturePlatform === plat
-                        ? 'bg-violet-600 border-violet-500 text-white font-semibold shadow-md'
-                        : 'bg-zinc-900 border-white/10 text-muted-foreground hover:bg-zinc-800'
+                        ? 'bg-secondary border-border text-foreground font-semibold'
+                        : 'bg-background border-border text-muted-foreground hover:bg-secondary'
                     }`}
                   >
                     {plat === 'EA' ? 'EA App' : plat}
                   </button>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             <div>
-              <label className="text-xs font-medium text-muted-foreground block mb-1.5">
+              <label htmlFor={`${formId}-capture-name`} className="text-xs font-medium text-muted-foreground block mb-1.5">
                 Custom Name (Optional)
               </label>
               <Input
+                id={`${formId}-capture-name`}
                 placeholder="Leave blank to use auto-detected persona name"
                 value={captureDisplayName}
                 onChange={(e) => setCaptureDisplayName(e.target.value)}
               />
             </div>
 
-            <div className="p-3 rounded-xl bg-violet-950/30 border border-violet-500/20 text-[11px] text-violet-300">
+            <div className="p-3 rounded-lg bg-background border border-border text-[11px] text-primary">
               💡 Tip: Make sure you are logged into your desired account in the official launcher before capturing.
             </div>
 
@@ -697,7 +673,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
               </Button>
               <Button
                 type="submit"
-                variant="glow"
+                variant="default"
                 size="sm"
                 disabled={busyAction === 'capture'}
                 className="h-8 text-xs font-semibold gap-1.5"
@@ -714,20 +690,26 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
       {/* 3. Rename Profile Dialog */}
       {/* ───────────────────────────────────────────────────────────── */}
       <Dialog open={isRenameOpen} onOpenChange={setIsRenameOpen}>
-        <DialogContent className="w-[92vw] max-w-sm border-white/10 bg-zinc-950/95 backdrop-blur-2xl p-6">
+        <DialogContent className="w-[92vw] max-w-sm border-border bg-card p-5 sm:p-6">
           <DialogHeader>
-            <DialogTitle className="text-base font-bold text-white flex items-center gap-2">
-              <Edit2 className="w-4 h-4 text-violet-400" />
+            <DialogTitle className="text-base font-bold text-foreground flex items-center gap-2">
+              <Edit2 className="w-4 h-4 text-primary" />
               Rename Profile Alias
             </DialogTitle>
+            <DialogDescription className="text-xs text-muted-foreground">
+              Update the display name for {targetAccount?.displayName}.
+            </DialogDescription>
           </DialogHeader>
+
+          {formError}
 
           <form onSubmit={handleRenameSubmit} className="space-y-4 my-2">
             <div>
-              <label className="text-xs font-medium text-muted-foreground block mb-1.5">
+              <label htmlFor={`${formId}-rename-name`} className="text-xs font-medium text-muted-foreground block mb-1.5">
                 New Display Name
               </label>
               <Input
+                id={`${formId}-rename-name`}
                 value={renameValue}
                 onChange={(e) => setRenameValue(e.target.value)}
                 placeholder="Enter new display name"
@@ -748,7 +730,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
               </Button>
               <Button
                 type="submit"
-                variant="glow"
+                variant="default"
                 size="sm"
                 disabled={busyAction === 'rename' || !renameValue.trim()}
                 className="h-8 text-xs font-semibold"
@@ -764,17 +746,19 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
       {/* 4. Delete Confirmation Dialog */}
       {/* ───────────────────────────────────────────────────────────── */}
       <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
-        <DialogContent className="w-[92vw] max-w-sm border-white/10 bg-zinc-950/95 backdrop-blur-2xl p-6">
+        <DialogContent className="w-[92vw] max-w-sm border-border bg-card p-5 sm:p-6">
           <DialogHeader>
             <DialogTitle className="text-base font-bold text-rose-400 flex items-center gap-2">
               <Trash2 className="w-4 h-4" />
               Remove Profile?
             </DialogTitle>
             <DialogDescription className="text-xs text-muted-foreground">
-              Are you sure you want to remove <span className="text-white font-semibold">{targetAccount?.displayName}</span>?
+              Are you sure you want to remove <span className="text-foreground font-semibold">{targetAccount?.displayName}</span>?
               This will delete the local session backup from the vault.
             </DialogDescription>
           </DialogHeader>
+
+          {formError}
 
           <div className="flex items-center justify-end gap-2 pt-3">
             <Button

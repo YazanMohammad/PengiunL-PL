@@ -28,6 +28,15 @@ const conflict: ConflictInfo = {
 };
 
 describe('AccountSelectorModal', () => {
+  it('uses a flat scrollable conflict surface and keeps Escape cancellation', () => {
+    const onCancel = vi.fn();
+    render(<AccountSelectorModal conflict={conflict} onSelect={vi.fn()} onCancel={onCancel} />);
+    const dialog = screen.getByRole('dialog', { name: 'Account Conflict Resolution' });
+    expect(dialog).toHaveClass('bg-card', 'border-border', 'overflow-y-auto');
+    expect(dialog.innerHTML).not.toMatch(/backdrop-blur|bg-gradient|shadow-md|rounded-xl/);
+    fireEvent.keyDown(document.activeElement!, { key: 'Escape' });
+    expect(onCancel).toHaveBeenCalledExactlyOnceWith();
+  });
   it('lists both profiles and selects Bob once through Switch & Play', () => {
     const onSelect = vi.fn();
     const onCancel = vi.fn();

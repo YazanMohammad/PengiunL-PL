@@ -26,18 +26,18 @@ export const AccountSelectorModal: React.FC<AccountSelectorModalProps> = ({
 
   return (
     <Dialog open={!!conflict} onOpenChange={(open) => !open && onCancel()}>
-      <DialogContent className="sm:max-w-lg border-white/10 bg-zinc-950/95 backdrop-blur-2xl p-6">
+      <DialogContent className="sm:max-w-lg p-5 sm:p-6">
         <DialogHeader className="space-y-2">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/30">
+            <div className="w-8 h-8 rounded-md bg-background text-amber-400 flex items-center justify-center border border-border shrink-0">
               <ShieldAlert className="w-4 h-4" />
             </div>
-            <DialogTitle className="text-lg font-bold text-white">
+            <DialogTitle className="text-lg font-semibold text-foreground">
               Account Conflict Resolution
             </DialogTitle>
           </div>
           <DialogDescription className="text-xs text-muted-foreground">
-            Multiple launcher profiles own <span className="font-semibold text-white">{conflict.gameName}</span>.
+            Multiple launcher profiles own <span className="font-semibold text-foreground">{conflict.gameName}</span>.
             Select the profile you want to authenticate for this session.
           </DialogDescription>
         </DialogHeader>
@@ -48,17 +48,17 @@ export const AccountSelectorModal: React.FC<AccountSelectorModalProps> = ({
             <div
               key={account.id}
               onClick={() => onSelect(account)}
-              className="group relative flex items-center justify-between p-3.5 rounded-xl border border-white/10 bg-zinc-900/60 hover:bg-zinc-800/80 hover:border-violet-500/40 transition-all duration-200 cursor-pointer shadow-sm"
+              className="group relative flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-lg border border-border bg-background hover:border-muted-foreground transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3 min-w-0">
                 {/* Avatar Initial */}
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-700 flex items-center justify-center text-white font-bold text-sm shadow-md border border-white/10 shrink-0">
+                <div className="w-10 h-10 rounded-md bg-secondary flex items-center justify-center text-muted-foreground font-semibold text-sm border border-border shrink-0">
                   {account.displayName.charAt(0).toUpperCase()}
                 </div>
 
                 <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm font-semibold text-white group-hover:text-violet-300 transition-colors truncate">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="text-sm font-semibold text-foreground truncate">
                       {account.displayName}
                     </p>
                     {account.isActive && (
@@ -77,7 +77,7 @@ export const AccountSelectorModal: React.FC<AccountSelectorModalProps> = ({
               {/* Action */}
               <Button
                 size="sm"
-                variant={account.isActive ? 'default' : 'glow'}
+                variant="default"
                 onClick={(e) => {
                   e.stopPropagation();
                   onSelect(account);
@@ -92,8 +92,8 @@ export const AccountSelectorModal: React.FC<AccountSelectorModalProps> = ({
         </div>
 
         {/* Footer info banner */}
-        <div className="rounded-xl p-3 bg-violet-950/20 border border-violet-500/20 text-violet-300 text-xs flex items-center gap-2.5">
-          <Zap className="w-4 h-4 shrink-0 text-violet-400" />
+        <div className="rounded-lg p-3 bg-background border border-border text-muted-foreground text-xs flex items-center gap-2.5">
+          <Zap className="w-4 h-4 shrink-0 text-primary" />
           <span>
             TcNo Hot-Swap will terminate the launcher process, update auth tokens & registry, and boot the session seamlessly.
           </span>
