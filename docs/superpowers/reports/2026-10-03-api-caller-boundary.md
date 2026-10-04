@@ -1,7 +1,9 @@
 # Local API caller boundary execution report
 
-Status: implementation in progress; no claim of completed authentication or
-roadmap completion. Spec and five-task plan were approved on 2026-10-03.
+Status: implementation and automated acceptance completed for project 2a on
+2026-10-04, including final regression fixes and independent re-review. Native
+runtime delivery remains unverified; the wider roadmap is not complete. Spec
+and five-task plan were approved on 2026-10-03.
 
 Spec: [design](../specs/2026-10-03-api-caller-boundary-design.md).
 Plan: [implementation tasks](../plans/2026-10-03-api-caller-boundary.md).
@@ -98,10 +100,13 @@ nine npm advisories remain. Native runtime smoke is explicitly unavailable.
 - [Task 5 independent review](api-caller-boundary/task-5-review.md)
 - [Native smoke gap](api-caller-boundary/task-5-native-smoke.md)
 
-All five implementation tasks are accepted; whole-branch regression review and
-fresh final matrix remain pending. No native runtime or complete-roadmap
-closure is claimed. No task is accepted until its
-independent reviewer returns both spec-compliance and quality verdicts.
+All five implementation tasks are accepted. Whole-branch regression review found
+one Important CORS/error-composition issue and two Minor disposal/reload-test
+issues. The consolidated fix wave addressed all three, with separate focused
+commits and independent scoped re-review finding no new breakage. The controller's
+fresh post-review matrix has355 backend/UI90 passing, typechecks/builds passing,
+and unchanged formatter165/npm9 residuals. No native runtime or complete-roadmap
+closure is claimed. Every task received spec-compliance and quality approval.
 The plan-scoped recovery ledger records task bases, agents, reviews and rulings.
 Durable task evidence will be copied into this report's sibling directory before
 any scratch cleanup. Other plans' workspaces are outside this plan's scope.
@@ -113,3 +118,76 @@ The approved `import.meta.env.DEV` integration needs it; the repository has no
 such declarations today. This is type wiring only. Cost if wrong: unnecessary
 ambient declarations or type compatibility changes; both typechecks must detect
 conflicts. The task brief and plan include this prerequisite.
+
+Both final-review minors are included in the consolidated fix wave, with separate
+focused commits. Headless disposal restores previous owner behavior; deterministic
+reload proof strengthens the approved host contract without a project 7 rewrite.
+Cost if wrong: premature caller-owned host disposal or brittle configuration proof;
+regression tests and scoped re-review must check both.
+
+The seven areas declined by the whole-branch reviewer remain explicitly deferred
+or unverified: actual native delivery/profile/reload/reopen/port behavior; general
+error redaction/decoding (2b); broad lifecycle/dynamic ports (7); same-user/native/
+trusted-script threat exclusions; account/persistence/vendor/launch/ownership/
+metadata projects 3–8; dependency/release/formatting/structural projects 9–10;
+and successful real vendor workflows until safe owning seams exist. Newly found
+CORS/disposal/reload issues are assessed separately. Cost if wrong: known risks
+or unverified behavior remain; this branch must not be represented as fully
+production-ready or released.
+
+## Whole-branch review
+
+[Original independent regression review](api-caller-boundary/whole-branch-review.md)
+compares the original source baseline `3c1f2c3` through `33a7ae7`, including test
+infrastructure, authentication and generated assets. It found no Critical issues,
+one Important issue (handled exceptions lose permitted development CORS headers)
+and two Minors (timing-dependent reload observation and dropped headless disposal).
+The initial verdict is “With fixes,” not merge authorization.
+
+The one consolidated wave spans `33a7ae7..19c21a7`: `a21dcc1` restores permitted
+development CORS at response start, `000f0b0` restores headless disposal,
+`a7a8c1b` replaces timed reload observation with token evidence, and `19c21a7`
+records the full fix matrix. Behavioral fixes have intended failing regressions;
+reload strengthening is honestly labeled tests-only characterization.
+
+- [Fix implementation and evidence](api-caller-boundary/final-fix-summary.md)
+- [Independent scoped re-review: all three addressed, no new breakage](api-caller-boundary/final-fix-review.md)
+- [Fresh controller final matrix and exact outputs](api-caller-boundary/final-verification.md)
+
+The scoped review read the supplied full range and supporting tests/evidence;
+it did not rerun suites. The controller then executed the entire ten-command
+matrix freshly at source head `19c21a7`. Backend355/UI90 and typechecks/builds
+pass; formatter165/npm9 remain named failures, not an all-checks-pass result.
+Generated HTML newline drift was proven content-equivalent, restored exactly
+using apply_patch, and diff-check repeated with exit0. No generated asset content
+change remains and no production edit followed the reviewed fix wave.
+
+## Spec acceptance reconciliation
+
+| Spec section | Delivered implementation and evidence | Qualification |
+| --- | --- | --- |
+| Intent and classification | Hosting policy/boundary, session/client/gate, Program; full branch review | Project2a only, plus prior H7 infrastructure; not all roadmap |
+| Alternatives/security limits | Strict capability, authority/origin tests; development-api.md | Same-user malware/debugger/native compromise/trusted script excluded |
+| Credential lifecycle/native bootstrap | ApiSessionPolicyTests; session.test.ts; host callback readiness/STA tests | Actual Photino fragment delivery, reload/reopen not runtime-verified |
+| Headless/development contracts | Mode precedence/environment policy, host/proxy/gate tests, operator docs | Explicit headless ownership restored; no real vendor host invocation |
+| Listener/request boundary | Shared LocalApiBoundary, recording Kestrel transport, guard/auth tests; new real handled500 CORS regression | Fixed loopback5100; reload proof deterministic, transport-header parsing outside middleware remains Kestrel-owned |
+| React/client compatibility | session/client API tables and stale-generation cases; real App gate integration; production bundle review | Successful API payloads preserved; jsdom does not certify native delivery |
+| Acceptance/testing | Five task TDD/reviews, original whole-branch review, scoped final fixes/re-review, fresh controller matrix | Formatter/advisories fail as documented; no separate E2E/ESLint suite configured |
+| Risks/deferred work | Native gap and all seven declined areas explicitly reconciled above; roadmap updated | M3/project2b and remaining M2/project7 unresolved; projects3–10 pending |
+
+## Handoff and next design
+
+Keep `improvement/production-hardening` and its worktree in place. Nothing was
+merged, pushed or released; no worktree was removed. Plan-scoped scratch/evidence
+is preserved (an earlier scratch-cleanup operation was blocked before execution;
+no alternate deletion was attempted). Durable review/verification/rulings above
+are the acceptance record, not a certification of real vendor workflows.
+
+Next project2b is bounded if the existing error contract can be kept: replace
+unexpected exception messages in the global handler, endpoint catches and failed
+LaunchResult with generic messages, preserving URLs, status codes, validation
+and successful DTOs. Regression tests must exercise safe synthetic failure paths
+before each behavioral fix; no storage/host redesign or unrelated cleanup. If
+safe owning seams require changed interfaces, upgrade to architectural design
+instead of improvising. This short design is proposed for user approval; no2b
+production code has been changed. Error-decoder behavior is not silently changed.

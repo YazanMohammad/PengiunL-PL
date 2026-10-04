@@ -1,0 +1,17 @@
+UTC: 2026-10-04T03:41:18.6271866Z
+CWD: C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\penguinlauncher-ui
+COMMAND: npm run build
+
+> penguinlauncher-ui@1.0.0 build
+> tsc && vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 1989 modules transformed.
+rendering chunks...
+computing gzip size...
+../PenguinLauncher/wwwroot/index.html                   0.73 kB │ gzip:   0.42 kB
+../PenguinLauncher/wwwroot/assets/index-D9HK_ItX.css   47.10 kB │ gzip:   8.70 kB
+../PenguinLauncher/wwwroot/assets/index-DNZ_BUpz.js   363.24 kB │ gzip: 108.64 kB
+✓ built in 2.24s
+NATIVE_EXIT_CODE=0

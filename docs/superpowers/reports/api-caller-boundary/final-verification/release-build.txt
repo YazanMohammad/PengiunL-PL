@@ -1,0 +1,12 @@
+UTC: 2026-10-04T03:41:22.9409675Z
+CWD: C:/Users/Yzn/Desktop/PengiunL-PL/.worktrees/production-hardening
+COMMAND: dotnet build PenguinLauncher.sln --no-restore --configuration Release --verbosity minimal
+  PenguinLauncher -> C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\bin\Release\net10.0\win-x64\PenguinLauncher.dll
+  PenguinLauncher.Tests -> C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\bin\Release\net10.0\PenguinLauncher.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.19
+NATIVE_EXIT_CODE=0

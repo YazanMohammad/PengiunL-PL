@@ -1,0 +1,10 @@
+UTC: 2026-10-04T03:44:00.3291582Z CWD: C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening COMMAND: git diff --check
+git : warning: in the working copy of 'docs/superpowers/reports/2026-10-03-api-caller-boundary.md', LF will be
+replaced by CRLF the next time Git touches it
+At line:2 char:265
++ ... ') | Tee-Object -FilePath $taskPostLog; git diff --check 2>&1 | Tee-O ...
++                                             ~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: in the... Git touches it:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+NATIVE_EXIT_CODE=0

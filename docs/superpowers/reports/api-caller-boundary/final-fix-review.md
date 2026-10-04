@@ -1,0 +1,46 @@
+# Scoped final API-boundary fix re-review
+
+## Finding verdicts
+
+1. **Important: development CORS headers are lost when the global handler handles an exception — ADDRESSED.**
+   `src/PenguinLauncher/Hosting/LocalApiBoundary.cs:35` validates the supplied Origin before the callback is registered. Lines 41–50 register response-start CORS only for the configured development origin, capture the immutable policy value, emit that exact value, and append Origin to the existing Vary header. This survives downstream response clearing and preserves downstream Vary values. The existing no-store callback at lines 13–17 remains in force. Authority, fetch-metadata, preflight and bearer checks retain their order and conditions; no wildcard, cookie, credentials permission or new allowed origin was introduced.
+
+   The fixture uses the actual `UseExceptionHandler` middleware after the shared boundary (`tests/PenguinLauncher.Tests/Fixtures/ApiBoundaryFixture.cs:35`), matching `src/PenguinLauncher/Program.cs:103` and `:108`. Its synthetic throwing endpoint increments an observable handler counter at fixture lines 62–65. `DevelopmentResponse_PreservesCorsAndExistingVaryAtResponseStart` (`tests/PenguinLauncher.Tests/Hosting/LocalApiBoundaryTests.cs:412`) checks both 200 and handled 500 responses, no-store, exact canonical Allow-Origin, Origin and Accept-Encoding in Vary, no Allow-Credentials, handler execution, and the expected synthetic 500 JSON. Mixed-case request Origin exercises emission of the policy value rather than copying the request value. `ForeignDevelopmentOrigin_IsBlockedBeforeThrowingHandlerWithoutCors` at line 429 uses a valid credential and asserts 403, no CORS/Vary and zero handler calls.
+
+   Recorded RED contains the intended two runtime failures, not build failures: normal response missing Vary Origin and handled 500 missing Allow-Origin (`docs/superpowers/reports/api-caller-boundary/final-fix-cors-red.md:16`). Foreign-origin rejection already passes. The focused GREEN command names the boundary suite and proxy cases and records 117 passing tests/native exit 0 (`final-fix-cors-green.md:4`, `:17`, `:18`, same report directory). Removing the response-start CORS callback would reproduce the 500 failure; replacing rather than appending Vary would fail the Accept-Encoding assertion. General exception redaction remains outside this fix.
+
+2. **Minor: the deferred reload test's 150 ms delay is not a processing barrier — ADDRESSED.**
+   `tests/PenguinLauncher.Tests/Hosting/LocalApiHostTests.cs:301` obtains the public active Kestrel configuration loader after startup and captures that loader's configuration token, separately from the host configuration token. It registers an observed callback on that exact loader token at line 307. After adding hostile endpoint/URL values and synchronously reloading the host configuration, lines 315–319 assert that the host token changed, the loader token did not change, its callback did not run, and the hostile keys are absent from the loader configuration. Lines 299 and 320–321 retain the before/after recording-transport endpoint assertions; line 328 retains listener-disposal verification. The helper at line 331 checks exactly the IPv4/IPv6 loopback endpoints on port 5100.
+
+   This demonstrates configuration-source isolation directly, rather than inferring that no reload will occur after a short wait. A regression that retains the host Kestrel section as the active loader configuration fails the token/key assertions synchronously, including on a slow runner. No private reflection, subscriber-count assumption, real socket, longer sleep or production seam was added. The test does not claim to prove every possible future reload mechanism; it covers the hostile configuration route specified by this finding.
+
+   This is accurately labeled tests-only characterization. `docs/superpowers/reports/api-caller-boundary/final-fix-reload.md:4` names the covering three-case test, and lines 31–32 record all three passing/native exit 0. Its initial CS1061 setup failure is explicitly separate from behavioral RED. The production loopback loader replacement and `reloadOnChange: false` remain unchanged (`src/PenguinLauncher/Hosting/LocalApiHost.cs:18`).
+
+3. **Minor: the headless path no longer disposes the host that the previous Run call owned — ADDRESSED.**
+   `src/PenguinLauncher/Hosting/LocalApiHost.cs:35` encloses startup, readiness announcement and shutdown waiting in try/finally; line 43 awaits host disposal on success, cancellation/shutdown and startup failure. Readiness still follows successful `StartAsync`, the same cancellation token is passed to startup and shutdown waiting, and the helper does not catch or replace the startup error. Disposal occurs after waiting or as cleanup on failure; desktop startup is untouched.
+
+   The new ownership tests deliberately build an app without caller `await using` and register an async-disposable singleton through a DI factory (`tests/PenguinLauncher.Tests/Hosting/LocalApiHostTests.cs:172`, `:203`). They resolve the resource so the host owns an actual disposable instance. The normal/cancelled-shutdown theory checks zero disposals and an incomplete run while ready, then exactly one disposal after awaiting the helper at lines 180–188. The startup-failure test checks the original synthetic error, no readiness and one disposal at lines 209–213. Both assert before finally cleanup, so caller cleanup cannot mask missing helper ownership. `OwnedResource` at line 416 observes asynchronous disposal.
+
+   Existing readiness tests capture the lifetime before disposal and still verify startup ordering, a single announcement, shutdown waiting and the stopped signal (`LocalApiHostTests.cs:123`, `:134`, `:142`). Their adaptation avoids querying a disposed provider without weakening the expected lifetime signals.
+
+   `docs/superpowers/reports/api-caller-boundary/final-fix-disposal-red.md:4` names the ownership regressions; its recorded intended RED has three expected-1/actual-0 disposal failures. `final-fix-disposal-green.md:4` names the host suite and lines 64–65 record 25 passing/native exit 0. The intermediate two ObjectDisposedException failures in old tests are recorded distinctly. Omitting the production finally causes all three ownership assertions to fail before cleanup.
+
+## New breakage in the fix diff
+
+None found: no new Critical, Important or Minor finding. The production diff is limited to response-start CORS restoration and headless disposal ownership. Fixture changes are synthetic; reload changes are tests-only. No dependency, authenticated route body, client, shipped asset, port, desktop lifecycle or business-service change is present in the supplied fix range.
+
+## Checks and evidence limits
+
+- Reviewed fix base `33a7ae71995de6bdbbfe55601e85718921821e64` to head `19c21a7b38b95fa30f6929f2c8f3857071e508ff` using the supplied `review-33a7ae7..19c21a7.diff`; did not independently regenerate it. The initial large tool response truncated evidence output, so remaining evidence sections were read in bounded continuations. The code diff was reviewed together with numbered source and directly related fixture/test context.
+- Read the complete original findings, fix brief, implementer report, binding execution context, approved specification and Superpowers scoped re-review template. Scope is this single fix wave, not a repeated whole-branch review.
+- Inspected recorded commands, cwd, outputs and explicit native exits against the covering test code. No test suite, matrix, Program.Main, GUI, real AppData/vendor workflow or listener was run in this review; the reported passing runs are implementer evidence, not fresh reviewer execution.
+- Recorded full matrix evidence reports backend 355 and UI 90 passing, both TypeScript checks and builds passing, Release zero warnings/errors, inventory exit 0 and NuGet no reported vulnerable packages. Formatter exit 2 and npm audit exit 1 are retained openly. Read-only aggregation of the recorded formatter output confirms Program.cs 70 plus LaunchManagerService.cs 95 diagnostics, with no changed-source diagnostics. The recorded audit contains nine affected entries, three moderate/six high. The generated HTML diff-check failure and subsequent repaired exit 0 are recorded separately; no wwwroot change is in the fix package.
+- Checkout source, index, HEAD and branch were not mutated. The only authored artifact from this review is this report. No subagent was dispatched.
+
+## Out-of-scope observations
+
+None newly discovered. The seven original declined-to-judge areas remain deferred/unverified, including native webview delivery, general error redaction/decoding, broader desktop lifecycle/dynamic ports, same-user compromise, business/storage/vendor repairs, advisory/packaging/hygiene work and real vendor workflows. The unchanged formatter/advisory residuals are not new breakage in this fix wave.
+
+## Verdict
+
+**Fix round: All findings addressed, no new Critical/Important breakage.** All three original findings are closed for this scoped re-review. This is evidence for controller acceptance of the bounded fixes, not merge/release authorization or certification of the deferred areas.

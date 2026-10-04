@@ -1,8 +1,11 @@
 # Local API caller boundary design
 
 Status: conversational approach and written spec approved on 2026-10-03.
-Implementation plan approved on 2026-10-03; execution started under strict TDD
-and independent task review. Verification evidence will track delivered behavior.
+Implementation plan approved on 2026-10-03; managed/browser implementation,
+strict-TDD task gates and final regression fix/re-review completed on 2026-10-04.
+Fresh final evidence: [execution report](../reports/2026-10-03-api-caller-boundary.md).
+Native runtime smoke is unavailable under the isolation condition, not passed.
+This status does not claim wider-roadmap completion or release readiness.
 
 ## Intent and classification
 

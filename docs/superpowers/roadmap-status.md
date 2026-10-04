@@ -7,14 +7,15 @@ Worktree: `.worktrees/production-hardening`.
 
 The roadmap is approved in scope. Individual architectural specs and task plans
 remain subject to the requested Superpowers design review stages. Test
-infrastructure is implemented without runtime source changes; later runtime
-improvements remain pending their own design and plan reviews.
+infrastructure and the API caller boundary have implementation/review evidence;
+native boundary delivery remains unverified. Remaining projects require their
+own design stages; the roadmap and application are not declared complete/secure.
 
 | Project | Brainstorming classification | Audit coverage | Status |
 | --- | --- | --- | --- |
 | 1. Test infrastructure | Architectural: new test projects and verification interfaces | H7; prerequisite for behavior changes | Implemented/reviewed; final 64 backend + 19 frontend tests and builds verified; report records residual tooling checks |
-| 2a. Local API caller boundary | Architectural: per-run client authentication and host/UI contract | C1; minimal M2 bootstrap prerequisites | Written [spec](specs/2026-10-03-api-caller-boundary-design.md) and [plan](plans/2026-10-03-api-caller-boundary.md) approved; subagent-driven implementation started |
-| 2b. API exception-response redaction | Bounded if shared error contract fits existing handlers; upgrade if interfaces change | M3; coordinated with 2a boundary errors | Next focused design after 2a; existing exception leakage remains unresolved |
+| 2a. Local API caller boundary | Architectural: per-run client authentication and host/UI contract | C1; minimal M2 bootstrap prerequisites | Implemented/reviewed including three final regression findings; fresh backend355/UI90, typechecks/builds pass. Native smoke unavailable; formatter165/npm9 remain. [Acceptance/evidence](reports/2026-10-03-api-caller-boundary.md) |
+| 2b. API exception-response redaction | Bounded if shared error contract fits existing handlers; upgrade if interfaces change | M3; coordinated with 2a boundary errors | Short design proposed at 2a handoff; awaiting design approval. Existing exception leakage remains unresolved; no implementation |
 | 3. Account identifiers and backup containment | Architectural: persisted storage identity and reversible migration | C2 | Pending its own spec and plan |
 | 4. Transactional persistence | Architectural: storage interface and commit/recovery semantics | H2 | Pending its own spec and plan |
 | 5. Serialized and recoverable session operations | Architectural: per-platform coordinator, staged restore, protected backups | H1, H3, M1 | Pending its own spec and plan |
@@ -39,8 +40,9 @@ improvements remain pending their own design and plan reviews.
 - No configured Git author identity was available. The baseline commit uses
   the automation identity `Codex <codex@openai.com>` via command-local options;
   global identity configuration was not changed.
-- Runtime source changes, security remediations, and claims of completion are
-  pending the design and implementation stages.
+- Only the test-infrastructure and API-boundary scope has been implemented and
+  reviewed. Remaining security/data-integrity/reliability work stays pending;
+  native behavior and release readiness are not certified.
 
 ## Fresh isolated-worktree baseline
 

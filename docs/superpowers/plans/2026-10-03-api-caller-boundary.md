@@ -447,7 +447,7 @@ equals isDevelopment and is the sole input to Photino's SetDevToolsEnabled call.
   and do not claim native runtime delivery verified. No substitute jsdom claim.
 
   Outcome: unavailable under the safety condition, recorded in
-  `reports/api-caller-boundary/task-5-native-smoke.md`. The checkbox records the
+  `docs/superpowers/reports/api-caller-boundary/task-5-native-smoke.md`. The checkbox records the
   permitted unavailable-report path, not a performed or passing native test.
 
 ## Mandatory Task Gate and Final Branch Review
@@ -475,19 +475,26 @@ Focused commits stage only named task files and necessary generated assets.
 Use command-local Codex Git identity if no identity is configured. Do not merge,
 push, release, or remove the worktree as part of this plan.
 
-- [ ] Reconcile every spec section with implemented files/tests and attach the
+- [x] Reconcile every spec section with implemented files/tests and attach the
   native smoke evidence or explicit gap. Confirm M3 and remaining M2 are pending,
   not accidentally marked fixed. Update roadmap project 2a accurately.
-- [ ] Obtain a fresh whole-project/whole-branch review for auth bypass, stale UI
+- [x] Obtain a fresh whole-project/whole-branch review for auth bypass, stale UI
   regressions, CLI compatibility, resource leaks, secret disclosure, and unrelated
   changes; inspect branch `3c1f2c3..HEAD` plus focused auth commits. Important
   findings require regression tests, fixes, and independent re-review.
-- [ ] Run the entire matrix again after final review fixes. Apply
+- [x] Run the entire matrix again after final review fixes. Apply
   superpowers:verification-before-completion before every completion claim;
   report baseline failures and any smoke gap without declaring the whole roadmap
   or application secure. Record review/verification evidence in the durable report.
-- [ ] Hand off project 2a evidence and propose project 2b's bounded error-redaction
+- [x] Hand off project 2a evidence and propose project 2b's bounded error-redaction
   design; do not start an unreviewed structural follow-on.
+
+Final outcome recorded on 2026-10-04 in
+`docs/superpowers/reports/2026-10-03-api-caller-boundary.md`: five accepted tasks,
+all three whole-branch findings addressed and independently re-reviewed, fresh
+controller backend355/UI90/typechecks/builds passing. Formatter165/npm9 remain;
+native smoke explicitly unavailable, general redaction and broader lifecycle
+pending. Checkboxes record these qualified outcomes, not full production readiness.
 
 ## Plan Self-Review and Execution Handoff
 
