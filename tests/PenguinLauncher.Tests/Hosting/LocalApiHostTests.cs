@@ -4,12 +4,14 @@ using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using PenguinLauncher.Hosting;
 using PenguinLauncher.Tests.Fixtures;
 using Xunit;
@@ -296,12 +298,25 @@ public class LocalApiHostTests
             {
                 AssertLoopbackBindings(transport.Endpoints);
                 var initialEndpoints = transport.Endpoints;
+                var loader = app.Services.GetRequiredService<IOptions<KestrelServerOptions>>()
+                    .Value.ConfigurationLoader;
+                Assert.NotNull(loader);
+                var listenerReloadToken = loader.Configuration.GetReloadToken();
+                var hostReloadToken = ((IConfiguration)builder.Configuration).GetReloadToken();
+                var listenerReloadCalls = 0;
+                using var listenerSubscription = listenerReloadToken.RegisterChangeCallback(
+                    _ => Interlocked.Increment(ref listenerReloadCalls), null);
                 builder.Configuration["Kestrel:Endpoints:Hostile:Url"] = "http://0.0.0.0:6300";
                 builder.Configuration["Kestrel:Endpoints:Additional:Url"] = "http://0.0.0.0:6301";
                 builder.Configuration["urls"] = "http://0.0.0.0:6302";
                 ((IConfigurationRoot)builder.Configuration).Reload();
-                // A registered configuration reload would asynchronously bind additional endpoints.
-                await Task.Delay(150);
+                // Prove the host change actually fired, but cannot signal the active
+                // Kestrel loader: no asynchronous processing delay is needed.
+                Assert.True(hostReloadToken.HasChanged);
+                Assert.False(listenerReloadToken.HasChanged);
+                Assert.Equal(0, Volatile.Read(ref listenerReloadCalls));
+                Assert.Null(loader.Configuration["Endpoints:Hostile:Url"]);
+                Assert.Null(loader.Configuration["Endpoints:Additional:Url"]);
                 AssertLoopbackBindings(transport.Endpoints);
                 Assert.Equal(initialEndpoints, transport.Endpoints);
             }
