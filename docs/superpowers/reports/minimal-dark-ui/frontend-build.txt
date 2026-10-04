@@ -1,0 +1,18 @@
+Command: npm run build
+Source HEAD: d8cce0d8fa41fc7c3591b6a90526bea902d7cf41
+Date: 2026-10-04
+Exit code: 0
+
+
+> penguinlauncher-ui@1.0.0 build
+> tsc && vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 1988 modules transformed.
+rendering chunks...
+computing gzip size...
+../PenguinLauncher/wwwroot/index.html                   0.73 kB │ gzip:   0.42 kB
+../PenguinLauncher/wwwroot/assets/index-npkNKYyz.css   25.96 kB │ gzip:   5.89 kB
+../PenguinLauncher/wwwroot/assets/index-B_76knR7.js   348.01 kB │ gzip: 105.41 kB
+✓ built in 2.15s

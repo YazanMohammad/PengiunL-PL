@@ -1,0 +1,11 @@
+Command: dotnet test PenguinLauncher.sln --no-restore
+Source HEAD: d8cce0d8fa41fc7c3591b6a90526bea902d7cf41
+Date: 2026-10-04
+Exit code: 0
+
+  PenguinLauncher -> C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\src\PenguinLauncher\bin\Debug\net10.0\win-x64\PenguinLauncher.dll
+  PenguinLauncher.Tests -> C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\bin\Debug\net10.0\PenguinLauncher.Tests.dll
+Test run for C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\bin\Debug\net10.0\PenguinLauncher.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   355, Skipped:     0, Total:   355, Duration: 868 ms - PenguinLauncher.Tests.dll (net10.0)

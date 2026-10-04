@@ -1,0 +1,12 @@
+Command: Fresh build whitespace-only comparison; generated HTML/JS formatting; node --check; git diff --check; committed artifact comparison
+Source HEAD: d8cce0d8fa41fc7c3591b6a90526bea902d7cf41
+Date: 2026-10-04
+Exit code: 0
+
+warning: in the working copy of 'src/PenguinLauncher/wwwroot/assets/index-B_76knR7.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/PenguinLauncher/wwwroot/assets/index-npkNKYyz.css', LF will be replaced by CRLF the next time Git touches it
+Raw-build non-whitespace diff exit: 0
+Generated HTML CRs: 15 JS whitespace-only lines: 5
+warning: in the working copy of 'src/PenguinLauncher/wwwroot/assets/index-B_76knR7.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/PenguinLauncher/wwwroot/index.html', LF will be replaced by CRLF the next time Git touches it
+Normalized generated assets match HEAD exit: 0

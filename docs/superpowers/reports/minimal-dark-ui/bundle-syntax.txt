@@ -1,0 +1,4 @@
+Command: node --check src/PenguinLauncher/wwwroot/assets/index-B_76knR7.js
+Source HEAD: d8cce0d8fa41fc7c3591b6a90526bea902d7cf41
+Date: 2026-10-04
+Exit code: 0

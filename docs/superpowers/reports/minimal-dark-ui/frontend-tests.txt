@@ -1,0 +1,31 @@
+Command: npm test
+Source HEAD: d8cce0d8fa41fc7c3591b6a90526bea902d7cf41
+Date: 2026-10-04
+Exit code: 0
+
+
+> penguinlauncher-ui@1.0.0 test
+> vitest run
+
+
+ RUN  v3.2.6 C:/Users/Yzn/Desktop/PengiunL-PL/.worktrees/production-hardening/src/penguinlauncher-ui
+
+ ✓ tests/api/client.test.ts (35 tests) 25ms
+ ✓ tests/components/DarkTheme.test.tsx (12 tests) 93ms
+ ✓ tests/components/AccountSelectorModal.test.tsx (6 tests) 252ms
+ ✓ tests/components/ApiSessionGate.test.tsx (12 tests) 776ms
+   ✓ RealApp_NoRequestsUntilBootstrapThenOnlyAuthenticatedRequests  405ms
+ ✓ tests/components/LibraryControls.test.tsx (14 tests) 641ms
+   ✓ library controls > retains all sort and density choices with readable selected state  324ms
+ ✓ tests/api/session.test.ts (36 tests) 20ms
+ ✓ tests/isolation.test.tsx (3 tests) 19ms
+ ✓ tests/components/DialogPresentation.test.tsx (23 tests) 1424ms
+   ✓ shared presentation contracts > keeps focus in a newer dialog when an underlying controlled dialog closes  452ms
+ ✓ tests/components/GameLibrary.test.tsx (28 tests) 2424ms
+   ✓ library characterization > sorts descending and keeps the chosen density when changing view  413ms
+   ✓ library characterization > paginates 80 then 180 then all and resets on search  742ms
+
+ Test Files  9 passed (9)
+      Tests  169 passed (169)
+   Start at  16:35:13
+   Duration  4.81s (transform 1.06s, setup 2.08s, collect 2.22s, tests 5.67s, environment 7.32s, prepare 2.72s)

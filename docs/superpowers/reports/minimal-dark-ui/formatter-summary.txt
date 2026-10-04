@@ -1,0 +1,7 @@
+Command: dotnet format PenguinLauncher.sln --verify-no-changes --no-restore
+Source HEAD: d8cce0d8fa41fc7c3591b6a90526bea902d7cf41
+Date: 2026-10-04
+Exit code: 2
+
+165
+Formatter exit: 2
