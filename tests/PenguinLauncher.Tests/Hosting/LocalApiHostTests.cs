@@ -118,6 +118,7 @@ public class LocalApiHostTests
     {
         var gate = new StartupGate();
         await using var app = TestApp(gate);
+        var lifetime = app.Lifetime;
         var announced = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         var count = 0;
         var run = LocalApiHost.RunServerAsync(app, () =>
@@ -136,12 +137,12 @@ public class LocalApiHostTests
             app.Lifetime.StopApplication();
             await run.WaitAsync(TimeSpan.FromSeconds(10));
             Assert.Equal(1, count);
-            Assert.True(app.Lifetime.ApplicationStopped.IsCancellationRequested);
+            Assert.True(lifetime.ApplicationStopped.IsCancellationRequested);
         }
         finally
         {
             gate.Release.TrySetResult();
-            await app.StopAsync();
+            await app.DisposeAsync();
         }
     }
 
@@ -149,12 +150,70 @@ public class LocalApiHostTests
     public async Task Server_FailedStartupDoesNotAnnounceReadiness()
     {
         await using var app = FailingApp();
+        var lifetime = app.Lifetime;
         var announced = false;
         var error = await Assert.ThrowsAsync<InvalidOperationException>(() =>
             LocalApiHost.RunServerAsync(app, () => announced = true));
         Assert.Equal("Synthetic bind failure.", error.Message);
         Assert.False(announced);
-        Assert.False(app.Lifetime.ApplicationStarted.IsCancellationRequested);
+        Assert.False(lifetime.ApplicationStarted.IsCancellationRequested);
+    }
+
+    // Omitting helper-owned disposal must fail before caller cleanup runs.
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task Server_DisposesOwnedResourcesAfterShutdown(bool cancel)
+    {
+        var builder = Builder();
+        builder.WebHost.UseTestServer();
+        builder.Services.AddSingleton<OwnedResource>(_ => new OwnedResource());
+        var app = builder.Build();
+        var resource = app.Services.GetRequiredService<OwnedResource>();
+        using var cancellation = new CancellationTokenSource();
+        var ready = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var run = LocalApiHost.RunServerAsync(app, () => ready.TrySetResult(), cancellation.Token);
+        try
+        {
+            await ready.Task.WaitAsync(TimeSpan.FromSeconds(10));
+            Assert.Equal(0, resource.DisposeCalls);
+            Assert.False(run.IsCompleted);
+            if (cancel)
+                cancellation.Cancel();
+            else
+                app.Lifetime.StopApplication();
+            await run.WaitAsync(TimeSpan.FromSeconds(10));
+            Assert.Equal(1, resource.DisposeCalls);
+        }
+        finally
+        {
+            cancellation.Cancel();
+            try { await run; }
+            finally { await app.DisposeAsync(); }
+        }
+    }
+
+    [Fact]
+    public async Task Server_DisposesOwnedResourcesOnStartupFailureAndPropagatesError()
+    {
+        var builder = Builder();
+        builder.Services.AddSingleton<IServer, ThrowingServer>();
+        builder.Services.AddSingleton<OwnedResource>(_ => new OwnedResource());
+        var app = builder.Build();
+        var resource = app.Services.GetRequiredService<OwnedResource>();
+        var announced = false;
+        try
+        {
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                LocalApiHost.RunServerAsync(app, () => announced = true));
+            Assert.Equal("Synthetic bind failure.", error.Message);
+            Assert.False(announced);
+            Assert.Equal(1, resource.DisposeCalls);
+        }
+        finally
+        {
+            await app.DisposeAsync();
+        }
     }
 
     // Serializing the exception (including inner errors) can expose a bootstrap credential.
@@ -337,5 +396,15 @@ public class LocalApiHostTests
             Task.FromException(new InvalidOperationException("Synthetic bind failure."));
         public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
         public void Dispose() { }
+    }
+
+    private sealed class OwnedResource : IAsyncDisposable
+    {
+        public int DisposeCalls { get; private set; }
+        public ValueTask DisposeAsync()
+        {
+            DisposeCalls++;
+            return ValueTask.CompletedTask;
+        }
     }
 }

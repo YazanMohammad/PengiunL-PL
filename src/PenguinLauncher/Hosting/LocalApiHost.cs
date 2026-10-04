@@ -32,9 +32,16 @@ public static class LocalApiHost
     public static async Task RunServerAsync(WebApplication app, Action announceReady,
         CancellationToken cancellationToken = default)
     {
-        await app.StartAsync(cancellationToken);
-        announceReady();
-        await app.WaitForShutdownAsync(cancellationToken);
+        try
+        {
+            await app.StartAsync(cancellationToken);
+            announceReady();
+            await app.WaitForShutdownAsync(cancellationToken);
+        }
+        finally
+        {
+            await app.DisposeAsync();
+        }
     }
 
     public static string FormatStartupFailure(Exception error) =>
