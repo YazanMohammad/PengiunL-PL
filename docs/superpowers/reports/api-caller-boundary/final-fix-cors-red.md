@@ -38,4 +38,3 @@ Not found:  "Origin"
 Failed!  - Failed:     2, Passed:     1, Skipped:     0, Total:     3, Duration: 172 ms - PenguinLauncher.Tests.dll (net10.0)
 Native exit code: 1
 ```
-

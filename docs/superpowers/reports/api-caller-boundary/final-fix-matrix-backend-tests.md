@@ -1,10 +1,8 @@
-# CORS focused GREEN
+# Final matrix: backend-tests
 
 Cwd: `C:/Users/Yzn/Desktop/PengiunL-PL/.worktrees/production-hardening`.
-Command: `dotnet test tests/PenguinLauncher.Tests/PenguinLauncher.Tests.csproj --filter "FullyQualifiedName~LocalApiBoundaryTests|FullyQualifiedName~LocalApiHostTests.ProxiedBrowser" --verbosity minimal`.
-Native exit: 0. 117 tests passed.
-
-Response-start callback captures the already validated policy origin and appends Origin to downstream Vary. Shared fixture now uses actual exception middleware in Program order and a synthetic throwing handler. Existing auth, preflight, foreign-origin and proxy checks pass.
+Command: `dotnet test PenguinLauncher.sln --verbosity minimal`.
+Native exit: 0.
 
 ```text
   Determining projects to restore...
@@ -14,6 +12,6 @@ Response-start callback captures the already validated policy origin and appends
 Test run for C:\Users\Yzn\Desktop\PengiunL-PL\.worktrees\production-hardening\tests\PenguinLauncher.Tests\bin\Debug\net10.0\PenguinLauncher.Tests.dll (.NETCoreApp,Version=v10.0)
 A total of 1 test files matched the specified pattern.
 
-Passed!  - Failed:     0, Passed:   117, Skipped:     0, Total:   117, Duration: 488 ms - PenguinLauncher.Tests.dll (net10.0)
+Passed!  - Failed:     0, Passed:   355, Skipped:     0, Total:   355, Duration: 791 ms - PenguinLauncher.Tests.dll (net10.0)
 Native exit code: 0
 ```

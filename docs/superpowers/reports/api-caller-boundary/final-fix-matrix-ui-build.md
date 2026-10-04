@@ -1,0 +1,22 @@
+# Final matrix: ui-build
+
+Cwd: `C:/Users/Yzn/Desktop/PengiunL-PL/.worktrees/production-hardening/src/penguinlauncher-ui`.
+Command: `npm run build`.
+Native exit: 0.
+
+```text
+
+> penguinlauncher-ui@1.0.0 build
+> tsc && vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 1989 modules transformed.
+rendering chunks...
+computing gzip size...
+../PenguinLauncher/wwwroot/index.html                   0.73 kB │ gzip:   0.42 kB
+../PenguinLauncher/wwwroot/assets/index-D9HK_ItX.css   47.10 kB │ gzip:   8.70 kB
+../PenguinLauncher/wwwroot/assets/index-DNZ_BUpz.js   363.24 kB │ gzip: 108.64 kB
+✓ built in 2.67s
+Native exit code: 0
+```
