@@ -56,7 +56,7 @@ export const GameListItem: React.FC<GameListItemProps> = ({ game, onPlay, onDeta
             onSelect(game);
           }
         }}
-        className="flex min-w-0 flex-1 basis-56 cursor-pointer items-center gap-4 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="flex min-w-0 flex-1 basis-56 cursor-pointer flex-wrap items-center gap-4 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         <div className="h-16 w-20 shrink-0 overflow-hidden rounded-md bg-secondary">
           {game.coverImageUrl && !imgError ? (
@@ -65,26 +65,26 @@ export const GameListItem: React.FC<GameListItemProps> = ({ game, onPlay, onDeta
             <div className="flex h-full items-center justify-center text-lg font-medium text-muted-foreground" aria-hidden="true">{game.name.substring(0, 2).toUpperCase()}</div>
           )}
         </div>
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 basis-36">
           <h4 className="truncate text-sm font-medium text-foreground" title={game.name}>{game.name}</h4>
           <p className="mt-1 truncate text-[11px] text-muted-foreground" title={game.installPath}>
             {game.installPath || (game.isInstalled ? 'Installed Title' : `Ready to install via ${platformInfo.label} (AppID: ${game.platformGameId})`)}
           </p>
           <Badge variant={platformInfo.variant} className="mt-1.5 text-[10px]">{platformInfo.label}</Badge>
         </div>
-      </div>
-      <div className="flex flex-wrap items-center gap-3 text-[11px] text-muted-foreground lg:w-56">
-        {owningAccounts.length > 0 && (
-          <span className={`flex min-w-0 items-center gap-1.5 ${isMismatch ? 'text-amber-300' : ''}`} title={owningAccounts.map(a => a.displayName).join(', ')}>
-            {owningAccounts.length > 1 ? <Users className="h-3 w-3 shrink-0" /> : isMismatch ? <Zap className="h-3 w-3 shrink-0" /> : <User className="h-3 w-3 shrink-0" />}
-            <span className="max-w-36 truncate">{owningAccounts.length > 1 ? `${owningAccounts.length} Accounts` : singleOwner?.displayName}</span>
-            {singleOwner && <span>{singleOwner.isActive ? 'Active' : 'Auto-swaps'}</span>}
+        <div className="flex flex-wrap items-center gap-3 text-[11px] text-muted-foreground lg:w-56">
+          {owningAccounts.length > 0 && (
+            <span className={`flex min-w-0 items-center gap-1.5 ${isMismatch ? 'text-amber-300' : ''}`} title={owningAccounts.map(a => a.displayName).join(', ')}>
+              {owningAccounts.length > 1 ? <Users className="h-3 w-3 shrink-0" /> : isMismatch ? <Zap className="h-3 w-3 shrink-0" /> : <User className="h-3 w-3 shrink-0" />}
+              <span className="max-w-36 truncate">{owningAccounts.length > 1 ? `${owningAccounts.length} Accounts` : singleOwner?.displayName}</span>
+              {singleOwner && <span>{singleOwner.isActive ? 'Active' : 'Auto-swaps'}</span>}
+            </span>
+          )}
+          <span className="flex items-center gap-1.5">
+            {game.isInstalled ? <CheckCircle2 className="h-3 w-3" /> : <Download className="h-3 w-3" />}
+            {game.isInstalled ? 'Installed' : 'Ready to Install'}
           </span>
-        )}
-        <span className="flex items-center gap-1.5">
-          {game.isInstalled ? <CheckCircle2 className="h-3 w-3" /> : <Download className="h-3 w-3" />}
-          {game.isInstalled ? 'Installed' : 'Ready to Install'}
-        </span>
+        </div>
       </div>
       <div className="ml-auto flex flex-wrap items-center gap-2">
         <Button size="sm" variant="outline" onClick={e => { e.stopPropagation(); onDetails(game); }} className="gap-1.5">

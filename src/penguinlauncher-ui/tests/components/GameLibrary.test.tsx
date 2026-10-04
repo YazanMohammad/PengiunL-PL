@@ -136,6 +136,14 @@ describe('library characterization', () => {
 });
 
 describe('artwork-led library', () => {
+  it('list installation metadata opens existing details without launching', () => {
+    render(<GameLibrary />);
+    fireEvent.click(screen.getByRole('button', { name: 'List View' }));
+    fireEvent.click(within(screen.getByRole('main')).getByText('Installed'));
+    expect(screen.getByRole('dialog', { name: 'Alpha' })).toBeInTheDocument();
+    expect(api.launch).not.toHaveBeenCalled();
+  });
+
   it('uses three comfortable standard columns at desktop widths', () => {
     render(<GameLibrary />);
     const grid = screen.getByRole('heading', { name: 'Alpha', level: 3 }).closest('article')?.parentElement;

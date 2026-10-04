@@ -4,11 +4,30 @@ import { TopBar } from '../../src/components/TopBar';
 import { GameCard } from '../../src/components/GameCard';
 import { GameListItem } from '../../src/components/GameListItem';
 import { Sidebar } from '../../src/components/Sidebar';
-import type { Game } from '../../src/types';
+import type { Account, Game } from '../../src/types';
 
 const game: Game = { id: 'synthetic', name: 'Synthetic Game', platform: 'Steam', platformGameId: '100', installPath: '', launchUri: null, coverImageUrl: '/synthetic-cover.png', backgroundImageUrl: null, associatedAccountIds: [], isInstalled: true };
+const alice: Account = { id: 'alice', displayName: 'Alice', platform: 'Steam', platformUserId: 'synthetic-alice', isActive: true, sessionBackupPath: null, lastLogin: null };
 
 describe('library controls', () => {
+  it.each([
+    { label: 'Alice', isInstalled: true },
+    { label: 'Installed', isInstalled: true },
+    { label: 'Ready to Install', isInstalled: false },
+  ])('row $label metadata selects details exactly once', ({ label, isInstalled }) => {
+    const selectedGame = { ...game, associatedAccountIds: ['alice'], isInstalled };
+    const onSelect = vi.fn();
+    const onPlay = vi.fn();
+    const onDetails = vi.fn();
+    render(<GameListItem game={selectedGame} accounts={[alice]} onSelect={onSelect} onPlay={onPlay} onDetails={onDetails} isSelected={false} />);
+    fireEvent.click(screen.getByText(label));
+    expect(onSelect).toHaveBeenCalledExactlyOnceWith(selectedGame);
+    expect(onPlay).not.toHaveBeenCalled();
+    expect(onDetails).not.toHaveBeenCalled();
+    const body = screen.getByRole('button', { name: 'Open details for Synthetic Game' });
+    expect(body.querySelector('button, [role="button"], a, input, select, textarea')).toBeNull();
+  });
+
   it('retains all sort and density choices with readable selected state', () => {
     render(<TopBar onRescan={vi.fn()} gameCount={1} loading={false} searchQuery="" onSearchChange={vi.fn()} viewMode="grid" onViewModeChange={vi.fn()} gridDensity="standard" onGridDensityChange={vi.fn()} sortOption="name-asc" onSortOptionChange={vi.fn()} onOpenAccounts={vi.fn()} accountCount={0} systemInfo={null} />);
     fireEvent.keyDown(screen.getByRole('button', { name: /Display/ }), { key: 'Enter' });
@@ -51,6 +70,7 @@ describe('library controls', () => {
     fireEvent.click(screen.getByRole('button', { name: /Details/ }));
     expect(onDetails).toHaveBeenCalledExactlyOnceWith(game);
     expect(onSelect).not.toHaveBeenCalled();
+    expect(onPlay).toHaveBeenCalledExactlyOnceWith(game);
   });
 
   it.each(['card', 'row'])('%s body supports keyboard details selection', kind => {
@@ -59,6 +79,7 @@ describe('library controls', () => {
     render(kind === 'card' ? <GameCard {...props} density="standard" /> : <GameListItem {...props} isSelected={false} />);
     const body = screen.getByRole('button', { name: 'Open details for Synthetic Game' });
     fireEvent.keyDown(body, { key: 'Enter' });
+    expect(onSelect).toHaveBeenCalledExactlyOnceWith(game);
     fireEvent.keyDown(body, { key: ' ' });
     expect(onSelect).toHaveBeenCalledTimes(2);
     expect(onSelect).toHaveBeenLastCalledWith(game);
