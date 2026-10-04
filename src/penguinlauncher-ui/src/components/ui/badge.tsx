@@ -13,19 +13,19 @@ const badgeVariants = cva(
           "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
         destructive:
           "border-transparent bg-destructive/20 text-destructive-foreground hover:bg-destructive/30",
-        outline: "text-foreground border-white/10",
+        outline: "text-muted-foreground border-border bg-card",
         active:
           "border-emerald-500/30 bg-emerald-500/15 text-emerald-400 font-medium",
         steam:
-          "border-sky-500/30 bg-sky-950/70 text-sky-300 font-medium shadow-sm shadow-sky-900/30",
+          "border-border bg-card text-muted-foreground font-medium",
         riot:
-          "border-rose-500/30 bg-rose-950/70 text-rose-300 font-medium shadow-sm shadow-rose-900/30",
+          "border-border bg-card text-muted-foreground font-medium",
         epic:
-          "border-neutral-500/30 bg-neutral-900/80 text-neutral-300 font-medium",
+          "border-border bg-card text-muted-foreground font-medium",
         ea:
-          "border-amber-500/30 bg-amber-950/70 text-amber-300 font-medium",
+          "border-border bg-card text-muted-foreground font-medium",
         linux:
-          "border-yellow-500/30 bg-yellow-950/70 text-yellow-300 font-medium",
+          "border-border bg-card text-muted-foreground font-medium",
       },
     },
     defaultVariants: {
