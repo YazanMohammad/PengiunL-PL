@@ -3,7 +3,6 @@ import type { Game, Account, Platform, ConflictInfo, ViewMode, GridDensity, Sort
 import { api } from '../api/client';
 import { TopBar } from './TopBar';
 import { Sidebar } from './Sidebar';
-import { HeroSpotlight } from './HeroSpotlight';
 import { GameCard } from './GameCard';
 import { GameListItem } from './GameListItem';
 import { AccountSelectorModal } from './AccountSelectorModal';
@@ -12,7 +11,7 @@ import { GameDetailsModal } from './GameDetailsModal';
 import { useGames } from '../hooks/useGames';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Sparkles, Gamepad2, AlertCircle, CheckCircle2, User, Zap, X, Download } from 'lucide-react';
+import { Gamepad2, AlertCircle, CheckCircle2, Zap, X } from 'lucide-react';
 
 export const GameLibrary: React.FC = () => {
   const {
@@ -38,7 +37,6 @@ export const GameLibrary: React.FC = () => {
   const [visibleLimit, setVisibleLimit] = useState(80);
 
   // Modals & Selected elements
-  const [spotlightGameId, setSpotlightGameId] = useState<string | null>(null);
   const [conflict, setConflict] = useState<ConflictInfo | null>(null);
   const [detailedGame, setDetailedGame] = useState<Game | null>(null);
   const [accountsModalOpen, setAccountsModalOpen] = useState(false);
@@ -155,16 +153,6 @@ export const GameLibrary: React.FC = () => {
   }, [uniqueGames, selectedPlatform, selectedAccountId, installationFilter, searchQuery, sortOption]);
 
   const displayedGames = useMemo(() => filteredGames.slice(0, visibleLimit), [filteredGames, visibleLimit]);
-
-  // Highlighted spotlight game (default to first filtered game or explicitly chosen)
-  const spotlightGame = useMemo(() => {
-    if (filteredGames.length === 0) return null;
-    if (spotlightGameId) {
-      const match = filteredGames.find((g) => g.id === spotlightGameId);
-      if (match) return match;
-    }
-    return filteredGames[0];
-  }, [filteredGames, spotlightGameId]);
 
   // Toast notifier
   const showToast = (message: string, type: 'success' | 'error' | 'info') => {
@@ -284,13 +272,13 @@ export const GameLibrary: React.FC = () => {
   // Density column grid class
   const gridClasses = useMemo(() => {
     if (gridDensity === 'compact') {
-      return 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3';
+      return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4';
     }
     if (gridDensity === 'spacious') {
-      return 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6';
+      return 'grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8';
     }
     // standard
-    return 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4';
+    return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6';
   }, [gridDensity]);
 
   return (
@@ -313,7 +301,7 @@ export const GameLibrary: React.FC = () => {
         systemInfo={systemInfo}
       />
 
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden md:flex-row">
         {/* Sidebar with Platforms and Separate Account Navigator */}
         <Sidebar
           selectedPlatform={selectedPlatform}
@@ -323,7 +311,7 @@ export const GameLibrary: React.FC = () => {
           installationFilter={installationFilter}
           onSelectInstallationFilter={setInstallationFilter}
           platformCounts={platformCounts}
-          totalGames={games.length}
+          totalGames={uniqueGames.length}
           installedCount={installedCount}
           uninstalledCount={uninstalledCount}
           accounts={accounts}
@@ -331,9 +319,18 @@ export const GameLibrary: React.FC = () => {
         />
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto p-6 scroll-smooth">
+        <main className="min-h-0 min-w-0 flex-1 overflow-y-auto p-4 lg:p-8">
+          <div className="mb-7 flex flex-wrap items-baseline justify-between gap-2">
+            <h2 className="text-2xl font-medium tracking-tight">
+              {activeSelectedAccount ? `${activeSelectedAccount.displayName}'s games` : selectedPlatform === 'All' ? 'All games' : `${selectedPlatform === 'LinuxNative' ? 'Linux native' : selectedPlatform} games`}
+            </h2>
+            <p className="text-xs text-muted-foreground" role="status">
+              {filteredGames.length} {filteredGames.length === 1 ? 'game' : 'games'}
+              {installationFilter !== 'all' && ` · ${installationFilter === 'installed' ? 'Installed' : 'Ready to install'}`}
+            </p>
+          </div>
           {error && (
-            <div className="mb-5 p-4 rounded-xl bg-destructive/15 border border-destructive/30 text-destructive-foreground text-xs flex items-center gap-3">
+            <div role="alert" className="mb-5 flex items-center gap-3 rounded-lg border border-destructive/40 bg-card p-4 text-xs text-destructive-foreground">
               <AlertCircle className="w-4 h-4 shrink-0 text-destructive" />
               <span>{error}</span>
             </div>
@@ -341,16 +338,16 @@ export const GameLibrary: React.FC = () => {
 
           {/* Active Account Filter Banner */}
           {activeSelectedAccount && (
-            <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-violet-950/40 via-zinc-900/60 to-black/40 border border-violet-500/30 flex items-center justify-between gap-4 shadow-lg backdrop-blur-md">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-border bg-card p-4">
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-violet-600/20 border border-violet-500/40 text-violet-300 font-bold flex items-center justify-center text-sm shrink-0">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border text-sm text-muted-foreground">
                   {activeSelectedAccount.displayName.charAt(0).toUpperCase()}
                 </div>
                 <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-bold text-white truncate">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="truncate text-sm font-medium text-foreground">
                       {activeSelectedAccount.displayName}&apos;s Library
-                    </h3>
+                    </p>
                     <Badge variant={activeSelectedAccount.isActive ? 'active' : 'outline'} className="text-[10px]">
                       {activeSelectedAccount.isActive ? 'Active Session' : 'Standby Profile'}
                     </Badge>
@@ -366,16 +363,17 @@ export const GameLibrary: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex flex-wrap items-center gap-2">
                 {!activeSelectedAccount.isActive && (
                   <Button
                     size="sm"
-                    variant="glow"
+                    variant="outline"
                     onClick={() => handleManualSwap(activeSelectedAccount)}
+                    disabled={swappingAccountId === activeSelectedAccount.id}
                     className="h-8 text-xs font-semibold gap-1.5 rounded-lg"
                   >
                     <Zap className="w-3.5 h-3.5 text-amber-300" />
-                    <span>Switch Active Session</span>
+                    <span>{swappingAccountId === activeSelectedAccount.id ? 'Switching Session...' : 'Switch Active Session'}</span>
                   </Button>
                 )}
                 <Button
@@ -391,25 +389,10 @@ export const GameLibrary: React.FC = () => {
             </div>
           )}
 
-          {/* Hero Spotlight (shown when not searching) */}
-          {!searchQuery && spotlightGame && (
-            <HeroSpotlight
-              game={spotlightGame}
-              onPlay={handlePlay}
-              onDetails={(g) => setDetailedGame(g)}
-              launching={launchingGameId === spotlightGame.id}
-              accounts={accounts}
-            />
-          )}
-
           {/* Games Container */}
           {loading && games.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-96 gap-4 text-center">
-              <div className="relative flex items-center justify-center">
-                <div className="w-12 h-12 rounded-2xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-xl animate-bounce">
-                  🐧
-                </div>
-              </div>
+            <div role="status" className="flex h-80 flex-col items-center justify-center gap-4 text-center">
+              <div className="h-6 w-6 animate-spin rounded-full border-2 border-border border-t-primary" aria-hidden="true" />
               <div>
                 <p className="text-sm font-semibold text-white">Scanning Game Repositories...</p>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -418,8 +401,8 @@ export const GameLibrary: React.FC = () => {
               </div>
             </div>
           ) : filteredGames.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-80 gap-3 text-center border border-dashed border-white/10 rounded-2xl p-8 bg-zinc-950/40">
-              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-muted-foreground">
+            <div role="status" className="flex h-80 flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-border bg-card p-8 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg text-muted-foreground">
                 <Gamepad2 className="w-6 h-6" />
               </div>
               <p className="text-sm font-semibold text-white">No games detected</p>
@@ -441,7 +424,7 @@ export const GameLibrary: React.FC = () => {
                       game={game}
                       onPlay={handlePlay}
                       onDetails={(g) => setDetailedGame(g)}
-                      onSelect={(g) => setSpotlightGameId(g.id)}
+                      onSelect={(g) => setDetailedGame(g)}
                       density={gridDensity}
                       accounts={accounts}
                     />
@@ -450,11 +433,10 @@ export const GameLibrary: React.FC = () => {
               ) : (
                 <div className="space-y-2">
                   {/* Sleek Table Header for List Preview */}
-                  <div className="flex items-center justify-between px-4 py-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider border-b border-white/5 select-none">
+                  <div className="flex items-center justify-between border-b border-border px-3 py-2 text-[11px] text-muted-foreground">
                     <span className="flex-1">Title & Directory</span>
-                    <span className="hidden sm:block w-48 text-center">Owning Profile</span>
-                    <span className="hidden md:block w-36 text-center">Status</span>
-                    <span className="w-44 text-right pr-2">Session Control</span>
+                    <span className="hidden lg:block w-56">Profile & Status</span>
+                    <span className="w-40 text-right">Session Control</span>
                   </div>
                   {displayedGames.map((game) => (
                     <GameListItem
@@ -462,8 +444,8 @@ export const GameLibrary: React.FC = () => {
                       game={game}
                       onPlay={handlePlay}
                       onDetails={(g) => setDetailedGame(g)}
-                      onSelect={(g) => setSpotlightGameId(g.id)}
-                      isSelected={spotlightGame?.id === game.id}
+                      onSelect={(g) => setDetailedGame(g)}
+                      isSelected={detailedGame?.id === game.id}
                       accounts={accounts}
                     />
                   ))}
@@ -477,12 +459,12 @@ export const GameLibrary: React.FC = () => {
                     Displaying <span className="font-semibold text-white">{displayedGames.length}</span> of{' '}
                     <span className="font-semibold text-white">{filteredGames.length}</span> titles
                   </p>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center justify-center gap-2">
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => setVisibleLimit((prev) => prev + 100)}
-                      className="text-xs font-semibold rounded-xl border-white/10 hover:bg-white/10"
+                      className="text-xs"
                     >
                       Load More Titles (+100)
                     </Button>
@@ -541,12 +523,13 @@ export const GameLibrary: React.FC = () => {
       {/* Floating Status Toast */}
       {toast && (
         <div
-          className={`fixed bottom-6 right-6 px-4 py-3 rounded-2xl shadow-2xl backdrop-blur-xl border text-xs font-semibold z-50 flex items-center gap-2.5 animate-in slide-in-from-bottom-5 duration-200 ${
+          role={toast.type === 'error' ? 'alert' : 'status'}
+          className={`fixed bottom-4 right-4 left-4 z-50 flex items-center gap-2.5 rounded-lg border bg-card px-4 py-3 text-xs md:left-auto md:max-w-md ${
             toast.type === 'success'
-              ? 'bg-emerald-950/90 border-emerald-500/40 text-emerald-200 shadow-emerald-900/30'
+              ? 'border-emerald-500/40 text-emerald-200'
               : toast.type === 'error'
-              ? 'bg-rose-950/90 border-rose-500/40 text-rose-200 shadow-rose-900/30'
-              : 'bg-zinc-900/95 border-violet-500/40 text-zinc-100 shadow-violet-900/20'
+              ? 'border-destructive/40 text-destructive-foreground'
+              : 'border-border text-foreground'
           }`}
         >
           {toast.type === 'success' ? (
@@ -554,7 +537,7 @@ export const GameLibrary: React.FC = () => {
           ) : toast.type === 'error' ? (
             <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
           ) : (
-            <div className="w-3.5 h-3.5 border-2 border-violet-400/40 border-t-violet-400 rounded-full animate-spin shrink-0" />
+            <div className="h-3.5 w-3.5 shrink-0 animate-spin rounded-full border-2 border-border border-t-primary" aria-hidden="true" />
           )}
           <span>{toast.message}</span>
         </div>
