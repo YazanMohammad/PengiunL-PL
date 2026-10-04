@@ -49,7 +49,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
 }) => {
   const formId = useId();
   const [activeTab, setActiveTab] = useState<Platform | 'All'>('All');
-  const [statusMessage, setStatusMessage] = useState<{ text: string; isError?: boolean } | null>(null);
+  const [statusMessage, setStatusMessage] = useState<{ text: string; isError?: boolean; action?: string } | null>(null);
   const [busyAction, setBusyAction] = useState<string | null>(null);
 
   // Sub-dialogs state
@@ -69,8 +69,8 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
 
   const [renameValue, setRenameValue] = useState('');
 
-  const showStatus = (text: string, isError = false) => {
-    setStatusMessage({ text, isError });
+  const showStatus = (text: string, isError = false, action?: string) => {
+    setStatusMessage({ text, isError, action });
     setTimeout(() => setStatusMessage(null), 4000);
   };
 
@@ -108,7 +108,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
       setAddUserId('');
       onRefresh();
     } catch (err) {
-      showStatus(err instanceof Error ? err.message : 'Failed to add profile', true);
+      showStatus(err instanceof Error ? err.message : 'Failed to add profile', true, 'add');
     } finally {
       setBusyAction(null);
     }
@@ -130,7 +130,8 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
     } catch (err) {
       showStatus(
         err instanceof Error ? err.message : `No active session found for ${capturePlatform}`,
-        true
+        true,
+        'capture'
       );
     } finally {
       setBusyAction(null);
@@ -151,7 +152,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
       setRenameValue('');
       onRefresh();
     } catch (err) {
-      showStatus(err instanceof Error ? err.message : 'Failed to rename account', true);
+      showStatus(err instanceof Error ? err.message : 'Failed to rename account', true, 'rename');
     } finally {
       setBusyAction(null);
     }
@@ -169,7 +170,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
       setTargetAccount(null);
       onRefresh();
     } catch (err) {
-      showStatus(err instanceof Error ? err.message : 'Failed to remove account', true);
+      showStatus(err instanceof Error ? err.message : 'Failed to remove account', true, 'delete');
     } finally {
       setBusyAction(null);
     }
@@ -189,7 +190,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
     }
   };
 
-  const formError = statusMessage?.isError ? (
+  const formError = (action: string) => statusMessage?.isError && statusMessage.action === action ? (
     <p role="alert" className="rounded-md border border-destructive bg-background p-3 text-sm text-red-300">
       {statusMessage.text}
     </p>
@@ -528,7 +529,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
             </DialogDescription>
           </DialogHeader>
 
-          {formError}
+          {formError('add')}
 
           <form onSubmit={handleAddSubmit} className="space-y-4 my-2">
             <fieldset>
@@ -619,7 +620,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
             </DialogDescription>
           </DialogHeader>
 
-          {formError}
+          {formError('capture')}
 
           <form onSubmit={handleCaptureSubmit} className="space-y-4 my-2">
             <fieldset>
@@ -701,7 +702,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
             </DialogDescription>
           </DialogHeader>
 
-          {formError}
+          {formError('rename')}
 
           <form onSubmit={handleRenameSubmit} className="space-y-4 my-2">
             <div>
@@ -758,7 +759,7 @@ export const AccountsManagerModal: React.FC<AccountsManagerModalProps> = ({
             </DialogDescription>
           </DialogHeader>
 
-          {formError}
+          {formError('delete')}
 
           <div className="flex items-center justify-end gap-2 pt-3">
             <Button

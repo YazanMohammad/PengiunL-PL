@@ -136,6 +136,30 @@ describe('library characterization', () => {
 });
 
 describe('artwork-led library', () => {
+  // Catch controlled details dismissal losing the user's place in the library.
+  it.each([
+    ['grid', 'body', 'Escape'], ['grid', 'body', 'Close'],
+    ['grid', 'Details', 'Escape'], ['grid', 'Details', 'Close'],
+    ['list', 'body', 'Escape'], ['list', 'body', 'Close'],
+    ['list', 'Details', 'Escape'], ['list', 'Details', 'Close'],
+  ])('%s %s restores initiating focus after %s', async (mode, action, dismissal) => {
+    render(<GameLibrary />);
+    if (mode === 'list') fireEvent.click(screen.getByRole('button', { name: 'List View' }));
+    const body = screen.getByRole('button', { name: 'Open details for Alpha' });
+    const origin = action === 'body' ? body : within(body.closest('article')!).getByRole('button', { name: 'Details' });
+    origin.focus();
+    fireEvent.keyDown(origin, { key: 'Enter' });
+    // jsdom does not synthesize native button clicks from keyboard events.
+    if (action === 'Details') fireEvent.click(origin);
+    const dialog = screen.getByRole('dialog', { name: 'Alpha' });
+    expect(dialog).toContainElement(document.activeElement as HTMLElement);
+    if (dismissal === 'Escape') fireEvent.keyDown(document.activeElement!, { key: 'Escape' });
+    else fireEvent.click(within(dialog).getAllByRole('button', { name: 'Close' })[0]);
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    await waitFor(() => expect(origin).toHaveFocus());
+    expect(api.launch).not.toHaveBeenCalled();
+  });
+
   it('list installation metadata opens existing details without launching', () => {
     render(<GameLibrary />);
     fireEvent.click(screen.getByRole('button', { name: 'List View' }));

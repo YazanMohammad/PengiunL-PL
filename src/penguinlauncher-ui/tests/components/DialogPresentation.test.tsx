@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '../../src/components/ui/dialog';
@@ -29,6 +30,80 @@ function expectFlat(element: HTMLElement, background: string) {
 }
 
 describe('shared presentation contracts', () => {
+  it('keeps focus in a newer dialog when an underlying controlled dialog closes', async () => {
+    function Stacked() {
+      const [parentOpen, setParentOpen] = useState(false);
+      const [childOpen, setChildOpen] = useState(false);
+      return <main><button onClick={() => setParentOpen(true)}>Open parent</button>
+        <button>Outside</button>
+        <Dialog open={parentOpen} onOpenChange={setParentOpen}><DialogContent>
+          <DialogTitle>Parent</DialogTitle><DialogDescription>Parent layer</DialogDescription>
+          <button onClick={() => setChildOpen(true)}>Open child</button>
+        </DialogContent></Dialog>
+        <Dialog open={childOpen} onOpenChange={setChildOpen}><DialogContent>
+          <DialogTitle>Child</DialogTitle><DialogDescription>Child layer</DialogDescription>
+          <button onClick={() => setParentOpen(false)}>Close underlying parent</button>
+          <button>Keep child focus</button>
+        </DialogContent></Dialog></main>;
+    }
+    render(<Stacked />);
+    screen.getByRole('button', { name: 'Open parent' }).focus();
+    fireEvent.click(document.activeElement!);
+    const openChild = screen.getByRole('button', { name: 'Open child' });
+    openChild.focus();
+    fireEvent.click(openChild);
+    const child = screen.getByRole('dialog', { name: 'Child' });
+    screen.getByRole('button', { name: 'Outside', hidden: true }).focus();
+    expect(child).toContainElement(document.activeElement as HTMLElement);
+    const childFocus = within(child).getByRole('button', { name: 'Keep child focus' });
+    childFocus.focus();
+    fireEvent.click(within(child).getByRole('button', { name: 'Close underlying parent' }));
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Parent', hidden: true })).not.toBeInTheDocument());
+    // Wait through Radix's delayed close autofocus rather than only unmount.
+    await act(async () => { await new Promise(resolve => setTimeout(resolve, 10)); });
+    expect(childFocus).toHaveFocus();
+    fireEvent.keyDown(document.activeElement!, { key: 'Escape' });
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Open parent' })).toHaveFocus());
+  });
+
+  it('composes caller autofocus handlers and honors prevented close restoration', async () => {
+    function Controlled() {
+      const [open, setOpen] = useState(false);
+      return <><button onClick={() => setOpen(true)}>Open controlled</button>
+        <button>Caller return</button>
+        <Dialog open={open} onOpenChange={setOpen}><DialogContent
+          onOpenAutoFocus={event => { event.preventDefault(); screen.getByRole('button', { name: 'Custom initial' }).focus(); }}
+          onCloseAutoFocus={event => { event.preventDefault(); screen.getByRole('button', { name: 'Caller return' }).focus(); }}>
+          <DialogTitle>Controlled</DialogTitle><DialogDescription>Caller focus choices</DialogDescription>
+          <button>Custom initial</button>
+        </DialogContent></Dialog></>;
+    }
+    render(<Controlled />);
+    screen.getByRole('button', { name: 'Open controlled' }).focus();
+    fireEvent.click(document.activeElement!);
+    expect(screen.getByRole('button', { name: 'Custom initial' })).toHaveFocus();
+    fireEvent.keyDown(document.activeElement!, { key: 'Escape' });
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Caller return' })).toHaveFocus());
+  });
+
+  it('uses a connected fallback when a controlled dialog origin is removed', async () => {
+    function Controlled() {
+      const [open, setOpen] = useState(false);
+      const [removed, setRemoved] = useState(false);
+      return <main>{!removed && <button onClick={() => { setRemoved(true); setOpen(true); }}>Removed origin</button>}
+        <button>Library fallback</button>
+        <Dialog open={open} onOpenChange={setOpen}><DialogContent>
+          <DialogTitle>Transient</DialogTitle><DialogDescription>Removed originating control</DialogDescription>
+        </DialogContent></Dialog></main>;
+    }
+    render(<Controlled />);
+    const origin = screen.getByRole('button', { name: 'Removed origin' });
+    origin.focus();
+    fireEvent.click(origin);
+    fireEvent.keyDown(document.activeElement!, { key: 'Escape' });
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Library fallback' })).toHaveFocus());
+  });
+
   it('dialog surface is opaque and flat with bounded scrolling', () => {
     render(<Dialog open><DialogContent><DialogTitle>Surface</DialogTitle><DialogDescription>Surface description</DialogDescription></DialogContent></Dialog>);
     const dialog = screen.getByRole('dialog', { name: 'Surface' });
@@ -70,6 +145,42 @@ describe('shared presentation contracts', () => {
 });
 
 describe('account manager presentation and preserved workflows', () => {
+  it.each([
+    ['Add Profile', 'Add Account Profile'],
+    ['Capture Active', 'Capture Active Session'],
+    ['Rename Bob', 'Rename Profile Alias'],
+    ['Remove Bob', 'Remove Profile?'],
+  ])('%s nested dismissal restores its parent action', async (action, title) => {
+    manager();
+    const origin = screen.getByRole('button', { name: action });
+    origin.focus();
+    fireEvent.click(origin);
+    const nested = screen.getByRole('dialog', { name: title });
+    expect(nested).toContainElement(document.activeElement as HTMLElement);
+    fireEvent.keyDown(document.activeElement!, { key: 'Escape' });
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: title })).not.toBeInTheDocument());
+    await waitFor(() => expect(origin).toHaveFocus());
+    expect(screen.getByRole('dialog', { name: 'Account Hot-Switcher & Manager' })).toBeInTheDocument();
+  });
+
+  it('does not announce a previous capture failure in a newly opened Add form', async () => {
+    apiSession.connect(TOKEN);
+    vi.mocked(fetch).mockResolvedValueOnce(new Response('{"error":"Synthetic capture unavailable"}', { status: 503 }));
+    manager();
+    fireEvent.click(screen.getByRole('button', { name: 'Capture Active' }));
+    const capture = within(screen.getByRole('dialog', { name: 'Capture Active Session' }));
+    fireEvent.click(capture.getByRole('button', { name: 'Capture Session' }));
+    expect(await capture.findByRole('alert')).toHaveTextContent('Synthetic capture unavailable');
+    fireEvent.click(capture.getByRole('button', { name: 'Cancel' }));
+    expect(screen.getByRole('alert')).toHaveTextContent('Synthetic capture unavailable');
+    fireEvent.click(screen.getByRole('button', { name: 'Add Profile' }));
+    const add = within(screen.getByRole('dialog', { name: 'Add Account Profile' }));
+    expect(add.queryByRole('alert')).not.toBeInTheDocument();
+    expect(fetch).toHaveBeenCalledOnce();
+    fireEvent.click(add.getByRole('button', { name: 'Cancel' }));
+    expect(screen.getByRole('alert')).toHaveTextContent('Synthetic capture unavailable');
+  });
+
   it('active modal chrome and account rows are flat', () => {
     manager();
     const dialog = screen.getByRole('dialog', { name: 'Account Hot-Switcher & Manager' });
