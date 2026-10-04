@@ -86,18 +86,20 @@ Launch the native app and allow discovery to finish. Use **Rescan** after instal
 
 Click a card/row or **Details** to inspect a game. **Play** uses the existing platform launch workflow. For a title associated with multiple accounts, choose the intended account when prompted. Selecting an account filter can also influence the launch target; check it before playing. **Install** hands off to the platform client and may require its own login or confirmation.
 
+**Both Play and Install can automatically switch vendor sessions before launching**, including when there is only one associated account and no account-choice prompt. This can forcibly stop clients or running games and modify session files. Apply the backup/save-work precautions below before these actions too.
+
 ### Profiles and session operations
 
-Open **Accounts** to inspect discovered profiles, filter by platform, rename a display alias, capture a signed-in session, or add a profile manually. A manually added name/ID is not a new vendor login and does not establish game ownership. Capture requires an existing detectable vendor session.
+Open **Accounts** to inspect discovered profiles, filter by platform, rename a display alias, capture a session, or add a profile manually. A manually added name/ID is not a new vendor login and does not establish game ownership. Sign in to the intended vendor account before capture. Capture success or an Active label is not proof of a valid or correctly identified signed-in session; some adapters can create a profile from incomplete local data.
 
-Before capture, switching, logout, or removal:
+Before Play, Install, capture, switching, logout, or removal:
 
 - Save work and close running games. The implementation can forcibly stop launcher process trees.
 - Keep an independent backup of relevant client/session files and `%APPDATA%\PenguinLauncher`.
 - Use only trusted, simple platform IDs. Account-ID/path validation and backup containment still need hardening.
 - Expect that reauthentication or MFA may be necessary. Saved session material can expire or be invalidated by a vendor.
 
-Removal/logout can affect backups or platform configuration; read the confirmation carefully. The app does not promise transactional rollback or lossless restoration. Do not use it as the only copy of important session data.
+**Logout takes effect immediately without a confirmation dialog.** It can stop processes and delete/change vendor session files. Removal has a confirmation, but it can affect vendor configuration as well as app backups; Steam removal can edit `loginusers.vdf`. Do not assume it only removes a library label or backup. The app does not promise transactional rollback or lossless restoration. Do not use it as the only copy of important session data.
 
 ## Data, privacy, and security
 
@@ -107,16 +109,17 @@ On Windows, application state is stored in:
 
 ```text
 %APPDATA%\PenguinLauncher\state.json
+%APPDATA%\PenguinLauncher\steam_app_names.json
 %APPDATA%\PenguinLauncher\backups\<platform>\<account-id>\...
 ```
 
-State includes discovered games, account records, mappings, and scan information. Riot/Epic/EA adapters can copy sensitive session/configuration material into backups; Steam uses its own account configuration rather than the same explicit session-backup mechanism. The app can also read/write vendor-managed files outside its state directory.
+State includes discovered games, account records, mappings, and scan information; `steam_app_names.json` caches Steam title names. Riot/Epic/EA adapters can copy sensitive session/configuration material into backups; Steam uses its own account configuration rather than the same explicit session-backup mechanism. The app can also read/write vendor-managed files outside its state directory.
 
 Backups are **not encrypted by this application**. Protect them like credentials: do not commit them, upload them with bug reports, or share them. Close the app and vendor clients before making an independent backup. Deleting the extracted app folder does not delete profile data or undo vendor-file modifications.
 
 ### Local API boundary
 
-The backend binds to IPv4/IPv6 loopback on fixed port `5100`. All `/api` requests, including health/system information, require a bearer session credential. Desktop startup generates it and passes it privately to the UI via the initial fragment; the UI removes that fragment and retains the session in memory/sessionStorage for same-window reload.
+The backend binds to IPv4/IPv6 loopback on fixed port `5100`. All API endpoint/data/mutation requests, including health/system information, require a bearer session credential. A narrowly validated Development browser CORS preflight can receive a response without a credential; it does not execute an endpoint. Desktop startup generates the credential and passes it privately to the UI via the initial fragment; the UI removes that fragment and retains the session in memory/sessionStorage for same-window reload.
 
 This boundary is not protection against malware, debuggers, native dependencies, or trusted UI scripts running as the same OS user. Session storage is not encrypted. Do not publish API tokens, place them in `VITE_*` variables, or expose the local server through a public proxy. Opening `http://localhost:5100` in an unrelated browser does not establish the native app's session.
 
