@@ -405,6 +405,39 @@ public class LocalApiBoundaryTests
             await AssertErrorAsync(response, HttpStatusCode.Unauthorized, "Authentication required.");
     }
 
+    // Losing CORS during exception response clearing, or overwriting downstream Vary, breaks this.
+    [Theory]
+    [InlineData("/api/health", 200)]
+    [InlineData("/api/synthetic-throw", 500)]
+    public async Task DevelopmentResponse_PreservesCorsAndExistingVaryAtResponseStart(string path, int status)
+    {
+        await using var fixture = await ApiBoundaryFixture.CreateAsync(Policy(true));
+        using var request = Request("GET", path);
+        request.Headers.TryAddWithoutValidation("Origin", "http://LOCALHOST:5173");
+        using var response = await fixture.Client.SendAsync(request);
+        Assert.Equal((HttpStatusCode)status, response.StatusCode);
+        Assert.Equal("no-store", response.Headers.CacheControl?.ToString());
+        AssertCors(response);
+        Assert.Contains("Accept-Encoding", response.Headers.Vary);
+        Assert.Equal(1, fixture.HandlerCalls);
+        if (status == 500)
+            await AssertErrorAsync(response, HttpStatusCode.InternalServerError, "Synthetic handler failure.");
+    }
+
+    // A valid token must not allow foreign origins to reach even a throwing endpoint.
+    [Fact]
+    public async Task ForeignDevelopmentOrigin_IsBlockedBeforeThrowingHandlerWithoutCors()
+    {
+        await using var fixture = await ApiBoundaryFixture.CreateAsync(Policy(true));
+        using var request = Request("GET", "/api/synthetic-throw");
+        request.Headers.TryAddWithoutValidation("Origin", "http://evil.example:5173");
+        using var response = await fixture.Client.SendAsync(request);
+        await AssertErrorAsync(response, HttpStatusCode.Forbidden, "Request not allowed.");
+        Assert.False(response.Headers.Contains("Access-Control-Allow-Origin"));
+        Assert.False(response.Headers.Contains("Vary"));
+        Assert.Equal(0, fixture.HandlerCalls);
+    }
+
     private static HttpRequestMessage Request(string method, string path, bool authenticated = true)
     {
         var request = new HttpRequestMessage(new HttpMethod(method), path);

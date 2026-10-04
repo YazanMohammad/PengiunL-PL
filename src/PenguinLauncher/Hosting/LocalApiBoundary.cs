@@ -42,8 +42,14 @@ public static class LocalApiBoundary
                 && string.Equals(origins[0], policy.DevelopmentOrigin, StringComparison.OrdinalIgnoreCase);
             if (isDevelopmentOrigin)
             {
-                context.Response.Headers.AccessControlAllowOrigin = policy.DevelopmentOrigin;
-                context.Response.Headers.Append("Vary", "Origin");
+                // Capture only the validated immutable policy, not mutable request headers.
+                var allowedOrigin = policy.DevelopmentOrigin;
+                context.Response.OnStarting(() =>
+                {
+                    context.Response.Headers.AccessControlAllowOrigin = allowedOrigin;
+                    context.Response.Headers.Append("Vary", "Origin");
+                    return Task.CompletedTask;
+                });
             }
 
             if (request.Headers["Sec-Fetch-Site"].Any(value =>

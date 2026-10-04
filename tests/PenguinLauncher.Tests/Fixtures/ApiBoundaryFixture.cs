@@ -33,6 +33,14 @@ public sealed class ApiBoundaryFixture : IAsyncDisposable
         var app = builder.Build();
         ApiBoundaryFixture? fixture = null;
         app.UseLocalApiBoundary(policy);
+        // Match Program's boundary-before-exception-handler composition.
+        app.UseExceptionHandler(errorApp => errorApp.Run(async context =>
+        {
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            context.Response.Headers.Vary = "Accept-Encoding";
+            var error = context.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature>()?.Error;
+            await context.Response.WriteAsJsonAsync(new { error = error?.Message });
+        }));
         string[] getRoutes = ["/api/games/", "/api/accounts/", "/api/accounts/{platform}",
             "/api/launch/preflight/{gameId}", "/api/system/info", "/api/health"];
         string[] postRoutes = ["/api/games/scan", "/api/accounts/map", "/api/accounts/swap",
@@ -43,6 +51,7 @@ public sealed class ApiBoundaryFixture : IAsyncDisposable
             Interlocked.Increment(ref fixture!._handlerCalls);
             // The boundary must enforce no-store even if a downstream handler overwrites it.
             context.Response.Headers.CacheControl = "public, max-age=3600";
+            context.Response.Headers.Vary = "Accept-Encoding";
             await context.Response.WriteAsJsonAsync(new { synthetic = true });
         };
         foreach (var route in getRoutes)
@@ -50,6 +59,11 @@ public sealed class ApiBoundaryFixture : IAsyncDisposable
         foreach (var route in postRoutes)
             app.MapPost(route, handler);
         app.MapDelete("/api/accounts/{id}", handler);
+        app.MapGet("/api/synthetic-throw", (HttpContext context) =>
+        {
+            Interlocked.Increment(ref fixture!._handlerCalls);
+            throw new InvalidOperationException("Synthetic handler failure.");
+        });
         app.MapGet("/api/synthetic-error", async context =>
         {
             Interlocked.Increment(ref fixture!._handlerCalls);
